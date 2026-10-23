@@ -1,29 +1,59 @@
-# Temas e aparência
+# Temas
 
-A tela de Aparência oferece dez famílias, cada uma com modo claro e escuro (20 temas):
-Padrão, Absolutely, Ayu, Catppuccin, Dracula, Everforest, GitHub, Gruvbox, Linear e Lobster.
+O Studio oferece 29 famílias e 45 variantes: os modos neutros Claro/Escuro e 43 variantes de 28 famílias do catálogo de referência abaixo. Os nomes públicos não incluem a marca ChatGPT.
 
-Os nomes públicos dos dois temas básicos são Claro e Escuro. Os nomes, títulos e prévias não usam a marca anterior. As paletas das famílias são adaptações para a interface a partir das referências fornecidas.
+## Famílias e modos
 
-## Uso
-Escolha a família no seletor Tema e depois o modo na prévia. O botão da barra superior alterna claro/escuro dentro da família ativa.
-Padrão usa o destaque nativo da paleta selecionada; as cores nomeadas e a cor personalizada continuam disponíveis.
+| Família | Variantes disponíveis |
+| --- | --- |
+| Padrão | Claro, Escuro |
+| Absolutely | Claro, Escuro |
+| Ayu | Escuro |
+| Catppuccin | Latte (claro), Mocha (escuro) |
+| Codex | Claro, Escuro |
+| Dracula | Escuro |
+| Everforest | Claro, Escuro |
+| GitHub | Claro, Escuro |
+| Gruvbox | Claro, Escuro |
+| Linear | Claro, Escuro |
+| Lobster | Escuro |
+| Material | Escuro |
+| Matrix | Escuro |
+| Monokai | Escuro |
+| Night Owl | Escuro |
+| Nord | Escuro |
+| Notion | Claro, Escuro |
+| Oscurange | Escuro |
+| One | Claro, Escuro |
+| Proof | Claro |
+| Raycast | Claro, Escuro |
+| Rose Pine | Claro, Escuro |
+| Sentry | Escuro |
+| Solarized | Claro, Escuro |
+| Tokyo Night | Escuro |
+| Temple | Escuro |
+| Vercel | Claro, Escuro |
+| VS Code Plus | Claro, Escuro |
+| Xcode | Claro, Escuro |
 
-## Compatibilidade
-Preferências da versão anterior permanecem válidas, inclusive a cor escolhida. Backups aceitam os vinte IDs atuais. Alguns IDs antigos conhecidos recebem aliases para as famílias correspondentes; outros modos antigos migram para Claro ou Escuro. Dados do projeto e Terraform são preservados. A importação de paletas arbitrárias continua removida.
+Ao selecionar uma família, o modo atual é mantido quando existe uma variante correspondente. Caso contrário, a variante disponível é aplicada. O botão da barra superior alterna claro/escuro dentro da família; se o modo oposto não existir, aplica o modo neutro correspondente.
 
-## Validação antes da publicação
-- Nove testes de temas passaram.
-- 20 temas selecionados, restaurados e persistidos.
-- 180 combinações de tema/destaque verificadas.
-- 480 cenários de layout sem overflow: 20 temas, oito páginas e três larguras.
-- Contraste mínimo: texto 7,06:1; botões 5,18:1; destaque contra superfícies 4,51:1.
-- Dez testes de regressão passaram.
-- Idiomas: 64 cenários de navegação e 192 de layout passaram.
-- Os geradores Terraform e IAM não foram alterados.
+As preferências ficam no navegador e nos backups. IDs antigos de Catppuccin são migrados para Mocha/Latte; antigas variantes claras de Ayu, Dracula e Lobster são migradas para a variante escura disponível. Recursos, nomes de projetos e Terraform não são alterados.
 
-Com Playwright e Chromium:
+Há nove opções de destaque: Padrão, Azul, Verde, Amarelo, Rosa, Laranja, Roxo, Branco e Personalizado. Padrão usa a cor própria da paleta. Texto, cores semânticas e destaques são ajustados quando necessário para contraste mínimo de 4,5:1 nas superfícies principais. A interface continua disponível nos oito idiomas existentes.
 
-    node tests/themes.cjs
+## Proveniência e limites
 
-Use CHROMIUM_PATH para outro executável. Resultados e captura são gravados em work/.
+Dados adaptados do projeto MIT [smallyunet/codex-palette-vscode](https://github.com/smallyunet/codex-palette-vscode/tree/fc6741785b1a21c584ee0309a3cc9faa896b6127), commit `fc6741785b1a21c584ee0309a3cc9faa896b6127`, arquivos `src/palettes.mjs` e `src/codex-source-colors.mjs`.
+
+A [proveniência registrada](https://github.com/smallyunet/codex-palette-vscode/blob/fc6741785b1a21c584ee0309a3cc9faa896b6127/SOURCE_PROVENANCE.md) identifica ChatGPT macOS 26.730.61309, build 6223, capturado em 2026-08-05. São paletas do Workbench: a lista pode variar conforme a versão do aplicativo e não garante corresponder a todas as instalações atuais. Transparência e composição da interface original não são reproduzidas literalmente. As cores foram adaptadas às superfícies do Studio e à legibilidade.
+
+Licença e atribuição em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), também incorporadas ao HTML distribuído.
+
+## Validação
+
+`tests/themes.cjs` verifica o catálogo completo, seleção e persistência de todas as variantes, migração, nove destaques por tema, teclado, alternância de modos e oito páginas em três larguras. Execute com Playwright e Chromium instalados:
+
+```sh
+node tests/themes.cjs
+```

@@ -52,3 +52,12 @@ O catálogo anterior foi substituído por ChatGPT Claro e ChatGPT Escuro, com no
 ## Atualização: famílias de temas e nomes neutros
 
 Foram adicionadas Absolutely, Ayu, Catppuccin, Dracula, Everforest, GitHub, Gruvbox, Linear e Lobster, cada uma clara e escura. Com os modos básicos Claro e Escuro, são 20 temas. Passaram nove testes, 180 verificações de contraste e 480 cenários de layout, além dos dez testes de regressão e dos testes de idiomas. Consulte THEMES.md e tests/themes.cjs. A seção anterior sobre somente dois temas é histórica; o catálogo atual tem dez famílias.
+
+
+## Atualização: catálogo de referência completo
+
+O catálogo atual substitui as contagens históricas acima: 29 famílias e 45 variantes (43 variantes registradas e dois modos neutros). Veja THEMES.md para a versão de origem, licença, adaptações e limites.
+
+Passaram dez testes de aparência, com 405 combinações de tema/destaque e 1.080 cenários de layout (45 variantes, oito páginas, três larguras), sem erros JavaScript. Seleção, persistência, migração dos IDs antigos, alternância entre famílias com um ou dois modos e teclado foram verificados. Corrigida a escolha do texto em botões coloridos para garantir contraste mínimo de 4,5:1.
+
+Os dez testes de regressão passaram novamente. Os testes de idiomas passaram em 64 cenários de navegação e 192 cenários de layout, sem overflow. Os nomes das novas famílias também foram verificados nos oito idiomas. Projeto e Terraform permanecem iguais ao trocar temas e restaurar backups. Nenhuma nova validação contra a tenancy foi executada nesta alteração de aparência.
