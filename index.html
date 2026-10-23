@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="ayu-mirage">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -782,7 +782,7 @@ const themes=[
 {id:'nord',name:'Nord',desc:'Azuis frios e tons polares',bg:'#252d3b',panel:'#303947',sidebar:'#2e3440',accent:'#88c0d0'},
 {id:'midnight',name:'Midnight',desc:'Azul profundo e lavanda',bg:'#0c1425',panel:'#142137',sidebar:'#101b2c',accent:'#91acff'},
 {id:'forest',name:'Forest',desc:'Verde escuro e acentos naturais',bg:'#121c19',panel:'#1b2a23',sidebar:'#16221d',accent:'#b9ce8e'}];
-function defaults(){return {version:VERSION,featureVersion:7,tagProfile:'essential',appearance:{fontScale:1,density:'comfortable',fontFamily:'system',codeFont:'system'},customThemes:[],projectName:'landing-zone-prod',region:'sa-saopaulo-1',compartmentId:'',resources:[],tags:[{kind:'freeform',key:'Environment',value:'Production'},{kind:'freeform',key:'ManagedBy',value:'Terraform'},{kind:'freeform',key:'Project',value:'landing-zone-prod'}],theme:'dark',accent:'',includeIam:true,createTagSchema:false,iam:{scopeMode:'SAME',imageCompartment:'',publicIpCompartment:'',vaultCompartment:'',nsgCompartment:'',subjectType:'group',domain:'Default',principal:'CloudArchitects',compartment:'',networkCompartment:'',keyCompartment:'',tagCompartment:'',policyCompartment:'',custom:[],preset:''},catalog:{shapes:[],images:[],region:'',importedAt:'',shapeFilter:''},network:networkDefaults()};}
+function defaults(){return {defaultThemeVersion:1,version:VERSION,featureVersion:7,tagProfile:'essential',appearance:{fontScale:1,density:'comfortable',fontFamily:'system',codeFont:'system'},customThemes:[],projectName:'landing-zone-prod',region:'sa-saopaulo-1',compartmentId:'',resources:[],tags:[{kind:'freeform',key:'Environment',value:'Production'},{kind:'freeform',key:'ManagedBy',value:'Terraform'},{kind:'freeform',key:'Project',value:'landing-zone-prod'}],theme:'ayu-mirage',accent:'',includeIam:true,createTagSchema:false,iam:{scopeMode:'SAME',imageCompartment:'',publicIpCompartment:'',vaultCompartment:'',nsgCompartment:'',subjectType:'group',domain:'Default',principal:'CloudArchitects',compartment:'',networkCompartment:'',keyCompartment:'',tagCompartment:'',policyCompartment:'',custom:[],preset:''},catalog:{shapes:[],images:[],region:'',importedAt:'',shapeFilter:''},network:networkDefaults()};}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=v=>JSON.parse(JSON.stringify(v));
 const uid=()=> 'r_'+Math.random().toString(36).slice(2,10);
@@ -1882,7 +1882,7 @@ if(!raw.featureVersion){d.includeIam=true;d.featureVersion=2;}for(const r of d.r
 d.iam={...d.iam,...raw.iam};d.catalog={...d.catalog,...raw.catalog};d.network=raw.network||d.network;
 if(!Array.isArray(d.iam.custom)||!Array.isArray(d.catalog.shapes)||!Array.isArray(d.catalog.images)||!d.network.hub||!Array.isArray(d.network.spokes)||!d.network.onprem)throw Error('Estrutura inválida.');
 d.appearance={...defaults().appearance,...raw.appearance};d.appearance.fontScale=[1,1.12,1.25].includes(Number(d.appearance.fontScale))?Number(d.appearance.fontScale):1;if(!UI_FONT_OPTIONS.some(x=>x.id===d.appearance.fontFamily))d.appearance.fontFamily='system';if(!CODE_FONT_OPTIONS.some(x=>x.id===d.appearance.codeFont))d.appearance.codeFont='system';if(!['comfortable','compact'].includes(d.appearance.density))d.appearance.density='comfortable';d.customThemes=(Array.isArray(raw.customThemes)?raw.customThemes:[]).slice(0,30);registerCustomThemes(d.customThemes);d.featureVersion=7;d.tagProfile=TAG_PROFILES.some(p=>p.id===raw.tagProfile)?raw.tagProfile:'essential';d.network=normalizeNetwork(d.network);if(networkNodes(d.network).some(n=>typeof n.id!=='string'||typeof n.name!=='string'||typeof n.cidr!=='string')||d.network.spokes.length>6)throw Error('Redes inválidas no backup.');
-if(!themes.some(t=>t.id===d.theme))d.theme='dark';if(!/^#[0-9a-f]{6}$/i.test(d.accent))d.accent='';if(typeof d.region!=='string'||!/^[a-z][a-z0-9-]+$/.test(d.region))throw Error('Região inválida.');
+if(!raw.defaultThemeVersion&&d.theme==='dark'){d.theme='ayu-mirage';d.accent='';}if(!themes.some(t=>t.id===d.theme))d.theme='ayu-mirage';if(!/^#[0-9a-f]{6}$/i.test(d.accent))d.accent='';if(typeof d.region!=='string'||!/^[a-z][a-z0-9-]+$/.test(d.region))throw Error('Região inválida.');
 return d;}
 try{const saved=localStorage.getItem(STORAGE_KEY);if(saved)s=loadState(JSON.parse(saved));}catch(e){console.warn('Armazenamento indisponível ou backup inválido.',e.message);}
 function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(s));}catch(e){toast('O navegador não conseguiu salvar. Baixe um backup JSON.');}}
