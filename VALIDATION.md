@@ -40,3 +40,7 @@ Os resultados e os exemplos de Terraform são gravados em work/. O teste usa uma
 ## Limites
 terraform validate verifica sintaxe, tipos e schema do provider. Não foi executado terraform plan ou apply contra uma tenancy. Disponibilidade regional, capacidade, compatibilidade efetiva de imagens, permissões IAM e conectividade real continuam dependendo da OCI.
 A entrada HCL do recurso Universal permanece manual e exige revisão.
+
+## Atualização: seletor de idiomas
+
+Foram adicionados oito idiomas à interface, com preferência local e menu acessível. Os testes de navegação (64 cenários), layout (192 cenários), preservação de dados/código e teclado passaram. Os dez testes de regressão passaram novamente. Consulte I18N.md e tests/languages.cjs. Esta atualização não altera o gerador Terraform; a validação com provider registrada acima pertence à revisão das correções.
