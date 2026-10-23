@@ -9,9 +9,8 @@ Abra index.html no navegador. Os projetos ficam no armazenamento local do navega
 O workflow .github/workflows/pages.yml publica index.html no GitHub Pages a cada push na branch docker-compose.
 
 Antes da primeira execução, selecione Settings > Pages > Build and deployment > Source > GitHub Actions.
-Em repositórios privados, a disponibilidade do Pages depende do plano GitHub e das políticas da conta.
 Depois de habilitar Pages, execute Actions > Publish GitHub Pages > Run workflow.
 
 ## Limites
-O HTML é o arquivo original enviado pelo usuário. As observações da análise ainda não foram implementadas.
+O HTML inclui correções de validação de backups, exportação de Terraform, rotas de Service Gateway, exportação limpa e layout móvel. Consulte VALIDATION.md para os testes e limites.
 Revise o Terraform e execute terraform fmt, terraform validate e terraform plan antes de aplicar.
