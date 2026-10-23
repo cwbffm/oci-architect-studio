@@ -1,5 +1,17 @@
 # Validação antes da publicação — 23/10/2026
 
+## Personalização v8
+- Verificação de sintaxe JavaScript: passou.
+- `tests/regression.cjs`: 10 testes passaram, incluindo backup, escape de conteúdo, validação de exportação e HTML limpo.
+- `tests/workspace.cjs`: 9 testes passaram, incluindo prévia sem inclusão no plano, navegação e persistência de perfis, favoritos, restauração de presets, ambiente independente das tags e migração de backups antigos.
+- Os 22 tipos nativos renderizam a prévia correspondente e a etapa de tags sem exceções.
+- `tests/languages.cjs`: 64 combinações de navegação e 192 cenários de layout passaram, com oito idiomas e sem overflow global.
+- A suíte de workspace também cobre oito páginas em 320, 390, 1024, 1440 e 1920 px, com paletas clara e escura (80 cenários).
+- Capturas do construtor, redes, aparência e celular inspecionadas em Chromium Headless Shell 151.0.7922.34.
+- Nenhum ID duplicado no HTML. Favoritos e presets recebem validação na restauração; nomes inseridos pelo usuário são escapados e preservados na localização.
+- Esta revisão trata da interface. Não executa `terraform apply` nem valida recursos em uma tenancy OCI.
+- Integração sobre a atualização mais recente das famílias de temas: os 20 temas, os nove destaques e a migração foram preservados. Os nove testes de tests/themes.cjs passaram também após a integração, com 480 layouts e 180 combinações de contraste.
+
 ## Correções
 - Backups são validados antes de migrar e substituir o projeto; a migração trabalha com cópia isolada.
 - Tipos, limites e chaves perigosas são verificados; catálogo numérico não aceita HTML.
@@ -44,6 +56,7 @@ A entrada HCL do recurso Universal permanece manual e exige revisão.
 ## Atualização: seletor de idiomas
 
 Foram adicionados oito idiomas à interface, com preferência local e menu acessível. Os testes de navegação (64 cenários), layout (192 cenários), preservação de dados/código e teclado passaram. Os dez testes de regressão passaram novamente. Consulte I18N.md e tests/languages.cjs. Esta atualização não altera o gerador Terraform; a validação com provider registrada acima pertence à revisão das correções.
+
 
 ## Atualização: somente temas ChatGPT
 
