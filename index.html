@@ -1196,6 +1196,11 @@ const V4_THEMES=[
 ['rose-pine','Rosé Pine','dark',['#191724','#15131f','#1f1d2e','#26233a','#524f67','#e0def4','#b8b4d2','#c4a7e7','#9ccfd8','#7fc4d0','#eb6f92'],'rose','Rosé Pine']
 ];
 themes.push(...V4_THEMES.map(([id,name,mode,c,ref,family])=>studioPalette(id,name,mode,c,THEME_REFERENCES[ref],family)));
+const ORACLE_THEMES=[
+  studioPalette('oracle-redwood-light','Oracle Redwood Claro','light',['#f5f4f2','#eeede9','#ffffff','#e8e6e2','#c6c2bc','#312d2a','#625b54','#c74634','#426b1f','#00688c','#b3311f'],'https://www.oracle.com/redwood/','Oracle'),
+  studioPalette('oracle-redwood-dark','Oracle Redwood Escuro','dark',['#201e1c','#191715','#2b2825','#35312d','#625a51','#f5f1eb','#c5bdb3','#f08c7b','#a9cf7b','#80c5df','#ff9e8f'],'https://www.oracle.com/redwood/','Oracle')
+].map(t=>({...t,desc:'Inspirado no Oracle Redwood · '+(t.mode==='light'?'claro':'escuro'),isNew:true}));
+themes.push(...ORACLE_THEMES);
 for(const theme of themes)theme.family=theme.family||(/Catppuccin/.test(theme.name)?'Catppuccin':/GitHub/.test(theme.name)?'GitHub':/Tokyo/.test(theme.name)?'Tokyo Night':/Rosé/.test(theme.name)?'Rosé Pine':/Solarized/.test(theme.name)?'Solarized':theme.name.split(' ')[0]);
 themes.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
 function safeThemeColor(value,fallback){if(typeof value!=='string')return fallback;if(/^#[\da-f]{3}$/i.test(value))return '#'+[...value.slice(1)].map(c=>c+c).join('');return /^#[\da-f]{6}(?:[\da-f]{2})?$/i.test(value)?value.slice(0,7):fallback;}
