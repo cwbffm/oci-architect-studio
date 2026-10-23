@@ -334,6 +334,25 @@ main{max-width:1820px;padding:30px 32px 35px}.page-heading{align-items:center;ma
 @media(max-width:850px){.route-workspace{grid-template-columns:1fr}.network-config{order:2}.route-flow-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.tag-standard-grid{grid-template-columns:1fr 1fr}.route-canvas-column{order:1}.route-detail-map{min-width:580px}#topology{overflow:auto}.route-map-toolbar{flex-wrap:nowrap}.route-flow-actions>.muted{width:100%;margin-left:0}}
 @media(max-width:600px){.tag-metrics{grid-template-columns:1fr 1fr}.tag-metrics>div{padding:16px}.tag-metrics strong{font-size:20px}.tag-metrics span{font-size:10px}.tag-side{grid-template-columns:1fr}.tag-standard-panel .section-top{display:block}.tag-profile-label{margin-top:18px;display:block;min-width:0}.tag-standard-grid{grid-template-columns:1fr}.tag-managed-row{grid-template-columns:minmax(80px,1fr) minmax(40px,1fr);padding:14px 17px;gap:12px}.tag-row-actions{grid-column:1/-1;justify-content:flex-end}.tag-filters{flex-direction:column}.tag-filters select{width:100%}.tag-suggestion-grid{grid-template-columns:1fr}.tag-filters input{width:100%}.route-summary{grid-template-columns:1fr 1fr;padding:17px;gap:17px}.route-summary-status{grid-column:1/-1}.route-summary-direction{padding-left:13px}.route-summary-direction:first-of-type{border-left:0}.route-map-toolbar{padding:18px 16px;flex-wrap:wrap}.route-map-toolbar h2{font-size:18px}.map-direction-caption{padding-left:16px;padding-right:16px}.route-flow-fields{gap:14px}.route-flow-fields input,.route-flow-fields select{font-size:12px}.route-decision>div>div{display:block}.route-step-status{display:block;margin-top:5px}.map-legend .text-button{width:100%;margin-left:0}.tag-import-dialog{padding:18px}.tag-json-tools{flex-wrap:wrap}.tag-json-tools label{min-width:180px}.tag-standard-actions .button{width:100%}}
 
+
+/* Sidebar navigation: grouped workflow and independently scrolling menu. */
+#sidebar{padding:26px 16px 18px;gap:0;height:100dvh}
+#sidebar .brand{padding:0 10px 23px;border-bottom:1px solid var(--border);flex-shrink:0}
+#sidebar #navigation{display:flex;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;gap:22px;padding:22px 2px 20px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+#sidebar .sidebar-group{margin:0;flex-shrink:0}
+#sidebar .nav-label{font-size:10px;font-weight:650;line-height:1.5;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:0 12px;margin:0 0 8px}
+#sidebar .sidebar-links{display:flex;flex-direction:column;gap:4px}
+#sidebar nav a{min-height:43px;padding:10px 12px;gap:11px;border:1px solid transparent;border-radius:8px;font-size:calc(12px * var(--read-scale,1));line-height:1.45;transition:background .15s,color .15s,border-color .15s}
+#sidebar .nav-text{min-width:0;overflow-wrap:anywhere}
+#sidebar nav a svg{width:18px;height:18px}
+#sidebar nav a.active{color:var(--accent);background:color-mix(in srgb,var(--accent) 11%,transparent);border-color:color-mix(in srgb,var(--accent) 24%,transparent);font-weight:650}
+#sidebar nav a.active:before{left:0;top:50%;transform:translateY(-50%);height:18px;width:3px;border-radius:0 3px 3px 0}
+#sidebar nav a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;background:var(--raised)}
+#sidebar .sidebar-bottom{flex-shrink:0;margin-top:0;padding:16px 10px 0}
+#sidebar .sidebar-bottom p{font-size:11px;line-height:1.6;margin:8px 0 12px}
+#sidebar .sidebar-bottom .text-button{justify-content:center;min-height:37px;width:100%;border:1px solid var(--border);border-radius:7px;background:var(--raised);font-size:12px}
+@media(max-height:760px){#sidebar{padding-top:18px}#sidebar .brand{padding-bottom:16px}#sidebar #navigation{gap:16px;padding-top:16px;padding-bottom:16px}#sidebar .sidebar-bottom p{display:none}#sidebar .sidebar-bottom .text-button{margin-top:10px}}
+@media(prefers-reduced-motion:reduce){#sidebar,#sidebar nav a{transition:none}}
 </style>
 </head>
 <body>
@@ -360,17 +379,24 @@ main{max-width:1820px;padding:30px 32px 35px}.page-heading{align-items:center;ma
 <aside class="sidebar" id="sidebar">
 <a href="#builder" class="brand"><span class="brand-icon"><svg><use href="#i-cube"/></svg></span><span>OCI <b>Architect</b><small>STUDIO / WORKSPACE</small></span></a>
 
-<div class="nav-label">WORKSPACE</div>
-<nav id="navigation">
-<a href="#builder" data-page="builder"><svg><use href="#i-grid"/></svg>Construtor<span class="nav-key">01</span></a>
-<a href="#catalog" data-page="catalog"><svg><use href="#i-chip"/></svg>Shapes & imagens<span class="nav-key">02</span></a>
-<a href="#iam" data-page="iam"><svg><use href="#i-shield"/></svg>Policies IAM<span class="nav-key">03</span></a>
-<a href="#network" data-page="network"><svg><use href="#i-network"/></svg>Rede & roteamento<span class="nav-key">04</span></a>
-<a href="#tags" data-page="tags"><svg><use href="#i-tag"/></svg>Tags & governança<span class="nav-key">05</span></a>
-<a href="#export" data-page="export"><svg><use href="#i-code"/></svg>Código & exportação<span class="nav-key">06</span></a>
+<nav id="navigation" aria-label="Navegação principal">
+<section class="sidebar-group" aria-labelledby="nav-architecture"><h2 class="nav-label" id="nav-architecture">Arquitetura</h2><div class="sidebar-links">
+<a href="#builder" data-page="builder"><svg aria-hidden="true"><use href="#i-grid"/></svg><span class="nav-text">Construtor</span></a>
+<a href="#catalog" data-page="catalog"><svg aria-hidden="true"><use href="#i-chip"/></svg><span class="nav-text">Shapes e imagens</span></a>
+<a href="#network" data-page="network"><svg aria-hidden="true"><use href="#i-network"/></svg><span class="nav-text">Rede e roteamento</span></a>
+</div></section>
+<section class="sidebar-group" aria-labelledby="nav-governance"><h2 class="nav-label" id="nav-governance">Governança</h2><div class="sidebar-links">
+<a href="#iam" data-page="iam"><svg aria-hidden="true"><use href="#i-shield"/></svg><span class="nav-text">Políticas IAM</span></a>
+<a href="#tags" data-page="tags"><svg aria-hidden="true"><use href="#i-tag"/></svg><span class="nav-text">Tags do projeto</span></a>
+</div></section>
+<section class="sidebar-group" aria-labelledby="nav-delivery"><h2 class="nav-label" id="nav-delivery">Entrega</h2><div class="sidebar-links">
+<a href="#export" data-page="export"><svg aria-hidden="true"><use href="#i-code"/></svg><span class="nav-text">Código e exportação</span></a>
+</div></section>
+<section class="sidebar-group" aria-labelledby="nav-support"><h2 class="nav-label" id="nav-support">Preferências e ajuda</h2><div class="sidebar-links">
+<a href="#themes" data-page="themes"><svg aria-hidden="true"><use href="#i-palette"/></svg><span class="nav-text">Aparência</span></a>
+<a href="#guide" data-page="guide"><svg aria-hidden="true"><use href="#i-book"/></svg><span class="nav-text">Guia e fontes</span></a>
+</div></section>
 </nav>
-<div class="nav-label tools-label">PERSONALIZAR</div>
-<nav><a href="#themes" data-page="themes"><svg><use href="#i-palette"/></svg>Aparência</a><a href="#guide" data-page="guide"><svg><use href="#i-book"/></svg>Guia & fontes</a></nav>
 <div class="sidebar-bottom"><div class="local-status"><i></i> Workspace local</div><p>Seu projeto fica neste navegador.<br>Exporte um backup para guardar.</p><button class="text-button" data-action="backup">Salvar projeto <svg><use href="#i-arrow"/></svg></button></div>
 </aside>
 <div class="app">
@@ -1864,7 +1890,7 @@ function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');
 function download(name,body,mime){const url=URL.createObjectURL(new Blob([body],{type:mime||'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 async function copy(text){try{await navigator.clipboard.writeText(text);toast('Copiado.');}catch(e){const t=document.createElement('textarea');t.value=text;document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();toast(ok?'Copiado.':'Cópia indisponível. Selecione o código e copie.');}}
 function options(arr,value){return arr.map(x=>{const a=Array.isArray(x)?x:[x,x];return '<option value="'+esc(a[0])+'"'+(String(value)===String(a[0])?' selected':'')+'>'+esc(a[1])+'</option>';}).join('');}
-function showPage(p){if(!$('view-'+p))p='builder';page=p;document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='view-'+p);document.querySelectorAll('[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===p));$('breadcrumb').textContent=document.querySelector('[data-page="'+p+'"]')?.childNodes[1]?.textContent||p;$('sidebar').classList.remove('open');renderPage();window.scrollTo({top:0,behavior:'instant'});}
+function showPage(p){if(!$('view-'+p))p='builder';page=p;document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='view-'+p);document.querySelectorAll('[data-page]').forEach(a=>{const active=a.dataset.page===p;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});$('breadcrumb').textContent=document.querySelector('[data-page="'+p+'"] .nav-text')?.textContent||p;$('sidebar').classList.remove('open');renderPage();window.scrollTo({top:0,behavior:'instant'});}
 function setPage(p){if(location.hash==='#'+p)showPage(p);else location.hash=p;}
 function applyTheme(){const chosen=themes.find(t=>t.id===s.theme);for(const key of ['bg','sidebar','panel','raised','input','border','text','muted','subtle','accent','accent-ink','mint','blue','danger','editor'])document.documentElement.style.removeProperty('--'+key);document.documentElement.style.colorScheme=chosen.mode||'dark';if(chosen.tokens){const colors={...chosen.tokens,bg:chosen.bg,sidebar:chosen.sidebar,panel:chosen.panel,accent:chosen.accent};for(const [key,value]of Object.entries(colors))document.documentElement.style.setProperty('--'+key,value);}document.documentElement.dataset.theme=s.theme;applyReadability();if(s.accent){document.documentElement.style.setProperty('--accent',s.accent);const hex=s.accent.slice(1),rgb=[0,2,4].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4),lum=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;document.documentElement.style.setProperty('--accent-ink',lum>.2?'#11151a':'#ffffff');}document.querySelector('meta[name="theme-color"]').content=themes.find(t=>t.id===s.theme).bg;}
 function renderStats(){const stats=[[s.resources.length,'Recursos no plano','cube',''],[policies(s).length,'Policies sugeridas','shield','mint'],[allShapes(s).length,'Shapes no catálogo','chip','blue'],[s.tags.length,'Tags do projeto','tag','']];$('stats').innerHTML=stats.map(x=>'<div class="stat"><div class="stat-icon '+x[3]+'">'+icon(x[2])+'</div><div><strong>'+x[0]+'</strong><span class="metric-label">'+x[1]+'</span></div><span class="stat-end">↗</span></div>').join('');}
