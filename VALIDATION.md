@@ -44,3 +44,7 @@ A entrada HCL do recurso Universal permanece manual e exige revisão.
 ## Atualização: seletor de idiomas
 
 Foram adicionados oito idiomas à interface, com preferência local e menu acessível. Os testes de navegação (64 cenários), layout (192 cenários), preservação de dados/código e teclado passaram. Os dez testes de regressão passaram novamente. Consulte I18N.md e tests/languages.cjs. Esta atualização não altera o gerador Terraform; a validação com provider registrada acima pertence à revisão das correções.
+
+## Atualização: somente temas ChatGPT
+
+O catálogo anterior foi substituído por ChatGPT Claro e ChatGPT Escuro, com nove opções de destaque. Passaram oito testes de aparência, 48 cenários de layout e 18 verificações de contraste. Passaram também os dez testes de regressão e os testes de idiomas. A migração preserva projeto, recursos e Terraform. Consulte THEMES.md e tests/chatgpt-themes.cjs. As validações históricas de 78 temas acima pertencem às versões anteriores.
