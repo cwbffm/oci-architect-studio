@@ -1,31 +1,29 @@
-# Aparência ChatGPT
+# Temas e aparência
 
-A aplicação oferece somente ChatGPT Escuro e ChatGPT Claro, adaptados às referências visuais fornecidas. O modo inicial é escuro.
+A tela de Aparência oferece dez famílias, cada uma com modo claro e escuro (20 temas):
+Padrão, Absolutely, Ayu, Catppuccin, Dracula, Everforest, GitHub, Gruvbox, Linear e Lobster.
 
-## Cores de destaque
-Padrão, Azul, Verde, Amarelo, Rosa, Laranja, Roxo, Branco e Personalizado.
-O personalizado usa um seletor de cor. Os tons aplicados ao texto se adaptam ao modo para manter contraste; a amostra mostra a cor escolhida. A cor acompanha a troca entre os dois modos.
+Os nomes públicos dos dois temas básicos são Claro e Escuro. Os nomes, títulos e prévias não usam a marca anterior. As paletas das famílias são adaptações para a interface a partir das referências fornecidas.
 
-## Preferências e migração
-- Modos e destaques são salvos com o projeto no navegador.
-- Preferências de temas antigos migram para claro ou escuro, preservando projeto, recursos e código.
-- Cores antigas são redefinidas na migração para evitar trazer o destaque de uma paleta removida.
-- Backups antigos continuam aceitos; temas personalizados antigos não são reinseridos no catálogo.
-- A busca, os filtros, a galeria antiga e a importação/exportação de temas foram removidos.
-- As opções de fontes, tamanho do texto e espaçamento continuam disponíveis.
-- A interface permanece disponível nos oito idiomas.
+## Uso
+Escolha a família no seletor Tema e depois o modo na prévia. O botão da barra superior alterna claro/escuro dentro da família ativa.
+Padrão usa o destaque nativo da paleta selecionada; as cores nomeadas e a cor personalizada continuam disponíveis.
 
-## Testes antes da publicação
-- Oito testes de aparência passaram: catálogo, migração, persistência, destaques, contraste, alternância, layout e teclado.
-- 48 cenários de layout (oito páginas, dois modos, três larguras) sem overflow.
-- 18 combinações de destaque/modo verificadas.
-- Contraste mínimo medido: texto 14,77:1; texto de botão e destaque contra fundo 5,18:1.
+## Compatibilidade
+Preferências da versão anterior permanecem válidas, inclusive a cor escolhida. Backups aceitam os vinte IDs atuais. Alguns IDs antigos conhecidos recebem aliases para as famílias correspondentes; outros modos antigos migram para Claro ou Escuro. Dados do projeto e Terraform são preservados. A importação de paletas arbitrárias continua removida.
+
+## Validação antes da publicação
+- Nove testes de temas passaram.
+- 20 temas selecionados, restaurados e persistidos.
+- 180 combinações de tema/destaque verificadas.
+- 480 cenários de layout sem overflow: 20 temas, oito páginas e três larguras.
+- Contraste mínimo: texto 7,06:1; botões 5,18:1; destaque contra superfícies 4,51:1.
 - Dez testes de regressão passaram.
-- Idiomas: 64 cenários de navegação e 192 de layout passaram; preservação de dados e comandos mantida.
-- Geradores Terraform e IAM não foram alterados.
+- Idiomas: 64 cenários de navegação e 192 de layout passaram.
+- Os geradores Terraform e IAM não foram alterados.
 
-Com Playwright e Chromium instalados:
+Com Playwright e Chromium:
 
-    node tests/chatgpt-themes.cjs
+    node tests/themes.cjs
 
-Use CHROMIUM_PATH para selecionar outro executável. Resultados e captura são gravados em work/.
+Use CHROMIUM_PATH para outro executável. Resultados e captura são gravados em work/.

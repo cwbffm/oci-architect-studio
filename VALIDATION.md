@@ -48,3 +48,7 @@ Foram adicionados oito idiomas à interface, com preferência local e menu acess
 ## Atualização: somente temas ChatGPT
 
 O catálogo anterior foi substituído por ChatGPT Claro e ChatGPT Escuro, com nove opções de destaque. Passaram oito testes de aparência, 48 cenários de layout e 18 verificações de contraste. Passaram também os dez testes de regressão e os testes de idiomas. A migração preserva projeto, recursos e Terraform. Consulte THEMES.md e tests/chatgpt-themes.cjs. As validações históricas de 78 temas acima pertencem às versões anteriores.
+
+## Atualização: famílias de temas e nomes neutros
+
+Foram adicionadas Absolutely, Ayu, Catppuccin, Dracula, Everforest, GitHub, Gruvbox, Linear e Lobster, cada uma clara e escura. Com os modos básicos Claro e Escuro, são 20 temas. Passaram nove testes, 180 verificações de contraste e 480 cenários de layout, além dos dez testes de regressão e dos testes de idiomas. Consulte THEMES.md e tests/themes.cjs. A seção anterior sobre somente dois temas é histórica; o catálogo atual tem dez famílias.
