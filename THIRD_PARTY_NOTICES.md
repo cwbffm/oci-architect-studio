@@ -1,3 +1,7 @@
+# Aviso histórico de atribuição
+
+A versão anterior com o catálogo ampliado incorporava os dados abaixo. A revisão atual recupera as paletas anteriores do Studio e adiciona adaptações manuais; este aviso é mantido como registro de atribuição da versão anterior.
+
 Palette data adapted from smallyunet/codex-palette-vscode, commit fc6741785b1a21c584ee0309a3cc9faa896b6127.
 Source: https://github.com/smallyunet/codex-palette-vscode
 

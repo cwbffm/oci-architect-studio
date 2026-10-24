@@ -1,58 +1,45 @@
-# Temas
+# Temas e aparência
 
-O Studio oferece 29 famílias e 45 variantes: os modos neutros Claro/Escuro e 43 variantes de 28 famílias do catálogo de referência abaixo. Os nomes públicos não incluem a marca ChatGPT.
+O catálogo atual tem **14 famílias e 28 variantes**. Os 20 temas anteriores foram recuperados como base e suas cores foram revisadas; quatro famílias complementares foram adicionadas. São adaptações para o Studio, sem pretensão de reproduzir integralmente um aplicativo externo.
 
-## Famílias e modos
+| Família | Característica | Modos |
+| --- | --- | --- |
+| Padrão | Cinzas neutros | Claro e escuro |
+| Absolutely | Tons quentes e violeta suave | Claro e escuro |
+| Ayu | Azul acinzentado com âmbar | Claro e escuro |
+| Catppuccin | Tons pastel e lilás | Claro e escuro |
+| Dracula | Violeta com contraste marcado | Claro e escuro |
+| Everforest | Verdes e tons naturais | Claro e escuro |
+| GitHub | Superfícies neutras e destaque azul | Claro e escuro |
+| Gruvbox | Tons terrosos e dourados | Claro e escuro |
+| Linear | Cinzas frios e índigo | Claro e escuro |
+| Lobster | Tons rosados e coral | Claro e escuro |
+| Nord | Azuis frios e superfícies suaves | Claro e escuro |
+| Solarized | Tons quentes no claro e petróleo no escuro | Claro e escuro |
+| Tokyo Night | Azuis e violetas | Claro e escuro |
+| Rose Pine | Rosé, creme e violeta | Claro e escuro |
 
-| Família | Variantes disponíveis |
-| --- | --- |
-| Padrão | Claro, Escuro |
-| Absolutely | Claro, Escuro |
-| Ayu | Escuro |
-| Catppuccin | Latte (claro), Mocha (escuro) |
-| Codex | Claro, Escuro |
-| Dracula | Escuro |
-| Everforest | Claro, Escuro |
-| GitHub | Claro, Escuro |
-| Gruvbox | Claro, Escuro |
-| Linear | Claro, Escuro |
-| Lobster | Escuro |
-| Material | Escuro |
-| Matrix | Escuro |
-| Monokai | Escuro |
-| Night Owl | Escuro |
-| Nord | Escuro |
-| Notion | Claro, Escuro |
-| Oscurange | Escuro |
-| One | Claro, Escuro |
-| Proof | Claro |
-| Raycast | Claro, Escuro |
-| Rose Pine | Claro, Escuro |
-| Sentry | Escuro |
-| Solarized | Claro, Escuro |
-| Tokyo Night | Escuro |
-| Temple | Escuro |
-| Vercel | Claro, Escuro |
-| VS Code Plus | Claro, Escuro |
-| Xcode | Claro, Escuro |
+## Organização
 
-Ao selecionar uma família, o modo atual é mantido quando existe uma variante correspondente. Caso contrário, a variante disponível é aplicada. O botão da barra superior alterna claro/escuro dentro da família; se o modo oposto não existir, aplica o modo neutro correspondente.
+As famílias aparecem em uma grade de botões com amostras de cor. Ao selecionar uma família, o modo atual é mantido e duas prévias permitem comparar claro e escuro. O estado selecionado é indicado visualmente e por `aria-pressed`; os botões funcionam com teclado e preservam o foco.
 
-As preferências ficam no navegador e nos backups. IDs antigos de Catppuccin são migrados para Mocha/Latte; antigas variantes claras de Ayu, Dracula e Lobster são migradas para a variante escura disponível. Recursos, nomes de projetos e Terraform não são alterados.
+Cor de destaque e texto/espaçamento ficam em seções recolhíveis. As nove opções de destaque continuam disponíveis, incluindo a cor padrão da família e uma cor personalizada. Os nomes públicos não usam a marca ChatGPT.
 
-Há nove opções de destaque: Padrão, Azul, Verde, Amarelo, Rosa, Laranja, Roxo, Branco e Personalizado. Padrão usa a cor própria da paleta. Texto, cores semânticas e destaques são ajustados quando necessário para contraste mínimo de 4,5:1 nas superfícies principais. A interface continua disponível nos oito idiomas existentes.
+## Paletas e legibilidade
 
-## Proveniência e limites
+Cada família mantém sua combinação de fundos, painéis e destaque. Texto principal, secundário, cores semânticas e destaques são ajustados para contraste mínimo de 4,5:1 nas quatro superfícies principais. A cor do texto de botões é escolhida entre preto e branco pelo maior contraste. O ajuste pode modificar ligeiramente a cor de referência.
 
-Dados adaptados do projeto MIT [smallyunet/codex-palette-vscode](https://github.com/smallyunet/codex-palette-vscode/tree/fc6741785b1a21c584ee0309a3cc9faa896b6127), commit `fc6741785b1a21c584ee0309a3cc9faa896b6127`, arquivos `src/palettes.mjs` e `src/codex-source-colors.mjs`.
+As variantes claras adicionadas são adaptações próprias do Studio; não são apresentadas como variantes oficiais dos projetos que inspiraram os nomes.
 
-A [proveniência registrada](https://github.com/smallyunet/codex-palette-vscode/blob/fc6741785b1a21c584ee0309a3cc9faa896b6127/SOURCE_PROVENANCE.md) identifica ChatGPT macOS 26.730.61309, build 6223, capturado em 2026-08-05. São paletas do Workbench: a lista pode variar conforme a versão do aplicativo e não garante corresponder a todas as instalações atuais. Transparência e composição da interface original não são reproduzidas literalmente. As cores foram adaptadas às superfícies do Studio e à legibilidade.
+## Compatibilidade
 
-Licença e atribuição em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), também incorporadas ao HTML distribuído.
+As preferências são salvas no navegador. Backups mantêm recursos e Terraform. IDs antigos de Catppuccin, Dracula, Nord e Tokyo Night são migrados para a variante correspondente. Famílias removidas do catálogo ampliado migram para o modo neutro claro ou escuro. Nenhum tema personalizado de backup é executado ou importado.
 
-## Validação
+A interface mantém seus oito idiomas. O gerador Terraform não foi alterado nesta revisão.
 
-`tests/themes.cjs` verifica o catálogo completo, seleção e persistência de todas as variantes, migração, nove destaques por tema, teclado, alternância de modos e oito páginas em três larguras. Execute com Playwright e Chromium instalados:
+## Testes
+
+`tests/themes.cjs` verifica os 28 temas, persistência, backups, migração, nove destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Execute com Playwright e Chromium instalados:
 
 ```sh
 node tests/themes.cjs

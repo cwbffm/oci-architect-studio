@@ -61,3 +61,14 @@ O catálogo atual substitui as contagens históricas acima: 29 famílias e 45 va
 Passaram dez testes de aparência, com 405 combinações de tema/destaque e 1.080 cenários de layout (45 variantes, oito páginas, três larguras), sem erros JavaScript. Seleção, persistência, migração dos IDs antigos, alternância entre famílias com um ou dois modos e teclado foram verificados. Corrigida a escolha do texto em botões coloridos para garantir contraste mínimo de 4,5:1.
 
 Os dez testes de regressão passaram novamente. Os testes de idiomas passaram em 64 cenários de navegação e 192 cenários de layout, sem overflow. Os nomes das novas famílias também foram verificados nos oito idiomas. Projeto e Terraform permanecem iguais ao trocar temas e restaurar backups. Nenhuma nova validação contra a tenancy foi executada nesta alteração de aparência.
+
+
+## Atualização: paletas revisadas e seleção organizada — 24/10/2026
+
+O catálogo atual tem 14 famílias e 28 variantes: os 20 temas anteriores restaurados e revisados, mais Nord, Solarized, Tokyo Night e Rose Pine em claro e escuro. Esta seção substitui as contagens históricas acima. As variantes são adaptações para o Studio; consulte THEMES.md.
+
+A seleção de famílias agora usa botões com amostras de cor e estado acessível, preservando o foco pelo teclado. Cor de destaque e opções de leitura ficam em seções recolhíveis. Texto principal e secundário, destaques e cores semânticas foram revisados para contraste mínimo de 4,5:1 nas superfícies principais.
+
+Passaram dez testes de aparência, 252 combinações de tema/destaque e 672 cenários de layout (28 temas, oito páginas, três larguras), sem erros JavaScript. Passaram também os dez testes de regressão, 64 cenários de navegação e 192 cenários de layout dos idiomas. Verificação adicional confirmou seleção por teclado e interface das famílias nos oito idiomas.
+
+Backups, persistência e migração dos IDs da versão ampliada foram verificados. O gerador Terraform permanece inalterado; não foi executada nova validação contra a tenancy nesta alteração de aparência.
