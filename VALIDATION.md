@@ -48,3 +48,19 @@ O executável padrão é `/usr/bin/chromium`; use `CHROMIUM_PATH=/caminho/para/c
 ## Limites
 
 `terraform validate` verifica sintaxe e schema do provider. Não foi executado `terraform plan` ou `apply` contra uma tenancy. Capacidade, imagens regionais, permissões IAM efetivas e conectividade real precisam ser confirmadas na OCI. O recurso Universal aceita HCL manual e exige revisão do conteúdo. A verificação de identificação de controles não substitui uma auditoria completa com leitores de tela.
+
+
+## Atualização: exportação OCI CLI
+
+A tela Código e exportação agora oferece Terraform (`main.tf`) e OCI CLI (`deploy-oci.sh`). Seleção, nome do arquivo, prévia, cópia e download seguem o formato escolhido. A preferência persiste no navegador e nos backups. O gerador Terraform e a geração de policies permanecem iguais; a importação de backups apenas normaliza o campo de formato novo.
+
+Verificações desta atualização:
+
+- Dez testes de regressão existentes passaram, preservando Terraform, backups, bloqueios e exportação limpa.
+- 22 casos nativos e três casos adicionais geraram scripts Bash válidos: dependências fora de ordem com tags/IAM/IP reservado, Windows nativo e região/compartimento preenchidos.
+- 25 scripts e 37 chamadas simuladas passaram; parâmetros de 30 caminhos de comandos foram processados pela OCI CLI oficial 3.95.1 com cliente substituído e sockets bloqueados. Não houve chamadas à OCI.
+- Foram conferidos payloads JSON, estados de espera, ordem de dependências, variáveis ausentes, região/OCIDs escolhidos, bloqueio de expansão de shell e limpeza de arquivos temporários 0600.
+- Interface: troca e persistência dos formatos, cópia/download, preservação da saída Terraform, bloqueios de plano inválido/Universal/BYOL, oito idiomas e 24 layouts CLI passaram, sem erros JavaScript.
+- Os testes de idiomas existentes passaram novamente em 64 navegações e 192 layouts. A sintaxe JavaScript passou em `node --check`.
+
+Os testes anteriores de provider e aparência permanecem documentados acima e não foram repetidos nesta atualização do exportador. Os campos/algoritmos das paletas e o gerador Terraform não foram alterados. O laboratório de rede e o pacote IAM independente continuam com suas exportações Terraform. Universal/HCL manual e Windows BYOL são explicitamente bloqueados na alternativa CLI. Consulte OCI_CLI.md para execução e limitações; não houve provisionamento real.

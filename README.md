@@ -9,7 +9,7 @@
 </picture>
 </a>
 
-Planeje recursos da **Oracle Cloud Infrastructure**, organize as dependências e gere Terraform para revisar antes da implantação.
+Planeje recursos da **Oracle Cloud Infrastructure**, organize as dependências e gere **Terraform ou OCI CLI** para revisar antes da implantação.
 
 **[Abrir demonstração](https://cwbffm.github.io/oci-architect-studio/)** · [Recursos](#recursos) · [Como usar](#como-usar) · [Exemplos](#exemplos-de-uso) · [Validação](#validacao-e-limites)
 
@@ -37,7 +37,7 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 | **Policies IAM** | Gerar statements de referência e conferir os escopos e as dependências dos serviços. |
 | **Tags** | Organizar tags freeform e defined tags e revisar o padrão aplicado ao projeto. |
 | **Rede e roteamento** | Explorar uma topologia hub-and-spoke e acompanhar decisões de ida e retorno no laboratório lógico. |
-| **Terraform** | Revisar o código gerado, as variáveis pendentes e as notas de exportação. |
+| **Terraform e OCI CLI** | Escolher `main.tf` ou `deploy-oci.sh`, revisar as variáveis e copiar/baixar o formato selecionado. |
 | **Aparência e leitura** | Escolher entre 38 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
 | **Backups e exportação** | Salvar e restaurar o projeto em JSON e exportar uma cópia limpa da ferramenta em HTML. |
 
@@ -47,7 +47,7 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 2. Selecione a região e configure o contexto do projeto.
 3. Escolha um serviço, preencha os campos e associe suas dependências.
 4. Revise as policies, as tags e as pendências indicadas pela ferramenta.
-5. Exporte o Terraform e um backup JSON do projeto.
+5. Escolha Terraform ou OCI CLI na exportação e salve um backup JSON do projeto.
 
 O projeto fica no armazenamento local do navegador. Exporte o backup para preservá-lo ao trocar de navegador, computador ou limpar os dados do site.
 
@@ -64,6 +64,12 @@ terraform plan
 
 Revise as variáveis, a autenticação, a região e as alterações do plano antes de executar qualquer aplicação na OCI.
 
+### Exportar OCI CLI
+
+Em **Código e exportação**, selecione **OCI CLI** e baixe `deploy-oci.sh`. O script usa comandos nativos da Oracle e requer Bash, Python 3 e OCI CLI autenticada. Variáveis pendentes são preenchidas no terminal. Há suporte aos 22 tipos nativos, respeitando os limites indicados na tela; Universal/HCL e Windows BYOL permanecem em Terraform.
+
+Veja [OCI_CLI.md](OCI_CLI.md) para cobertura, execução, região de origem IAM e validação sem acesso à tenancy. OCI CLI executa criação direta e não mantém state nem plan do Terraform.
+
 ## Exemplos de uso
 
 | Situação | Caminho sugerido |
@@ -79,7 +85,7 @@ Revise as variáveis, a autenticação, a região e as alterações do plano ant
 
 A revisão atual registra a correção das prévias de destaque e a verificação de 32 configurações com `terraform validate`. Consulte [VALIDATION.md](VALIDATION.md) para os resultados, a reprodução das verificações e seus limites.
 
-- A aplicação planeja e gera código; ela não executa o Terraform nem implanta recursos na sua tenancy.
+- A aplicação planeja e gera código; ela não executa Terraform ou OCI CLI nem implanta recursos na sua tenancy.
 - O catálogo de referência não garante disponibilidade regional ou capacidade. Importe dados da sua região quando necessário.
 - As policies geradas exigem revisão de identidade, escopo e permissões efetivas.
 - O laboratório de redes é uma simulação lógica; não envia pacotes nem comprova conectividade real na OCI.
