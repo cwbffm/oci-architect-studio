@@ -83,3 +83,14 @@ Os menus nativos têm fundo opaco e texto explícito, com espaço para a seta e 
 Passaram 12 testes de aparência, incluindo busca, estado sem resultados, opções opacas dos menus, teclado, identidade do controle de cor personalizada, migração e persistência. Foram verificadas 288 combinações de tema/destaque e 768 cenários de layout, sem erros JavaScript nem overflow global. Passaram os dez testes de regressão e os testes dos oito idiomas (64 navegações e 192 layouts), além da conferência visual e de foco das famílias nos oito idiomas.
 
 O gerador Terraform e as validações de recursos permanecem inalterados. Não foi executado plan ou apply contra uma tenancy nesta alteração de aparência.
+
+
+## Atualização: Oracle Redwood, destaques e leitura
+
+O catálogo atual tem 19 famílias e 38 variantes: acrescentados Oracle Redwood, One e Material nos modos claro e escuro. Oracle Redwood é uma interpretação para o Studio inspirada no visual da Oracle; não é um tema oficial ou certificado pela Oracle. Foram adicionadas oito cores de destaque, totalizando 17 opções com Padrão e Personalizado. Consulte THEMES.md.
+
+Texto/espaçamento ganhou painel próprio, prévia e restauração independente. O tamanho de código também foi conferido nas saídas Terraform e IAM. Há texto de 90% a 125%, três densidades, três alturas de linha, dois espaçamentos de letras e código de 12 a 18 px, além das fontes existentes. As preferências persistem e são validadas ao importar backups; versões antigas recebem os padrões dos campos novos.
+
+Passaram 14 testes de aparência: 646 combinações de tema/destaque, 912 cenários de layout dos temas e 128 cenários adicionais com leitura ampliada, espaçamento amplo e código grande em desktop/tablet/celular. Não houve erros JavaScript nem overflow global. Foram verificados restauração sem alterar o projeto, persistência, normalização de preferências inválidas, migração dos temas Oracle antigos e controles nos oito idiomas.
+
+Os dez testes de regressão e os testes de idiomas (64 navegações e 192 layouts) passaram novamente. O gerador Terraform e a geração de policies permanecem inalterados; a importação de backups apenas passou a normalizar as novas preferências de leitura. Não houve plan/apply contra uma tenancy nesta alteração visual.
