@@ -94,3 +94,10 @@ Texto/espaçamento ganhou painel próprio, prévia e restauração independente.
 Passaram 14 testes de aparência: 646 combinações de tema/destaque, 912 cenários de layout dos temas e 128 cenários adicionais com leitura ampliada, espaçamento amplo e código grande em desktop/tablet/celular. Não houve erros JavaScript nem overflow global. Foram verificados restauração sem alterar o projeto, persistência, normalização de preferências inválidas, migração dos temas Oracle antigos e controles nos oito idiomas.
 
 Os dez testes de regressão e os testes de idiomas (64 navegações e 192 layouts) passaram novamente. O gerador Terraform e a geração de policies permanecem inalterados; a importação de backups apenas passou a normalizar as novas preferências de leitura. Não houve plan/apply contra uma tenancy nesta alteração visual.
+
+
+## Atualização: cores somente por amostras
+
+Removidos o dropdown de destaque, seus estilos e o evento de seleção. Todas as 17 opções usam botões de amostra com nome acessível, dica de nome e estado selecionado. A amostra multicolorida ativa o campo de cor personalizada; o botão Restaurar padrão permanece disponível. As preferências de destaque e os backups mantêm os mesmos IDs.
+
+Os 14 testes de aparência passaram com seleção pelas amostras, incluindo teclado, foco, cor personalizada, persistência, leitura, 646 combinações de tema/destaque e 912 cenários de layout, mais 128 cenários de leitura ampliada. Passaram também os dez testes de regressão. As amostras e os controles foram conferidos nos oito idiomas. Não houve erros JavaScript. Nenhuma paleta, gerador Terraform ou configuração de recursos foi alterada nesta revisão.

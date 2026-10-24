@@ -28,7 +28,7 @@ O catálogo atual tem **19 famílias e 38 variantes**. Os 20 temas anteriores fo
 
 As famílias aparecem em ordem alfabética, com Padrão primeiro, em uma grade de botões com amostras de cor. O campo de busca filtra as famílias pelo nome e informa quando não há resultados, sem mudar o tema ativo. Ao selecionar uma família, o modo atual é mantido e duas prévias permitem comparar claro e escuro. O estado selecionado é indicado visualmente e por `aria-pressed`; os botões funcionam com teclado e preservam o foco.
 
-A busca e a grade de famílias ficam junto às prévias, enquanto tema atual e cor de destaque ficam no painel lateral curto. Texto/espaçamento tem um painel próprio junto às prévias, com controles em colunas e amostra de leitura. Cor de destaque e texto/espaçamento ficam em seções recolhíveis. O seletor nativo usa opções com fundo opaco e texto explícito em ambos os modos, área adequada para a seta e amostra sem interceptar cliques. Os botões de amostra permanecem montados ao trocar de cor para preservar o foco do teclado. O controle de cor personalizada também permanece montado durante os eventos de seleção. As 17 opções de destaque estão disponíveis, incluindo a cor padrão da família e uma cor personalizada. Os nomes públicos não usam a marca ChatGPT.
+A busca e a grade de famílias ficam junto às prévias, enquanto tema atual e cor de destaque ficam no painel lateral curto. Texto/espaçamento tem um painel próprio junto às prévias, com controles em colunas e amostra de leitura. Cor de destaque e texto/espaçamento ficam em seções recolhíveis. A seleção de destaque usa somente amostras clicáveis, com nome acessível, dica de nome e indicação da cor ativa. A amostra multicolorida abre o campo de cor personalizada. Os botões de amostra permanecem montados ao trocar de cor para preservar o foco do teclado. O controle de cor personalizada também permanece montado durante os eventos de seleção. As 17 opções de destaque estão disponíveis, incluindo a cor padrão da família e uma cor personalizada. Os nomes públicos não usam a marca ChatGPT.
 
 ## Paletas e legibilidade
 
@@ -44,7 +44,7 @@ A interface mantém seus oito idiomas. O gerador Terraform não foi alterado nes
 
 ## Testes
 
-`tests/themes.cjs` verifica os 38 temas, persistência, backups, migração, 17 destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Também cobre a busca, o menu de cor, o foco das amostras e mudanças sucessivas de cor personalizada. Execute com Playwright e Chromium instalados:
+`tests/themes.cjs` verifica os 38 temas, persistência, backups, migração, 17 destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Também cobre a busca, a seleção por amostras, o foco das amostras e mudanças sucessivas de cor personalizada. Execute com Playwright e Chromium instalados:
 
 ```sh
 node tests/themes.cjs
