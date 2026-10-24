@@ -101,3 +101,10 @@ Os dez testes de regressão e os testes de idiomas (64 navegações e 192 layout
 Removidos o dropdown de destaque, seus estilos e o evento de seleção. Todas as 17 opções usam botões de amostra com nome acessível, dica de nome e estado selecionado. A amostra multicolorida ativa o campo de cor personalizada; o botão Restaurar padrão permanece disponível. As preferências de destaque e os backups mantêm os mesmos IDs.
 
 Os 14 testes de aparência passaram com seleção pelas amostras, incluindo teclado, foco, cor personalizada, persistência, leitura, 646 combinações de tema/destaque e 912 cenários de layout, mais 128 cenários de leitura ampliada. Passaram também os dez testes de regressão. As amostras e os controles foram conferidos nos oito idiomas. Não houve erros JavaScript. Nenhuma paleta, gerador Terraform ou configuração de recursos foi alterada nesta revisão.
+
+
+## Atualização: cores de destaque sempre visíveis
+
+A seção de destaque deixou de ser recolhível. As 17 amostras permanecem visíveis ao abrir a aparência, trocar famílias ou recarregar. O título está associado à seção e não existe seta/controle para ocultá-la. Cor personalizada e Restaurar padrão permanecem disponíveis.
+
+Nesta revisão estrutural passaram quatro verificações direcionadas do catálogo, visibilidade das cores, seleção, personalização, teclado e busca, além dos dez testes de regressão. Os testes dos oito idiomas passaram em 64 navegações e 192 layouts. Os testes anteriores de contraste das paletas não foram repetidos: as cores e sua lógica permanecem iguais.
