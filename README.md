@@ -1,24 +1,108 @@
 # OCI Architect Studio
 
-Aplicação estática para planejar recursos Oracle Cloud Infrastructure e gerar Terraform, sem conexão direta com uma tenancy.
+<a href="https://cwbffm.github.io/oci-architect-studio/">
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/repository-cover-mobile-dark.svg">
+  <source media="(max-width: 600px) and (prefers-color-scheme: light)" srcset="assets/repository-cover-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/repository-cover-dark.svg">
+  <img src="assets/repository-cover-light.svg" alt="OCI Architect Studio — recursos, policies e Terraform para revisão." width="1240">
+</picture>
+</a>
 
-- 22 tipos nativos e recurso Universal para HCL manual.
-- Planejamento de rede, policies IAM, tags e catálogo regional importável.
-- Backups JSON, exportação de Terraform e HTML limpo.
-- Oito idiomas, 38 variantes de temas, 17 opções de destaque e preferências de leitura.
+Planeje recursos da **Oracle Cloud Infrastructure**, organize as dependências e gere Terraform para revisar antes da implantação.
 
-## Executar localmente
+**[Abrir demonstração](https://cwbffm.github.io/oci-architect-studio/)** · [Recursos](#recursos) · [Como usar](#como-usar) · [Exemplos](#exemplos-de-uso) · [Validação](#validacao-e-limites)
 
-Abra `index.html` no navegador. Os projetos ficam no armazenamento local; exporte backups JSON para preservá-los.
+Uma ferramenta de planejamento que funciona no navegador, sem conexão direta com uma tenancy. O projeto é mantido por [Fabio Ferreira](https://github.com/cwbffm), com foco em infraestrutura OCI, redes e automação.
+
+## Conheça a ferramenta
+
+![Construtor do OCI Architect Studio, com dados de exemplo e configuração local de recursos.](assets/studio-builder.png)
+
+<details>
+<summary>Ver o laboratório de redes e roteamento</summary>
+
+![Mapa de rotas do laboratório, com topologia de exemplo e decisões de ida e retorno.](assets/studio-network.png)
+
+As capturas usam o estado inicial da aplicação e não representam uma tenancy real.
+
+</details>
+
+## Recursos
+
+| Área | O que você pode fazer |
+| --- | --- |
+| **Planejamento de recursos** | Configurar 22 tipos nativos, organizar referências entre recursos e usar o recurso Universal para HCL manual. |
+| **Compute e imagens** | Consultar shapes e sistemas operacionais, configurar Linux ou Windows e distinguir licenciamento nativo de BYOL. |
+| **Policies IAM** | Gerar statements de referência e conferir os escopos e as dependências dos serviços. |
+| **Tags** | Organizar tags freeform e defined tags e revisar o padrão aplicado ao projeto. |
+| **Rede e roteamento** | Explorar uma topologia hub-and-spoke e acompanhar decisões de ida e retorno no laboratório lógico. |
+| **Terraform** | Revisar o código gerado, as variáveis pendentes e as notas de exportação. |
+| **Aparência e leitura** | Escolher entre 38 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
+| **Backups e exportação** | Salvar e restaurar o projeto em JSON e exportar uma cópia limpa da ferramenta em HTML. |
+
+## Como usar
+
+1. Abra a [demonstração](https://cwbffm.github.io/oci-architect-studio/) ou baixe o repositório e abra `index.html` no navegador.
+2. Selecione a região e configure o contexto do projeto.
+3. Escolha um serviço, preencha os campos e associe suas dependências.
+4. Revise as policies, as tags e as pendências indicadas pela ferramenta.
+5. Exporte o Terraform e um backup JSON do projeto.
+
+O projeto fica no armazenamento local do navegador. Exporte o backup para preservá-lo ao trocar de navegador, computador ou limpar os dados do site.
+
+### Conferir o Terraform exportado
+
+Na pasta em que você salvou o código gerado, com Terraform e as dependências necessárias disponíveis:
+
+```bash
+terraform fmt
+terraform init
+terraform validate
+terraform plan
+```
+
+Revise as variáveis, a autenticação, a região e as alterações do plano antes de executar qualquer aplicação na OCI.
+
+## Exemplos de uso
+
+| Situação | Caminho sugerido |
+| --- | --- |
+| **Planejar uma VCN e uma VM** | Configure a rede, associe a subnet ao Compute e revise imagem, IP, policies e tags. |
+| **Revisar permissões de um serviço** | Consulte o workspace de IAM e confira principal, compartimentos e dependências. |
+| **Investigar uma rota no modelo** | No laboratório de redes, escolha origem e destino e examine o caminho e as tabelas de rotas. |
+| **Preparar um exemplo para discussão técnica** | Organize os recursos, exporte o código e registre as decisões e pendências do projeto. |
+
+<a id="validacao-e-limites"></a>
+
+## Validação e limites
+
+A revisão atual registra a correção das prévias de destaque e a verificação de 32 configurações com `terraform validate`. Consulte [VALIDATION.md](VALIDATION.md) para os resultados, a reprodução das verificações e seus limites.
+
+- A aplicação planeja e gera código; ela não executa o Terraform nem implanta recursos na sua tenancy.
+- O catálogo de referência não garante disponibilidade regional ou capacidade. Importe dados da sua região quando necessário.
+- As policies geradas exigem revisão de identidade, escopo e permissões efetivas.
+- O laboratório de redes é uma simulação lógica; não envia pacotes nem comprova conectividade real na OCI.
+- O HCL manual do recurso Universal exige revisão.
+- Confira os testes registrados e seus limites em [VALIDATION.md](VALIDATION.md).
+
+## Documentação do projeto
+
+| Documento | Conteúdo |
+| --- | --- |
+| [Validação](VALIDATION.md) | Verificações registradas e limites da revisão. |
+| [Temas](THEMES.md) | Famílias, modos de aparência e cores de destaque. |
+| [Idiomas](I18N.md) | Localização da interface e preservação dos dados do projeto. |
+| [Testes](tests/) | Scripts de regressão, idiomas e aparência. |
 
 ## Publicação
 
-O workflow `.github/workflows/pages.yml` publica `index.html` no GitHub Pages a cada push na branch `docker-compose`. Usa Ubuntu 24.04 e ações compatíveis com Node.js 24.
+O workflow [Publish GitHub Pages](.github/workflows/pages.yml) publica `index.html` a cada push na branch `docker-compose`.
 
-Na primeira execução, selecione Settings → Pages → Build and deployment → Source → GitHub Actions. Depois execute Actions → Publish GitHub Pages → Run workflow.
+A publicação utiliza Ubuntu 24.04 e ações compatíveis com Node.js 24.
 
-## Validar e revisar
+Para configurar uma publicação própria, selecione **Settings → Pages → Build and deployment → Source → GitHub Actions**. O workflow também oferece execução manual em **Actions → Publish GitHub Pages → Run workflow**.
 
-Consulte [VALIDATION.md](VALIDATION.md) para os resultados, reprodução dos testes e limites; [THEMES.md](THEMES.md) para aparência e leitura; e [I18N.md](I18N.md) para idiomas.
+## Mais projetos
 
-A revisão atual corrigiu as prévias de destaque e verificou 32 configurações com `terraform validate`. Antes de aplicar, revise o código e execute `terraform fmt`, `terraform validate` e `terraform plan` na sua configuração. Disponibilidade regional e permissões efetivas dependem da sua OCI. O HCL manual do recurso Universal exige revisão.
+[Perfil de Fabio Ferreira](https://github.com/cwbffm) · [Laboratório Terraform OCI](https://github.com/cwbffm/oci-terraform-network) · [Scripts e automações](https://github.com/cwbffm/scriptz)
