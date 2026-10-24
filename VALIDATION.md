@@ -72,3 +72,14 @@ A seleção de famílias agora usa botões com amostras de cor e estado acessív
 Passaram dez testes de aparência, 252 combinações de tema/destaque e 672 cenários de layout (28 temas, oito páginas, três larguras), sem erros JavaScript. Passaram também os dez testes de regressão, 64 cenários de navegação e 192 cenários de layout dos idiomas. Verificação adicional confirmou seleção por teclado e interface das famílias nos oito idiomas.
 
 Backups, persistência e migração dos IDs da versão ampliada foram verificados. O gerador Terraform permanece inalterado; não foi executada nova validação contra a tenancy nesta alteração de aparência.
+
+
+## Atualização: menu de cores, busca e novas famílias
+
+O catálogo atual tem 16 famílias e 32 variantes, substituindo as contagens históricas acima. Monokai e VS Code foram adicionados em claro e escuro; Dracula e GitHub permanecem disponíveis. As versões claras são adaptações do Studio, conforme THEMES.md.
+
+Os menus nativos têm fundo opaco e texto explícito, com espaço para a seta e amostra que não intercepta cliques. Botões de cor deixam de ser recriados a cada seleção, preservando foco e navegação pelo teclado. O seletor de cor personalizada permanece montado durante mudanças sucessivas. O painel de ajustes ficou mais curto; busca e famílias em ordem alfabética ficam junto às prévias.
+
+Passaram 12 testes de aparência, incluindo busca, estado sem resultados, opções opacas dos menus, teclado, identidade do controle de cor personalizada, migração e persistência. Foram verificadas 288 combinações de tema/destaque e 768 cenários de layout, sem erros JavaScript nem overflow global. Passaram os dez testes de regressão e os testes dos oito idiomas (64 navegações e 192 layouts), além da conferência visual e de foco das famílias nos oito idiomas.
+
+O gerador Terraform e as validações de recursos permanecem inalterados. Não foi executado plan ou apply contra uma tenancy nesta alteração de aparência.
