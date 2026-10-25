@@ -30,6 +30,16 @@ Preencha os compartments autorizados no objeto JSON `STUDIO_COMPARTMENTS` e as r
 
 Desenvolvimento local pode usar `STUDIO_OCI_AUTH=config` e um profile OCI já configurado no servidor. Nenhum arquivo OCI é enviado pelo navegador. Para hospedagem, prefira Instance Principal em Compute ou Resource Principal em um runtime OCI compatível. Sem identidade OCI configurada, a API inicia, mas o teste de conexão falha de forma explícita.
 
+Para testar a interface localmente, sirva apenas os arquivos públicos. Na raiz do repositório, em outro terminal:
+
+```bash
+mkdir -p _site
+cp index.html _site/index.html
+python3 -m http.server 8080 --bind 127.0.0.1 --directory _site
+```
+
+Abra `http://localhost:8080` e informe `http://localhost:8000` na tela de integração. A origem precisa constar em `STUDIO_ALLOWED_ORIGINS`. Não sirva o diretório do backend ou arquivos `.env` como conteúdo público. Abrir o HTML diretamente como arquivo continua adequado ao planejamento local, mas a conexão com a API exige uma origem HTTP/HTTPS autorizada.
+
 ## Hospedagem e identidade
 
 1. Hospede a API na OCI com acesso aos endpoints dos serviços, TLS em um proxy/load balancer e credencial de acesso bem protegida. Exponha apenas HTTPS; limite requisições no proxy e desative logs de headers/body.
@@ -55,7 +65,7 @@ Variáveis:
 - `STUDIO_OIDC_SCOPES`: scopes solicitados pelo frontend, por exemplo `openid profile` acrescido do scope registrado da API;
 - `STUDIO_ALLOWED_SUBJECTS` ou `STUDIO_ALLOWED_GROUPS`: valores autorizados, separados por vírgula. A claim `groups` deve ser configurada como lista de strings se esse mecanismo for utilizado.
 
-A API verifica assinatura RS256, issuer, audience, expiração, emissão e subject. URLs de verificação vêm exclusivamente da configuração do administrador. Usuários autorizados têm permissões de operador, inclusive aplicar, nos alvos configurados; não há papéis distintos de leitor/aprovador nesta versão. O ownership impede que um usuário acesse a arquitetura ou os jobs de outro. Uma mesma conta/token não fornece separação entre pessoas.
+A API verifica assinatura RS256, issuer, audience, expiração, emissão e subject. URLs de verificação vêm exclusivamente da configuração do administrador. Usuários autorizados têm permissões de operador, inclusive aplicar, nos alvos configurados; não há papéis distintos de leitor/aprovador nesta versão. O ownership impede que um usuário acesse a arquitetura ou os jobs de outro. As identidades são separadas por modo de autenticação e, em OIDC, pelo par issuer/subject; trocar o Identity Domain não transfere a propriedade das arquiteturas. Uma mesma conta/token não fornece separação entre pessoas.
 
 ## Recursos suportados na integração direta
 

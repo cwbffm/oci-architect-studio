@@ -11,7 +11,7 @@ A interface existente foi revisada antes da mudança. Os fontes foram separados 
 | Idiomas nas páginas anteriores | 64 navegações e 192 layouts |
 | Temas | 14 verificações, 646 combinações de contraste, 912 layouts |
 | Integração no navegador, com API simulada | 16 verificações; 8 idiomas e 24 layouts |
-| API Python, com OCI simulado | 37 testes aprovados |
+| API Python, com OCI simulado | 39 testes aprovados |
 | Terraform gerado pelo backend | 24 configurações válidas; Terraform 1.13.4 e provider OCI 9.11.0; sem erros ou avisos |
 | Dependências Python | `pip check` sem conflitos; `pip-audit` consultando PyPI: 38 pacotes, nenhuma vulnerabilidade conhecida |
 | Dependências JavaScript | `npm audit`: nenhuma vulnerabilidade conhecida |
@@ -27,6 +27,7 @@ Os testes Python emitem um aviso de depreciação da biblioteca de testes sobre 
 - Bibliotecas Python com vulnerabilidades conhecidas, substituídas por versões verificadas.
 - Recuperação da execução depois de recarregar/reconectar, sem restaurar credenciais ou aprovação.
 - Destino imutável de uma stack existente; associação nova exige uma ação explícita.
+- Identidades de usuários separadas por modo de autenticação e emissor OIDC; trocar o domínio de login não transfere acesso a projetos existentes.
 - Revogação dos destinos no servidor: planos antigos deixam de poder ser aplicados quando o administrador remove região ou compartment da configuração.
 
 ## Controles exercitados

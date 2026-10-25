@@ -7,11 +7,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build():
     source = ROOT / "frontend"
-    styles = "\n".join((source / "styles" / name).read_text() for name in ("studio.css", "oci-integration.css"))
-    scripts = "\n".join((source / "js" / name).read_text() for name in ("studio.js", "oci-integration.js", "oci-integration-i18n.js"))
-    template = (source / "index.template.html").read_text()
+    styles = "\n".join((source / "styles" / name).read_text(encoding='utf-8') for name in ("studio.css", "oci-integration.css"))
+    scripts = "\n".join((source / "js" / name).read_text(encoding='utf-8') for name in ("studio.js", "oci-integration.js", "oci-integration-i18n.js"))
+    template = (source / "index.template.html").read_text(encoding='utf-8')
     return template.replace("{{STUDIO_STYLES}}", "<style>" + styles + "</style>").replace(
-        "{{OCI_INTEGRATION_VIEW}}", (source / "integration.html").read_text()
+        "{{OCI_INTEGRATION_VIEW}}", (source / "integration.html").read_text(encoding='utf-8')
     ).replace("{{STUDIO_SCRIPTS}}", "<script>" + scripts + "</script>")
 
 
@@ -22,9 +22,9 @@ if __name__ == "__main__":
     output = build()
     target = ROOT / "index.html"
     if args.check:
-        if not target.exists() or target.read_text() != output:
+        if not target.exists() or target.read_text(encoding='utf-8') != output:
             raise SystemExit("index.html is out of date; run python tools/build_frontend.py")
         print("Frontend bundle is current")
     else:
-        target.write_text(output)
+        target.write_text(output, encoding='utf-8')
         print("Built index.html")

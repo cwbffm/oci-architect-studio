@@ -251,7 +251,9 @@ def test_oidc_verifies_signature_audience_expiry_and_authorization(settings, mon
     def request(data):
         token = jwt.encode(data, key, algorithm='RS256')
         return Request({'type': 'http', 'headers': [(b'authorization', ('Bearer '+token).encode())]})
-    assert auth(request(claims)) == 'allowed'
+    identity = json.dumps([settings.oidc_issuer, 'allowed'], ensure_ascii=False, separators=(',', ':'))
+    import hashlib
+    assert auth(request(claims)) == 'oidc:' + hashlib.sha256(identity.encode('utf-8')).hexdigest()
     for bad in ({**claims, 'aud': 'other-api'}, {**claims, 'exp': int(time.time())-120}, {**claims, 'iss': 'https://evil.example'}):
         with pytest.raises(HTTPException) as error:
             auth(request(bad))
@@ -438,3 +440,42 @@ def test_revoked_destination_blocks_existing_plan_apply_and_reads(system, state,
     assert client.get(path + '/jobs/' + plan['id']).status_code == 403
     assert len(fake.jobs) == jobs_before
     assert not calls
+
+
+@pytest.mark.parametrize('change', ['issuer', 'token_to_oidc'])
+def test_owner_namespaces_prevent_issuer_and_auth_mode_collisions(settings, state, monkeypatch, change):
+    import time
+    import jwt
+    from cryptography.hazmat.primitives.asymmetric import rsa
+    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    monkeypatch.setattr(jwt.PyJWKClient, 'get_signing_key_from_jwt',
+                        lambda self, token: SimpleNamespace(key=key.public_key()))
+    settings.oidc_issuer = 'https://first-issuer.example'
+    settings.oidc_jwks_url = 'https://first-issuer.example/jwks'
+    settings.oidc_audience = 'studio-api'
+    settings.oidc_client_id = 'studio-browser'
+    settings.allowed_subjects = ('operator',)
+    def signed():
+        return jwt.encode({'iss': settings.oidc_issuer, 'aud': 'studio-api', 'sub': 'operator',
+                           'iat': int(time.time()), 'exp': int(time.time())+120}, key, algorithm='RS256')
+    fake = FakeOCI()
+    settings.auth_mode = 'oidc' if change == 'issuer' else 'token'
+    client = TestClient(create_app(settings, fake))
+    client.headers['Authorization'] = 'Bearer ' + (signed() if change == 'issuer' else TOKEN)
+    old_principal = client.get('/api/connection').json()['principal']
+    path = '/api/architectures/' + str(uuid4())
+    plan = client.post(path+'/plan', json={'state': state})
+    assert plan.status_code == 200
+    if change == 'issuer':
+        settings.oidc_issuer = 'https://second-issuer.example'
+        settings.oidc_jwks_url = 'https://second-issuer.example/jwks'
+    else:
+        settings.auth_mode = 'oidc'
+    replacement = TestClient(create_app(settings, fake))
+    replacement.headers['Authorization'] = 'Bearer ' + signed()
+    new_principal = replacement.get('/api/connection').json()['principal']
+    assert new_principal != old_principal
+    assert new_principal.startswith('oidc:')
+    assert replacement.get(path).status_code == 404
+    assert replacement.get(path+'/jobs/'+plan.json()['id']).status_code == 404
+    assert replacement.post(path+'/apply', json={'plan_job_id': plan.json()['id'], 'confirmation': 'APPLY'}).status_code == 404

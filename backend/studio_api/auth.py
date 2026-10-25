@@ -1,5 +1,6 @@
 import hashlib
 import hmac
+import json
 from fastapi import HTTPException, Request
 import jwt
 
@@ -19,7 +20,7 @@ class Authenticator:
             if not hmac.compare_digest(hashlib.sha256(token.encode()).digest(),
                                        hashlib.sha256(self.s.api_token.encode()).digest()):
                 raise HTTPException(401, 'Invalid authentication')
-            return 'operator'
+            return 'token:operator'
         try:
             key = self.jwks.get_signing_key_from_jwt(token).key
             claims = jwt.decode(token, key, algorithms=['RS256'], audience=self.s.oidc_audience,
@@ -32,4 +33,5 @@ class Authenticator:
             groups = []
         if claims['sub'] not in self.s.allowed_subjects and not set(groups).intersection(self.s.allowed_groups):
             raise HTTPException(403, 'User not authorized for Studio')
-        return str(claims['sub'])
+        identity = json.dumps([claims['iss'], claims['sub']], ensure_ascii=False, separators=(',', ':'))
+        return 'oidc:' + hashlib.sha256(identity.encode('utf-8')).hexdigest()
