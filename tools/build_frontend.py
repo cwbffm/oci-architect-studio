@@ -1,0 +1,30 @@
+"""Bundle maintained sources into a portable, standalone HTML document."""
+from pathlib import Path
+import argparse
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def build():
+    source = ROOT / "frontend"
+    styles = "\n".join((source / "styles" / name).read_text() for name in ("studio.css", "oci-integration.css"))
+    scripts = "\n".join((source / "js" / name).read_text() for name in ("studio.js", "oci-integration.js", "oci-integration-i18n.js"))
+    template = (source / "index.template.html").read_text()
+    return template.replace("{{STUDIO_STYLES}}", "<style>" + styles + "</style>").replace(
+        "{{OCI_INTEGRATION_VIEW}}", (source / "integration.html").read_text()
+    ).replace("{{STUDIO_SCRIPTS}}", "<script>" + scripts + "</script>")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="Fail if index.html is out of date")
+    args = parser.parse_args()
+    output = build()
+    target = ROOT / "index.html"
+    if args.check:
+        if not target.exists() or target.read_text() != output:
+            raise SystemExit("index.html is out of date; run python tools/build_frontend.py")
+        print("Frontend bundle is current")
+    else:
+        target.write_text(output)
+        print("Built index.html")
