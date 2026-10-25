@@ -5,6 +5,9 @@ const API='https://api.studio.test',ORIGIN='https://studio.test';
 const COMP='ocid1.compartment.oc1..integrationtest';
 const TOKEN='test-operator-token-never-persist-this';
 const OIDC_TOKEN='test-oidc-token-never-persist-this';
+const OIDC_ISSUER='https://identity.oraclecloud.com/';
+const OIDC_ORIGIN='https://idcs-tenant.identity.studio.test';
+const OIDC_DISCOVERY=OIDC_ORIGIN+'/.well-known/openid-configuration';
 const XSS='<img src=x onerror="window.__logXss=1">';
 const LANGUAGES=['pt-BR','en','es','fr','de','it','ja','zh-CN'];
 
@@ -27,7 +30,8 @@ async function fixture(browser,{oidc=false}={}){
     const reply=(data,status=200)=>route.fulfill({status,contentType:'application/json',
       headers:{'Access-Control-Allow-Origin':ORIGIN,'Access-Control-Allow-Headers':'Authorization,Content-Type','Access-Control-Allow-Methods':'GET,POST,OPTIONS'},body:JSON.stringify(data)});
     if(method==='OPTIONS')return reply({});
-    if(url.pathname==='/api/config')return reply({auth_mode:oidc?'oidc':'token',oidc_issuer:oidc?'https://identity.studio.test':'',oidc_client_id:oidc?'studio-client':'',supported_types:['vcn']});
+    if(url.pathname==='/api/config')return reply({auth_mode:oidc?'oidc':'token',oidc_issuer:oidc?OIDC_ISSUER:'',
+      oidc_discovery_url:oidc?OIDC_DISCOVERY:'',oidc_client_id:oidc?'studio-client':'',supported_types:['vcn']});
     assert.equal(request.headers().authorization,'Bearer '+(oidc?OIDC_TOKEN:TOKEN));
     if(mock.unauthorized)return reply({detail:'Authentication expired'},401);
     if(url.pathname==='/api/connection')return reply({regions:[{id:'sa-saopaulo-1',name:'São Paulo'}],compartments:[{id:COMP,name:'Studio Test'}],supported_types:['vcn']});
@@ -175,11 +179,16 @@ async function noPersistedToken(page,token){
 
     const g=await fixture(browser,{oidc:true}),q=g.page;
     try{
-      let authorizeParams,exchange,badState=false,exchanges=0;
-      await q.route('https://identity.studio.test/**',async route=>{
+      let authorizeParams,exchange,badState=false,badEndpoint='',exchanges=0,authorizations=0;
+      await q.route(OIDC_ORIGIN+'/**',async route=>{
         const url=new URL(route.request().url());
-        if(url.pathname==='/.well-known/openid-configuration')return route.fulfill({contentType:'application/json',headers:{'Access-Control-Allow-Origin':ORIGIN},body:JSON.stringify({issuer:url.origin,authorization_endpoint:url.origin+'/authorize',token_endpoint:url.origin+'/token'})});
+        if(url.pathname==='/.well-known/openid-configuration'){
+          const metadata={issuer:OIDC_ISSUER,authorization_endpoint:url.origin+'/authorize',token_endpoint:url.origin+'/token'};
+          if(badEndpoint)metadata[badEndpoint]='https://untrusted.identity.studio.test/steal';
+          return route.fulfill({contentType:'application/json',headers:{'Access-Control-Allow-Origin':ORIGIN},body:JSON.stringify(metadata)});
+        }
         if(url.pathname==='/authorize'){
+          authorizations++;
           authorizeParams=url.searchParams;const redirect=new URL(authorizeParams.get('redirect_uri'));
           redirect.search=new URLSearchParams({code:'authorization-test-code',state:badState?'invalid-state':authorizeParams.get('state')}).toString();
           return route.fulfill({status:302,headers:{Location:redirect.href},body:''});
@@ -196,13 +205,23 @@ async function noPersistedToken(page,token){
       assert.equal(challenge,authorizeParams.get('code_challenge'));assert(authorizeParams.get('state').length>=32);
       assert.equal(new URL(q.url()).search,'');assert.equal(await q.evaluate(()=>sessionStorage.getItem('oci_studio_oauth_pending')),null);
       await noPersistedToken(q,OIDC_TOKEN);assert.deepEqual(g.errors,[]);
-      passed.push('OIDC authorization-code PKCE round trip validates state and removes transient material');
+      passed.push('Oracle-style global issuer and tenant discovery complete OIDC PKCE without persisting credentials');
 
       badState=true;await q.locator('#oci-disconnect').click();await q.locator('#oci-connect').click();
       await q.waitForFunction(()=>document.querySelector('#oci-connection-status')?.dataset.error==='true');await idle(q);
       assert.equal(exchanges,1);assert.equal(await q.evaluate(()=>ociSession.token),'');
       assert.equal(await q.evaluate(()=>sessionStorage.getItem('oci_studio_oauth_pending')),null);assert.deepEqual(g.errors,[]);
       passed.push('OIDC state mismatch prevents token exchange and clears pending login');
+
+      badState=false;const previousAuthorizations=authorizations;
+      for(const endpoint of ['authorization_endpoint','token_endpoint']){
+        badEndpoint=endpoint;await q.locator('#oci-connect').click();await idle(q);
+        assert.equal(await q.locator('#oci-connection-status').getAttribute('data-error'),'true');
+        assert((await q.locator('#oci-connection-status').textContent()).includes('Endpoint'));
+        assert.equal(authorizations,previousAuthorizations);assert.equal(exchanges,1);
+        assert.equal(await q.evaluate(()=>sessionStorage.getItem('oci_studio_oauth_pending')),null);
+      }
+      assert.deepEqual(g.errors,[]);passed.push('OIDC rejects authorization and token endpoints outside the configured discovery origin');
     }finally{await g.context.close();}
 
     fs.mkdirSync(path.join(__dirname,'..','work'),{recursive:true});

@@ -13,6 +13,7 @@ class Settings:
     oidc_audience: str = ''
     oidc_client_id: str = ''
     oidc_jwks_url: str = ''
+    oidc_discovery_url: str = ''
     oidc_scopes: str = 'openid profile'
     allowed_subjects: tuple[str, ...] = ()
     allowed_groups: tuple[str, ...] = ()
@@ -32,6 +33,7 @@ class Settings:
                    oidc_audience=os.getenv('STUDIO_OIDC_AUDIENCE', ''),
                    oidc_client_id=os.getenv('STUDIO_OIDC_CLIENT_ID', ''),
                    oidc_jwks_url=os.getenv('STUDIO_OIDC_JWKS_URL', ''),
+                   oidc_discovery_url=os.getenv('STUDIO_OIDC_DISCOVERY_URL', ''),
                    oidc_scopes=os.getenv('STUDIO_OIDC_SCOPES', 'openid profile'),
                    allowed_subjects=seq('STUDIO_ALLOWED_SUBJECTS'), allowed_groups=seq('STUDIO_ALLOWED_GROUPS'),
                    regions=seq('STUDIO_REGIONS'), compartments=json.loads(os.getenv('STUDIO_COMPARTMENTS', '{}')),
@@ -41,6 +43,10 @@ class Settings:
                    oci_config_profile=os.getenv('STUDIO_OCI_CONFIG_PROFILE', 'DEFAULT'),
                    terraform_version=os.getenv('STUDIO_TERRAFORM_VERSION', '1.5.x'))
 
+    @property
+    def discovery_url(self):
+        return self.oidc_discovery_url or (self.oidc_issuer.rstrip('/') + '/.well-known/openid-configuration' if self.oidc_issuer else '')
+
     def validate(self):
         import re
         from urllib.parse import urlsplit
@@ -49,10 +55,10 @@ class Settings:
         if self.auth_mode == 'token' and len(self.api_token) < 32:
             raise ValueError('STUDIO_API_TOKEN needs at least 32 characters; no default credential is provided')
         if self.auth_mode == 'oidc':
-            for value in (self.oidc_issuer, self.oidc_jwks_url):
+            for value in (self.oidc_issuer, self.oidc_jwks_url, self.discovery_url):
                 parsed = urlsplit(value)
                 if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password or parsed.fragment:
-                    raise ValueError('OIDC issuer and JWKS must be explicit HTTPS URLs')
+                    raise ValueError('OIDC issuer, JWKS and discovery must be explicit HTTPS URLs')
             if not self.oidc_audience or not self.oidc_client_id or not (self.allowed_subjects or self.allowed_groups):
                 raise ValueError('OIDC requires audience, client ID and allowed subjects/groups')
         if not self.regions or any(not re.fullmatch(r'[a-z]{2}-[a-z]+-\d+', x) for x in self.regions):

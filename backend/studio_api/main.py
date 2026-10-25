@@ -86,6 +86,7 @@ def create_app(settings=None, adapter=None):
         return {'auth_mode': settings.auth_mode, 'oidc_issuer': settings.oidc_issuer,
                 'oidc_client_id': settings.oidc_client_id, 'oidc_audience': settings.oidc_audience,
                 'oidc_scopes': settings.oidc_scopes,
+                'oidc_discovery_url': settings.discovery_url,
                 'supported_types': list(TYPES)}
 
     @app.get('/api/connection')

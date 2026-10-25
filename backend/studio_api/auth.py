@@ -33,5 +33,5 @@ class Authenticator:
             groups = []
         if claims['sub'] not in self.s.allowed_subjects and not set(groups).intersection(self.s.allowed_groups):
             raise HTTPException(403, 'User not authorized for Studio')
-        identity = json.dumps([claims['iss'], claims['sub']], ensure_ascii=False, separators=(',', ':'))
+        identity = json.dumps([claims['iss'], self.s.oidc_jwks_url, claims['sub']], ensure_ascii=False, separators=(',', ':'))
         return 'oidc:' + hashlib.sha256(identity.encode('utf-8')).hexdigest()

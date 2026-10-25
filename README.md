@@ -123,7 +123,7 @@ npm run test:themes
 
 ## Validação e limites
 
-A revisão da integração aprovou 39 testes da API, 16 verificações da nova interface e 24 configurações do gerador do backend com `terraform validate`. As suítes existentes de exportação, idiomas e temas também passaram. Consulte [VALIDATION.md](VALIDATION.md) para reprodução e limites; a validação local não comprova funcionamento em uma tenancy.
+A revisão da integração aprovou 41 testes da API, 17 verificações da nova interface e 24 configurações do gerador do backend com `terraform validate`. As suítes existentes de exportação, idiomas e temas também passaram. Consulte [VALIDATION.md](VALIDATION.md) para reprodução e limites; a validação local não comprova funcionamento em uma tenancy.
 
 - O modo local gera arquivos sem acessar a OCI. A execução direta exige a API configurada e utiliza o Resource Manager; não executa o script OCI CLI pelo navegador.
 - O catálogo de referência não garante disponibilidade regional ou capacidade. Importe dados da sua região quando necessário.

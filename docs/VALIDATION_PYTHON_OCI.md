@@ -10,8 +10,8 @@ A interface existente foi revisada antes da mudança. Os fontes foram separados 
 | Exportação OCI CLI | 22 tipos nativos + 3 cenários extras; 24 layouts |
 | Idiomas nas páginas anteriores | 64 navegações e 192 layouts |
 | Temas | 14 verificações, 646 combinações de contraste, 912 layouts |
-| Integração no navegador, com API simulada | 16 verificações; 8 idiomas e 24 layouts |
-| API Python, com OCI simulado | 39 testes aprovados |
+| Integração no navegador, com API simulada | 17 verificações; 8 idiomas e 24 layouts |
+| API Python, com OCI simulado | 41 testes aprovados |
 | Terraform gerado pelo backend | 24 configurações válidas; Terraform 1.13.4 e provider OCI 9.11.0; sem erros ou avisos |
 | Dependências Python | `pip check` sem conflitos; `pip-audit` consultando PyPI: 38 pacotes, nenhuma vulnerabilidade conhecida |
 | Dependências JavaScript | `npm audit`: nenhuma vulnerabilidade conhecida |
@@ -21,6 +21,7 @@ Os testes Python emitem um aviso de depreciação da biblioteca de testes sobre 
 
 ## O que foi corrigido durante a revisão
 
+- Login Oracle com issuer global e discovery/endpoints no Identity Domain específico; teste de PKCE e rejeição de endpoints fora do domínio configurado.
 - Inicialização direta da tela `#integration` antes da definição de seu estado.
 - Confirmação que era limpa pelo estado “ocupado” antes de enviar apply.
 - Truncamento silencioso no navegador que poderia ocultar parte do plano.

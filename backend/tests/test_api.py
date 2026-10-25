@@ -251,7 +251,7 @@ def test_oidc_verifies_signature_audience_expiry_and_authorization(settings, mon
     def request(data):
         token = jwt.encode(data, key, algorithm='RS256')
         return Request({'type': 'http', 'headers': [(b'authorization', ('Bearer '+token).encode())]})
-    identity = json.dumps([settings.oidc_issuer, 'allowed'], ensure_ascii=False, separators=(',', ':'))
+    identity = json.dumps([settings.oidc_issuer, settings.oidc_jwks_url, 'allowed'], ensure_ascii=False, separators=(',', ':'))
     import hashlib
     assert auth(request(claims)) == 'oidc:' + hashlib.sha256(identity.encode('utf-8')).hexdigest()
     for bad in ({**claims, 'aud': 'other-api'}, {**claims, 'exp': int(time.time())-120}, {**claims, 'iss': 'https://evil.example'}):
@@ -442,7 +442,7 @@ def test_revoked_destination_blocks_existing_plan_apply_and_reads(system, state,
     assert not calls
 
 
-@pytest.mark.parametrize('change', ['issuer', 'token_to_oidc'])
+@pytest.mark.parametrize('change', ['issuer', 'token_to_oidc', 'jwks_with_shared_issuer'])
 def test_owner_namespaces_prevent_issuer_and_auth_mode_collisions(settings, state, monkeypatch, change):
     import time
     import jwt
@@ -459,9 +459,9 @@ def test_owner_namespaces_prevent_issuer_and_auth_mode_collisions(settings, stat
         return jwt.encode({'iss': settings.oidc_issuer, 'aud': 'studio-api', 'sub': 'operator',
                            'iat': int(time.time()), 'exp': int(time.time())+120}, key, algorithm='RS256')
     fake = FakeOCI()
-    settings.auth_mode = 'oidc' if change == 'issuer' else 'token'
+    settings.auth_mode = 'token' if change == 'token_to_oidc' else 'oidc'
     client = TestClient(create_app(settings, fake))
-    client.headers['Authorization'] = 'Bearer ' + (signed() if change == 'issuer' else TOKEN)
+    client.headers['Authorization'] = 'Bearer ' + (TOKEN if change == 'token_to_oidc' else signed())
     old_principal = client.get('/api/connection').json()['principal']
     path = '/api/architectures/' + str(uuid4())
     plan = client.post(path+'/plan', json={'state': state})
@@ -469,6 +469,8 @@ def test_owner_namespaces_prevent_issuer_and_auth_mode_collisions(settings, stat
     if change == 'issuer':
         settings.oidc_issuer = 'https://second-issuer.example'
         settings.oidc_jwks_url = 'https://second-issuer.example/jwks'
+    elif change == 'jwks_with_shared_issuer':
+        settings.oidc_jwks_url = 'https://another-identity-domain.example/jwks'
     else:
         settings.auth_mode = 'oidc'
     replacement = TestClient(create_app(settings, fake))
@@ -479,3 +481,24 @@ def test_owner_namespaces_prevent_issuer_and_auth_mode_collisions(settings, stat
     assert replacement.get(path).status_code == 404
     assert replacement.get(path+'/jobs/'+plan.json()['id']).status_code == 404
     assert replacement.post(path+'/apply', json={'plan_job_id': plan.json()['id'], 'confirmation': 'APPLY'}).status_code == 404
+
+
+def test_oidc_discovery_can_be_tenant_specific_with_shared_oracle_issuer(settings):
+    settings.auth_mode = 'oidc'
+    settings.oidc_issuer = 'https://identity.oraclecloud.com/'
+    settings.oidc_discovery_url = 'https://tenant-domain.identity.oraclecloud.com/.well-known/openid-configuration'
+    settings.oidc_jwks_url = 'https://tenant-domain.identity.oraclecloud.com/admin/v1/SigningCert/jwk'
+    settings.oidc_audience = 'studio-api'
+    settings.oidc_client_id = 'studio-browser'
+    settings.allowed_subjects = ('operator',)
+    settings.validate()
+    client = TestClient(create_app(settings, FakeOCI()))
+    config = client.get('/api/config').json()
+    assert config['oidc_issuer'] == 'https://identity.oraclecloud.com/'
+    assert config['oidc_discovery_url'] == settings.oidc_discovery_url
+    settings.oidc_discovery_url = 'http://insecure.example/discovery'
+    with pytest.raises(ValueError, match='HTTPS'):
+        settings.validate()
+    settings.oidc_discovery_url = ''
+    settings.oidc_issuer = 'https://standard-provider.example/realm/'
+    assert settings.discovery_url == 'https://standard-provider.example/realm/.well-known/openid-configuration'

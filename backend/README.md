@@ -58,14 +58,17 @@ Configure uma aplicação pública de navegador no Identity Domain, com Authoriz
 Variáveis:
 
 - `STUDIO_AUTH_MODE=oidc`;
-- `STUDIO_OIDC_ISSUER`: issuer exato do discovery/token, incluindo eventual barra final;
+- `STUDIO_OIDC_ISSUER`: issuer exato do discovery/token, incluindo eventual barra final. Na Oracle pode ser o issuer global `https://identity.oraclecloud.com/`, compartilhado entre domínios;
+- `STUDIO_OIDC_DISCOVERY_URL`: URL HTTPS do discovery do **Identity Domain específico**, por exemplo `https://SEU_DOMINIO.identity.oraclecloud.com/.well-known/openid-configuration`. É independente do issuer. Se omitida, deriva do issuer para provedores OIDC convencionais; na Oracle, preencha explicitamente com o endereço do domínio;
 - `STUDIO_OIDC_JWKS_URL`: URL HTTPS fixa da chave pública de assinatura;
 - `STUDIO_OIDC_CLIENT_ID`: client ID público da aplicação de navegador;
 - `STUDIO_OIDC_AUDIENCE`: audience da API;
 - `STUDIO_OIDC_SCOPES`: scopes solicitados pelo frontend, por exemplo `openid profile` acrescido do scope registrado da API;
 - `STUDIO_ALLOWED_SUBJECTS` ou `STUDIO_ALLOWED_GROUPS`: valores autorizados, separados por vírgula. A claim `groups` deve ser configurada como lista de strings se esse mecanismo for utilizado.
 
-A API verifica assinatura RS256, issuer, audience, expiração, emissão e subject. URLs de verificação vêm exclusivamente da configuração do administrador. Usuários autorizados têm permissões de operador, inclusive aplicar, nos alvos configurados; não há papéis distintos de leitor/aprovador nesta versão. O ownership impede que um usuário acesse a arquitetura ou os jobs de outro. As identidades são separadas por modo de autenticação e, em OIDC, pelo par issuer/subject; trocar o Identity Domain não transfere a propriedade das arquiteturas. Uma mesma conta/token não fornece separação entre pessoas.
+A API verifica assinatura RS256, issuer, audience, expiração, emissão e subject. URLs de verificação vêm exclusivamente da configuração do administrador. Usuários autorizados têm permissões de operador, inclusive aplicar, nos alvos configurados; não há papéis distintos de leitor/aprovador nesta versão. O ownership impede que um usuário acesse a arquitetura ou os jobs de outro. As identidades são separadas por modo de autenticação e, em OIDC, pelo conjunto issuer/URL JWKS/subject; trocar o Identity Domain não transfere a propriedade das arquiteturas. A URL JWKS fixa o domínio de confiança mesmo quando a Oracle compartilha um issuer global. Rotacionar as chaves no mesmo endpoint preserva a identidade; trocar o endpoint JWKS não transfere automaticamente o ownership. Uma mesma conta/token não fornece separação entre pessoas.
+
+A Oracle documenta que o issuer pode ser global e os endpoints específicos do domínio: [OpenID Discovery](https://docs.oracle.com/en/cloud/paas/identity-cloud/idcsa/op-well-known-openid-configuration-get.html). Use os valores publicados pelo discovery da sua tenancy; não deduza a URL do domínio a partir do issuer. O access token precisa ter a audience da API e a configuração de CORS deve permitir a origem do Studio no fluxo de navegador.
 
 ## Recursos suportados na integração direta
 

@@ -2533,14 +2533,15 @@ function ociRandom() {
   const bytes=crypto.getRandomValues(new Uint8Array(32));return ociBase64Url(bytes);
 }
 function ociBase64Url(bytes) {return btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
-async function ociOidcMetadata(issuer) {
-  const url=new URL(issuer);if(url.protocol!=='https:')throw Error('O login exige um emissor HTTPS.');
-  const response=await fetch(issuer.replace(/\/$/,'')+'/.well-known/openid-configuration',{credentials:'omit',redirect:'error',signal:AbortSignal.timeout(15000)});
+async function ociOidcMetadata(issuer, discoveryUrl) {
+  const url=new URL(discoveryUrl||issuer.replace(/\/$/,'')+'/.well-known/openid-configuration');
+  if(new URL(issuer).protocol!=='https:'||url.protocol!=='https:'||url.username||url.password||url.hash)throw Error('O login exige um emissor HTTPS.');
+  const response=await fetch(url.href,{credentials:'omit',redirect:'error',signal:AbortSignal.timeout(15000)});
   if(!response.ok)throw Error('Não foi possível consultar o login corporativo.');
   const metadata=await response.json();
   if(metadata.issuer!==issuer)throw Error('Emissor do login incompatível com a configuração.');
   for(const key of ['authorization_endpoint','token_endpoint']){
-    const endpoint=new URL(metadata[key]);if(endpoint.protocol!=='https:'||endpoint.origin!==url.origin)throw Error('Endpoint de login inválido.');
+    const endpoint=new URL(metadata[key]);if(endpoint.protocol!=='https:'||endpoint.origin!==url.origin||endpoint.username||endpoint.password||endpoint.hash)throw Error('Endpoint de login inválido.');
   }
   return metadata;
 }
@@ -2549,10 +2550,11 @@ async function ociStartLogin() {
   if(!['https:','http:'].includes(location.protocol)||!window.isSecureContext)throw Error('Abra o Studio por HTTPS ou localhost para entrar.');
   const config=ociSession.config, issuer=config.oidc_issuer, clientId=config.oidc_client_id;
   if(!issuer||!clientId)throw Error('Login corporativo não configurado no servidor.');
-  const metadata=await ociOidcMetadata(issuer), verifier=ociRandom(), state=ociRandom();
+  const discoveryUrl=config.oidc_discovery_url||issuer.replace(/\/$/,'')+'/.well-known/openid-configuration';
+  const metadata=await ociOidcMetadata(issuer,discoveryUrl), verifier=ociRandom(), state=ociRandom();
   const redirect=location.origin+location.pathname,challenge=ociBase64Url(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(verifier))));
   if(generation!==ociSession.generation)throw Error('Conexão encerrada.');
-  sessionStorage.setItem('oci_studio_oauth_pending',JSON.stringify({base:ociSession.base,issuer,clientId,verifier,state,redirect,created:Date.now()}));
+  sessionStorage.setItem('oci_studio_oauth_pending',JSON.stringify({base:ociSession.base,issuer,discoveryUrl,clientId,verifier,state,redirect,created:Date.now()}));
   const url=new URL(metadata.authorization_endpoint);url.search=new URLSearchParams({client_id:clientId,response_type:'code',redirect_uri:redirect,scope:config.oidc_scopes||'openid profile',state,code_challenge:challenge,code_challenge_method:'S256'}).toString();
   location.assign(url.href);
 }
@@ -2566,8 +2568,9 @@ async function ociCompleteLogin() {
   if(query.has('error'))throw Error('Login não concluído.');
   ociSession.base=ociApiBase(pending.base);ociElement('api-url').value=ociSession.base;
   ociSession.config=await ociRequest('/api/config',{publicRequest:true});
-  if(ociSession.config.oidc_issuer!==pending.issuer||ociSession.config.oidc_client_id!==pending.clientId)throw Error('Configuração de login alterada.');
-  const metadata=await ociOidcMetadata(pending.issuer);
+  const discoveryUrl=ociSession.config.oidc_discovery_url||ociSession.config.oidc_issuer.replace(/\/$/,'')+'/.well-known/openid-configuration';
+  if(ociSession.config.oidc_issuer!==pending.issuer||ociSession.config.oidc_client_id!==pending.clientId||discoveryUrl!==pending.discoveryUrl)throw Error('Configuração de login alterada.');
+  const metadata=await ociOidcMetadata(pending.issuer,discoveryUrl);
   const response=await fetch(metadata.token_endpoint,{method:'POST',credentials:'omit',redirect:'error',headers:{'Content-Type':'application/x-www-form-urlencoded'},
     body:new URLSearchParams({grant_type:'authorization_code',client_id:pending.clientId,code:query.get('code'),redirect_uri:pending.redirect,code_verifier:pending.verifier}),signal:AbortSignal.timeout(15000)});
   const tokens=await response.json();if(!response.ok||!tokens.access_token)throw Error('Não foi possível concluir o login.');
