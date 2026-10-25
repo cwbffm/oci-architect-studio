@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7.0.1
+      - name: Verify frontend bundle
+        run: python3 tools/build_frontend.py --check
       - name: Prepare static site
         run: |
           mkdir -p _site

@@ -1,0 +1,13 @@
+{
+  "name": "oci-architect-studio",
+  "private": true,
+  "scripts": {
+    "build": "python3 tools/build_frontend.py",
+    "check:build": "python3 tools/build_frontend.py --check",
+    "test": "node tests/regression.cjs && node tests/oci-cli.cjs && node tests/integration.cjs && node tests/languages.cjs",
+    "test:themes": "node tests/themes.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
