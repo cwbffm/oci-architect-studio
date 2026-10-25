@@ -1,6 +1,6 @@
-# Validação atual — 25/10/2026
+# Validação local
 
-A revisão e os testes da integração HTML + Python estão em [docs/VALIDATION_PYTHON_OCI.md](docs/VALIDATION_PYTHON_OCI.md): 41 testes da API, 17 verificações da nova interface, 24 configurações Terraform e repetição das suítes existentes. Nenhuma infraestrutura OCI foi criada.
+Integração OCI removida. HTML independente, geradores locais e servidor Python padrão preservados. Testes: `python3 -m unittest discover -s tests -p "test_*.py"`; `npm test`.
 
 ## Validação anterior — 24/10/2026
 
