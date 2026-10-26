@@ -74,3 +74,21 @@ A aba **Temas especiais**, dentro de Aparência, reúne Liquid Glass, Glassmorph
 Os estilos aplicam vidro fosco, textura, reflexos, gradientes ou relevo conforme a família. Campos e editores mantêm fundos legíveis; navegadores sem suporte a desfoque usam superfícies sólidas. A preferência de transparência reduzida desativa o desfoque. A seleção acompanha os backups e é restaurada ao reabrir o Studio.
 
 As abas aceitam teclado (setas, Home e End). Navegar entre as abas não aplica outro tema automaticamente. Teste adicional: `node tests/special-themes.cjs`; a suíte completa `npm run test:themes` inclui temas clássicos e especiais.
+
+### Paletas próprias e fidelidade visual
+
+Cada uma das 18 variantes especiais tem uma paleta completa: fundo, menu lateral, painéis, campos, editor, bordas, texto e destaque. As miniaturas mostram o mesmo fundo e tratamento visual do tema aplicado.
+
+- **Liquid Glass:** vidro azul com reflexos de ciano e bordas suaves.
+- **Glassmorphism:** azul-cobalto com transparência e luz azul/violeta.
+- **Frosted Glass:** gelo e azul claro, desfoque forte e formas de paisagem no fundo.
+- **Acrylic:** petróleo e verde suave, com textura discreta.
+- **Mica:** ardósia e azul-aço, opaco e com pouco brilho.
+- **Aurora Glass:** gradientes de teal, azul e violeta.
+- **Holographic Glass:** fundo de tinta escura e bordas ciano, rosa e violeta.
+- **Neumorphism:** cinza uniforme, relevo nas superfícies e controles rebaixados.
+- **Soft UI:** marfim, pêssego, laranja e verde-sálvia, com sombras suaves.
+
+As versões escuras e claras têm combinações próprias. Botões podem usar uma cor viva enquanto links e textos de destaque recebem um tom ajustado para contraste.
+
+O destaque global dos temas clássicos não é herdado pelos especiais. Uma alteração manual é salva apenas na variante especial ativa; **Restaurar padrão** recupera a cor original dessa variante. As preferências clássicas permanecem preservadas. Backups anteriores continuam sendo aceitos; preferências especiais inválidas são rejeitadas antes de alterar o projeto.

@@ -45,4 +45,6 @@ Build, testes de navegador e validação de schema não comprovam permissões IA
 
 ## Temas especiais
 
-A inclusão foi verificada com 18 variantes em nove famílias: 432 combinações de página/largura, 54 verificações de contraste básico, restauração após recarregar e tratamentos visuais distintos. A suíte clássica manteve 14 verificações, 646 combinações de destaque e 912 layouts aprovados. Não houve provisionamento OCI.
+A inclusão foi verificada com 18 variantes em nove famílias: 432 combinações de página/largura, 90 verificações de contraste entre texto, texto secundário, destaques, superfícies e botões, restauração após recarregar e tratamentos visuais distintos. A suíte clássica manteve 14 verificações, 646 combinações de destaque e 912 layouts aprovados. Não houve provisionamento OCI.
+
+A revisão das paletas verifica também: independência do destaque clássico, personalização por variante, backups antigos e inválidos, restauração da cor original, miniaturas e capturas reais de nove estilos. Os temas clássicos continuam com a suíte existente de 38 variantes.
