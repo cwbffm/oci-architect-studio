@@ -26,12 +26,12 @@ fs.mkdirSync(OUT,{recursive:true});
    await p.locator('.theme-card[data-id="'+id+'"]').click();
   }
   const ids=await p.evaluate(()=>themes.filter(t=>t.special).map(t=>t.id));
-  await check('Catalog contains nine special families and eighteen complete distinct palettes',async()=>{
-   assert.equal(ids.length,18);
+  await check('Catalog contains nineteen special families and twenty-eight complete distinct palettes',async()=>{
+   assert.equal(ids.length,28);
    await p.locator('[data-category=special]').click();
-   assert.equal(await p.locator('.theme-family-button').count(),9);
+   assert.equal(await p.locator('.theme-family-button').count(),19);
    const palettes=await p.evaluate(()=>themes.filter(t=>t.special).map(t=>({id:t.id,mode:t.mode,palette:JSON.stringify([t.bg,t.sidebar,t.panel,t.accent,t.tokens.raised,t.tokens.input,t.tokens.text,t.tokens.muted,t.tokens.border])})));
-   assert.equal(new Set(palettes.map(t=>t.palette)).size,18,'Every variant needs a complete palette of its own');
+   assert.equal(new Set(palettes.map(t=>t.palette)).size,28,'Every variant needs a complete palette of its own');
   });
   let code,classicAccent;
   await check('A classic custom accent is preserved while special themes start with their own colors',async()=>{
@@ -52,6 +52,14 @@ fs.mkdirSync(OUT,{recursive:true});
    await choose('soft-ui-light');
    const brand=await p.evaluate(()=>{const css=getComputedStyle(document.documentElement);return {brand:css.getPropertyValue('--special-brand').trim(),accent:css.getPropertyValue('--accent').trim()};});
    assert.notEqual(brand.brand,brand.accent,'Soft UI keeps its warm orange identity separate from the accessible text accent');
+  });
+  await check('Premium single-mode toggle and all special accent backups remain valid',async()=>{
+   await choose('carbon-control-dark');
+   assert.equal(await p.locator('.chatgpt-mode-heading').isVisible(),false);
+   await p.locator('[data-action=next-theme]').first().click();
+   assert.equal(await p.evaluate(()=>s.theme),'carbon-control-dark');
+   const count=await p.evaluate(()=>{const raw=JSON.parse(JSON.stringify(s));raw.specialAccents=Object.fromEntries(themes.filter(t=>t.special).map(t=>[t.id,{preset:'default',custom:''}]));return Object.keys(loadState(raw).specialAccents).length;});
+   assert.equal(count,28);
   });
   const surfaces=new Map();
   await check('All variants retain the architecture, readable colors, selected theme and responsive layout',async()=>{
@@ -80,7 +88,7 @@ fs.mkdirSync(OUT,{recursive:true});
      for(const view of VIEWS){await p.evaluate(v=>showPage(v),view);assert((await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth))<=1,id+'/'+view+'/'+width);layouts++;}
     }
    }
-   assert.equal(new Set([...surfaces.values()]).size,18,'Actual backgrounds and surfaces must differ across all variants');
+   assert.equal(new Set([...surfaces.values()]).size,28,'Actual backgrounds and surfaces must differ across all variants');
   });
   await check('Special custom colors belong only to the selected variant and survive reload and backup',async()=>{
    await choose('glassmorphism-dark');
@@ -143,7 +151,7 @@ fs.mkdirSync(OUT,{recursive:true});
    const q=await browser.newPage({viewport:{width:1800,height:1500}});await q.setContent(board);await q.screenshot({path:path.join(OUT,'special-theme-comparison.png'),fullPage:true});await q.close();
   });
   assert.deepEqual(errors,[]);
-  const report={passed:results.length,tests:results,specialVariants:18,families:9,layouts,contrasts,errors};
+  const report={passed:results.length,tests:results,specialVariants:28,families:19,layouts,contrasts,errors};
   fs.writeFileSync(path.join(OUT,'special-theme-results.json'),JSON.stringify(report,null,2));
   console.log(JSON.stringify(report,null,2));
  }finally{await browser.close();}

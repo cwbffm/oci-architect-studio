@@ -92,3 +92,14 @@ Cada uma das 18 variantes especiais tem uma paleta completa: fundo, menu lateral
 As versões escuras e claras têm combinações próprias. Botões podem usar uma cor viva enquanto links e textos de destaque recebem um tom ajustado para contraste.
 
 O destaque global dos temas clássicos não é herdado pelos especiais. Uma alteração manual é salva apenas na variante especial ativa; **Restaurar padrão** recupera a cor original dessa variante. As preferências clássicas permanecem preservadas. Backups anteriores continuam sendo aceitos; preferências especiais inválidas são rejeitadas antes de alterar o projeto.
+
+## Temas premium com fundos
+
+Dez famílias adicionais na aba de temas especiais: Executive Glass, Obsidian
+Chrome, Titanium Orange, Holographic Intelligence, Crystal Blue, Carbon Control,
+Champagne Glass, Neon Industrial Glass, Satin Metal Commerce e Aurora Prism.
+São adaptações CSS das referências PNG, com paletas e materiais próprios. Os fundos originais de paisagens e materiais são incorporados ao HTML por um atlas WebP.
+O atlas contém apenas imagens decorativas, sem textos ou controles dos mockups.
+Uma camada escura mantém a leitura; a preferência por transparência reduzida desativa as imagens.
+Cada família tem uma versão escura; o botão de alternância mantém essa versão
+quando não existe um par claro. Preferências de destaque são independentes.

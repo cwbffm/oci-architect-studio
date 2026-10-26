@@ -51,3 +51,15 @@ function createSpecialThemes(){
  visual:{backdrop:backdrops[effect][index],glass:opaque?c.panel:rgba(c.panel,alpha),sidebar:opaque?c.sidebar:rgba(c.sidebar,effect==='frosted-glass'?.90:.79),topbar:opaque?c.sidebar:rgba(c.sidebar,.84),edge:rgba(c.border,light?.72:.74),brand:c.brand,glow:rgba(c.brand,light?.18:.24)}};
  }));
 }
+
+/* Local adaptations of the ten supplied image references. */
+function createPremiumThemes(){
+ const rows=[["executive-glass", "Executive Glass", "#101e2b", "#192b3a", "#253b4c", "#b9dfff", "#779ab1", "#d2e1ed", "Vidro azul acinzentado e reflexos de prata.", "glass"], ["obsidian-chrome", "Obsidian Chrome", "#060a11", "#101722", "#1a2534", "#77b5ff", "#677e9b", "#c5d3e5", "Obsidiana, cromo polido e azul elétrico.", "chrome"], ["titanium-orange", "Titanium Orange", "#120e0b", "#211a14", "#30251c", "#ff9a4b", "#967653", "#e3ccb5", "Titânio escuro com iluminação laranja.", "metal"], ["holographic-intelligence", "Holographic Intelligence", "#100d25", "#1b1936", "#29264c", "#c4adff", "#8b83be", "#d9d3f1", "Vidro violeta e reflexos holográficos.", "prism"], ["crystal-blue", "Crystal Blue", "#071c38", "#102d4d", "#1b4263", "#78daff", "#679bbc", "#cee5f6", "Cristal azul, luz fria e profundidade.", "crystal"], ["carbon-control", "Carbon Control", "#0e1213", "#191f20", "#252d2f", "#ffab6b", "#758588", "#d4dfdf", "Carbono fosco e detalhes de cobre.", "carbon"], ["champagne-glass", "Champagne Glass", "#211b15", "#30281f", "#41372b", "#f0d4a1", "#a38f71", "#eadfc9", "Vidro quente, bronze e champanhe.", "glass"], ["neon-industrial-glass", "Neon Industrial Glass", "#080f17", "#111e2a", "#1b2e3b", "#ffac69", "#688b9e", "#cce0e9", "Vidro industrial com luz ciano e âmbar.", "industrial"], ["satin-metal-commerce", "Satin Metal Commerce", "#172029", "#25313d", "#344453", "#badfff", "#8fa6b8", "#e0e9ef", "Metal acetinado e reflexos de aço.", "satin"], ["aurora-prism", "Aurora Prism", "#100c2b", "#1b1740", "#2c2458", "#ccacff", "#9580c1", "#e3d5f8", "Prismas em azul, magenta e violeta.", "prism"]];
+ return rows.map(([id,family,bg,panel,raised,accent,border,muted,desc,material])=>{
+ const secondary=id==='carbon-control'?'#81d5a0':id==='champagne-glass'?'#b6ccb1':material==='prism'?'#69dded':'#78c9e4';
+ const backdrop=material==='carbon'?`repeating-linear-gradient(135deg,#ffffff03 0 1px,transparent 1px 5px),linear-gradient(135deg,${bg},${panel})`:`radial-gradient(ellipse at 12% 0%,${border}66,transparent 44%),radial-gradient(ellipse at 95% 85%,${accent}30,transparent 48%),linear-gradient(135deg,${bg},${panel} 55%,${bg})`;
+ return {id:id+'-dark',name:family,family,familyKey:id,mode:'dark',special:true,premium:true,effect:id,desc,bg,sidebar:bg,panel,accent,
+ tokens:{raised,input:bg,border,text:'#f5f7fb',muted,subtle:muted,mint:secondary,blue:accent,danger:'#ffb4ae',editor:bg},
+ visual:{backdrop,glass:panel+'ed',sidebar:bg+'ed',topbar:panel+'ed',edge:border,brand:accent,glow:accent+'30'}};
+ });
+}
