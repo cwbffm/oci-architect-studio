@@ -1,6 +1,6 @@
 # Temas e aparência
 
-O catálogo atual tem **28 famílias e 56 variantes**: 19 famílias clássicas (38 variantes) e nove especiais (18 variantes). Os 20 temas anteriores foram recuperados como base e suas cores foram revisadas; nove famílias complementares foram adicionadas. São adaptações para o Studio, sem pretensão de reproduzir integralmente um aplicativo externo.
+O catálogo atual tem **20 famílias e 39 variantes**: 19 famílias clássicas (38 variantes) e Titanium Orange como único tema especial escuro.
 
 | Família | Característica | Modos |
 | --- | --- | --- |
@@ -67,50 +67,16 @@ Os ajustes de leitura são independentes do projeto:
 
 A prévia acompanha os ajustes. Restaurar leitura redefine somente as preferências de leitura. As escolhas persistem no navegador e nos backups; backups antigos recebem os padrões dos campos novos e valores fora das opções são normalizados. Valores numéricos não finitos continuam sendo rejeitados pela validação estrutural existente.
 
-## Temas especiais
+## Tema especial atual
 
-A aba **Temas especiais**, dentro de Aparência, reúne Liquid Glass, Glassmorphism, Frosted Glass, Acrylic, Mica, Aurora Glass, Holographic Glass, Neumorphism e Soft UI. Cada estilo possui versões clara e escura: 18 novas variantes, além das 38 clássicas.
+Titanium Orange é o único tema especial. Mantém o construtor, a navegação e os
+painéis do Studio, com superfícies pretas, detalhes laranja e um fundo original
+de montanhas e globo iluminado. O WebP é incorporado ao HTML e funciona offline.
+A preferência de transparência reduzida desativa as imagens decorativas.
 
-Os estilos aplicam vidro fosco, textura, reflexos, gradientes ou relevo conforme a família. Campos e editores mantêm fundos legíveis; navegadores sem suporte a desfoque usam superfícies sólidas. A preferência de transparência reduzida desativa o desfoque. A seleção acompanha os backups e é restaurada ao reabrir o Studio.
+Os 38 temas clássicos continuam disponíveis. Preferências dos 27 temas especiais
+removidos migram para Titanium Orange; cores desses temas são descartadas sem
+alterar os recursos do projeto ou os geradores Terraform e OCI CLI.
 
-As abas aceitam teclado (setas, Home e End). Navegar entre as abas não aplica outro tema automaticamente. Teste adicional: `node tests/special-themes.cjs`; a suíte completa `npm run test:themes` inclui temas clássicos e especiais.
-
-### Paletas próprias e fidelidade visual
-
-Cada uma das 18 variantes especiais tem uma paleta completa: fundo, menu lateral, painéis, campos, editor, bordas, texto e destaque. As miniaturas mostram o mesmo fundo e tratamento visual do tema aplicado.
-
-- **Liquid Glass:** vidro azul com reflexos de ciano e bordas suaves.
-- **Glassmorphism:** azul-cobalto com transparência e luz azul/violeta.
-- **Frosted Glass:** gelo e azul claro, desfoque forte e formas de paisagem no fundo.
-- **Acrylic:** petróleo e verde suave, com textura discreta.
-- **Mica:** ardósia e azul-aço, opaco e com pouco brilho.
-- **Aurora Glass:** gradientes de teal, azul e violeta.
-- **Holographic Glass:** fundo de tinta escura e bordas ciano, rosa e violeta.
-- **Neumorphism:** cinza uniforme, relevo nas superfícies e controles rebaixados.
-- **Soft UI:** marfim, pêssego, laranja e verde-sálvia, com sombras suaves.
-
-As versões escuras e claras têm combinações próprias. Botões podem usar uma cor viva enquanto links e textos de destaque recebem um tom ajustado para contraste.
-
-O destaque global dos temas clássicos não é herdado pelos especiais. Uma alteração manual é salva apenas na variante especial ativa; **Restaurar padrão** recupera a cor original dessa variante. As preferências clássicas permanecem preservadas. Backups anteriores continuam sendo aceitos; preferências especiais inválidas são rejeitadas antes de alterar o projeto.
-
-## Temas premium com fundos
-
-Dez famílias adicionais na aba de temas especiais: Executive Glass, Obsidian
-Chrome, Titanium Orange, Holographic Intelligence, Crystal Blue, Carbon Control,
-Champagne Glass, Neon Industrial Glass, Satin Metal Commerce e Aurora Prism.
-São adaptações CSS das referências PNG, com paletas e materiais próprios. Os fundos originais de paisagens e materiais são incorporados ao HTML por um atlas WebP.
-O atlas contém apenas imagens decorativas, sem textos ou controles dos mockups.
-Uma camada escura mantém a leitura; a preferência por transparência reduzida desativa as imagens.
-Cada família tem uma versão escura; o botão de alternância mantém essa versão
-quando não existe um par claro. Preferências de destaque são independentes.
-
-
-## Fundos em todas as variantes especiais
-
-As nove famílias originais também têm fundos decorativos incorporados em WebP:
-água e vidro (Liquid Glass), esferas (Glassmorphism), neve (Frosted Glass),
-floresta (Acrylic), mineral fosco (Mica), aurora (Aurora Glass), prismas
-(Holographic Glass), relevo cinza (Neumorphism) e dunas (Soft UI).
-As 18 variantes usam camadas claras ou escuras para preservar a leitura.
-Galeria e miniaturas usam o mesmo fundo do tema. A preferência de transparência
-reduzida desativa as imagens; os temas clássicos continuam sem esses fundos.
+O destaque especial é salvo separadamente do destaque clássico. Restaurar padrão
+recupera a cor laranja original. A suíte `npm run test:themes` cobre ambos os catálogos.

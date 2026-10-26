@@ -8,11 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build():
     source = ROOT / "frontend"
-    styles = "\n".join((source / "styles" / name).read_text(encoding='utf-8') for name in ("studio.css", "special-previews.css", "premium-backgrounds.css", "special-backgrounds.css"))
-    wallpaper = base64.b64encode((source / "assets" / "premium-backgrounds.webp").read_bytes()).decode('ascii')
-    styles = styles.replace("{{PREMIUM_WALLPAPERS}}", "data:image/webp;base64," + wallpaper)
-    special_wallpaper = base64.b64encode((source / "assets" / "special-backgrounds.webp").read_bytes()).decode('ascii')
-    styles = styles.replace("{{SPECIAL_WALLPAPERS}}", "data:image/webp;base64," + special_wallpaper)
+    styles = "\n".join((source / "styles" / name).read_text(encoding='utf-8') for name in ("studio.css", "special-previews.css", "titanium-orange.css"))
+    wallpaper = base64.b64encode((source / "assets" / "titanium-orange.webp").read_bytes()).decode('ascii')
+    styles = styles.replace("{{TITANIUM_WALLPAPER}}", "data:image/webp;base64," + wallpaper)
     scripts = "\n".join((source / "js" / name).read_text(encoding='utf-8') for name in ("special-themes.js", "studio.js"))
     template = (source / "index.template.html").read_text(encoding='utf-8')
     return template.replace("{{STUDIO_STYLES}}", "<style>" + styles + "</style>").replace("{{STUDIO_SCRIPTS}}", "<script>" + scripts + "</script>")

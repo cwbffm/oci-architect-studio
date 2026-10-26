@@ -1,0 +1,9 @@
+:root{--titanium-wallpaper:url("{{TITANIUM_WALLPAPER}}")}
+html:root[data-theme-effect=titanium-orange] body{background-image:linear-gradient(#070b1066,#070b1099),var(--titanium-wallpaper);background-size:cover;background-position:center top;background-repeat:no-repeat;background-attachment:fixed}
+html[data-theme-effect=titanium-orange]{--shell-radius:12px;--shell-texture:linear-gradient(125deg,#ffffff08,transparent 45%,#ff8b3205);--shell-shadow:inset 0 1px #ffc18a18,0 12px 28px #0006;--shell-filter:blur(16px) saturate(110%)}
+html:root[data-theme-effect=titanium-orange] .sidebar{background-image:linear-gradient(#080b0ffa 50%,#080b0fa6 80%,#080b0ff5),var(--titanium-wallpaper);background-size:cover;background-position:left bottom;border-radius:0 18px 18px 0}
+html:root[data-theme-effect=titanium-orange] #sidebar nav a.active{color:var(--accent);background:linear-gradient(110deg,color-mix(in srgb,var(--special-brand) 24%,#101214),#101214);border-color:var(--special-edge);box-shadow:inset 3px 0 var(--special-brand),0 0 14px var(--special-glow)}
+html[data-theme-effect=titanium-orange] .page-heading{border-bottom:1px solid var(--special-edge);padding-bottom:24px}
+#view-themes .special-theme-preview[data-preview-effect=titanium-orange],.theme-family-button[data-family=titanium-orange] .family-colors i{background-image:linear-gradient(#070b1044,#070b1088),var(--titanium-wallpaper)!important;background-size:cover!important;background-position:right top!important}
+@media(prefers-reduced-transparency:reduce){html:root[data-theme-effect=titanium-orange] body,html:root[data-theme-effect=titanium-orange] .sidebar{background-image:none!important;background-color:var(--bg)}}
+@media(forced-colors:active){html:root[data-theme-effect=titanium-orange] body,html:root[data-theme-effect=titanium-orange] .sidebar{background-image:none!important}}
