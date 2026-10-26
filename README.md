@@ -51,6 +51,24 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 
 O projeto fica no armazenamento local do navegador. Exporte o backup para preservá-lo ao trocar de navegador, computador ou limpar os dados do site.
 
+### Executar localmente com Python
+
+Sem dependências externas:
+
+```bash
+python3 server.py
+```
+
+Abra http://127.0.0.1:8000. O servidor publica apenas o HTML e os assets. Não conecta à OCI. A interface mantém CSS e JavaScript para seus recursos interativos.
+
+Os fontes ficam em `frontend/`; `index.html` é o arquivo gerado para abrir e publicar o Studio. Após editar os fontes:
+
+```bash
+python3 tools/build_frontend.py
+```
+
+As instruções de testes estão em [VALIDATION.md](VALIDATION.md).
+
 ### Conferir o Terraform exportado
 
 Na pasta em que você salvou o código gerado, com Terraform e as dependências necessárias disponíveis:
@@ -83,14 +101,13 @@ Veja [OCI_CLI.md](OCI_CLI.md) para cobertura, execução, região de origem IAM 
 
 ## Validação e limites
 
-A revisão atual registra a correção das prévias de destaque e a verificação de 32 configurações com `terraform validate`. Consulte [VALIDATION.md](VALIDATION.md) para os resultados, a reprodução das verificações e seus limites.
+Consulte [VALIDATION.md](VALIDATION.md) para os comandos atuais de verificação, os resultados históricos e os limites dos testes.
 
 - A aplicação planeja e gera código; ela não executa Terraform ou OCI CLI nem implanta recursos na sua tenancy.
 - O catálogo de referência não garante disponibilidade regional ou capacidade. Importe dados da sua região quando necessário.
 - As policies geradas exigem revisão de identidade, escopo e permissões efetivas.
 - O laboratório de redes é uma simulação lógica; não envia pacotes nem comprova conectividade real na OCI.
 - O HCL manual do recurso Universal exige revisão.
-- Confira os testes registrados e seus limites em [VALIDATION.md](VALIDATION.md).
 
 ## Documentação do projeto
 
@@ -103,7 +120,7 @@ A revisão atual registra a correção das prévias de destaque e a verificaçã
 
 ## Publicação
 
-O workflow [Publish GitHub Pages](.github/workflows/pages.yml) publica `index.html` a cada push na branch `docker-compose`.
+O workflow [Publish GitHub Pages](.github/workflows/pages.yml) verifica o build e publica `index.html` a cada push na branch `docker-compose`.
 
 A publicação utiliza Ubuntu 24.04 e ações compatíveis com Node.js 24.
 
@@ -112,15 +129,3 @@ Para configurar uma publicação própria, selecione **Settings → Pages → Bu
 ## Mais projetos
 
 [Perfil de Fabio Ferreira](https://github.com/cwbffm) · [Laboratório Terraform OCI](https://github.com/cwbffm/oci-terraform-network) · [Scripts e automações](https://github.com/cwbffm/scriptz)
-
-## Executar com Python
-
-Sem dependências externas:
-
-```bash
-python3 server.py
-```
-
-Abra http://127.0.0.1:8000. O servidor publica apenas o HTML e os assets. Não conecta à OCI. A interface mantém CSS e JavaScript para seus recursos interativos.
-
-Os fontes ficam em `frontend/`. Após editar, execute `python3 tools/build_frontend.py` para atualizar o HTML independente.

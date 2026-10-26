@@ -44,7 +44,7 @@ A interface mantém seus oito idiomas. O gerador Terraform não foi alterado nes
 
 ## Testes
 
-`tests/themes.cjs` verifica os 38 temas, persistência, backups, migração, 17 destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Também cobre a busca, a seleção por amostras, o foco das amostras e mudanças sucessivas de cor personalizada. Execute com Playwright e Chromium instalados:
+`tests/themes.cjs` verifica os 38 temas, persistência, backups, migração, 17 destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Também cobre a busca, a seleção por amostras, o foco das amostras e mudanças sucessivas de cor personalizada. A instalação com `npm ci` e a configuração do Chromium estão em [VALIDATION.md](VALIDATION.md). Para executar somente temas:
 
 ```sh
 node tests/themes.cjs
