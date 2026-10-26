@@ -103,3 +103,14 @@ O atlas contém apenas imagens decorativas, sem textos ou controles dos mockups.
 Uma camada escura mantém a leitura; a preferência por transparência reduzida desativa as imagens.
 Cada família tem uma versão escura; o botão de alternância mantém essa versão
 quando não existe um par claro. Preferências de destaque são independentes.
+
+
+## Fundos em todas as variantes especiais
+
+As nove famílias originais também têm fundos decorativos incorporados em WebP:
+água e vidro (Liquid Glass), esferas (Glassmorphism), neve (Frosted Glass),
+floresta (Acrylic), mineral fosco (Mica), aurora (Aurora Glass), prismas
+(Holographic Glass), relevo cinza (Neumorphism) e dunas (Soft UI).
+As 18 variantes usam camadas claras ou escuras para preservar a leitura.
+Galeria e miniaturas usam o mesmo fundo do tema. A preferência de transparência
+reduzida desativa as imagens; os temas clássicos continuam sem esses fundos.
