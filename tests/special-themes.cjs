@@ -4,6 +4,7 @@ const {chromium}=require('playwright'),fs=require('fs'),assert=require('assert/s
  await p.route('https://studio.test/**',r=>r.fulfill({contentType:'text/html',body:fs.readFileSync('index.html','utf8')}));await p.goto('https://studio.test/#themes');
  assert.deepEqual(await p.evaluate(()=>themes.filter(t=>t.special).map(t=>t.id)),['titanium-orange-dark','nexus-command-dark']);assert.equal(await p.evaluate(()=>themes.filter(t=>!t.special).length),38);
  await p.locator('[data-category=special]').click();assert.equal(await p.locator('.theme-family-button').count(),2);await p.locator('[data-family=titanium-orange]').click();assert.equal(await p.locator('.theme-card').count(),1);assert.equal(await p.locator('.chatgpt-mode-heading').isVisible(),false);
+ assert(await p.evaluate(()=>{const frame=getComputedStyle(document.querySelector('.stat'),'::after');return frame.pointerEvents==='none'&&frame.borderImageSource.includes('data:image/svg+xml')}),'Titanium decorative frame is embedded and does not intercept clicks');
  const readable=await p.evaluate(()=>{const t=themes.find(t=>t.special);return ['text','muted'].every(k=>[t.bg,t.sidebar,t.panel,t.tokens.raised].every(bg=>colorContrast(t.tokens[k],bg)>=4.5))});assert(readable,'Theme text contrast');
  const code=await p.evaluate(()=>generateTerraform(s).code);await p.reload();assert.equal(await p.evaluate(()=>s.theme),'titanium-orange-dark');
  await p.evaluate(()=>showPage('themes'));await p.locator('[data-action=next-theme]').first().click();assert.equal(await p.evaluate(()=>s.theme),'titanium-orange-dark');

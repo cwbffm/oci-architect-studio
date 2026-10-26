@@ -93,3 +93,7 @@ são salvas independentemente de Titanium Orange e dos temas clássicos.
 O acabamento Nexus usa molduras SVG incorporadas com cantos chanfrados, trilhos
 metálicos e luzes ciano, sem bloquear os controles. Menu, abas e etapas ativas
 usam laranja; os painéis mantêm o construtor e a navegação existentes.
+
+Titanium Orange também usa molduras chanfradas e relevos metálicos, com trilhos
+e pontos de fixação em cobre/âmbar, controles ativos laranja e identificação
+TITANIUM ORANGE na lateral. O fundo de montanhas e globo é preservado.
