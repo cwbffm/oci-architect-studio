@@ -1,6 +1,6 @@
 # Temas e aparência
 
-O catálogo atual tem **20 famílias e 39 variantes**: 19 famílias clássicas (38 variantes) e Titanium Orange como único tema especial escuro.
+O catálogo atual tem **21 famílias e 40 variantes**: 19 famílias clássicas (38 variantes) e Titanium Orange e Nexus Command como temas especiais escuros.
 
 | Família | Característica | Modos |
 | --- | --- | --- |
@@ -69,7 +69,7 @@ A prévia acompanha os ajustes. Restaurar leitura redefine somente as preferênc
 
 ## Tema especial atual
 
-Titanium Orange é o único tema especial. Mantém o construtor, a navegação e os
+Titanium Orange é um dos dois temas especiais. Mantém o construtor, a navegação e os
 painéis do Studio, com superfícies pretas, detalhes laranja e um fundo original
 de montanhas e globo iluminado. O WebP é incorporado ao HTML e funciona offline.
 A preferência de transparência reduzida desativa as imagens decorativas.
@@ -80,3 +80,12 @@ alterar os recursos do projeto ou os geradores Terraform e OCI CLI.
 
 O destaque especial é salvo separadamente do destaque clássico. Restaurar padrão
 recupera a cor laranja original. A suíte `npm run test:themes` cobre ambos os catálogos.
+
+## Nexus Command
+
+Tema escuro adicional com mapa de conexões globais, instalação industrial,
+superfícies de aço azul escuro e molduras técnicas. Ciano destaca controles e
+laranja identifica ações principais. Preserva o menu, o construtor e os painéis
+do projeto; a imagem decorativa não representa dados operacionais.
+Seu fundo WebP está incorporado ao HTML para uso offline. As cores personalizadas
+são salvas independentemente de Titanium Orange e dos temas clássicos.
