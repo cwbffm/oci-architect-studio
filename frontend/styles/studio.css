@@ -520,3 +520,18 @@ html[data-theme-effect=holographic-glass][data-special-accent=own] .button.prima
 @media(prefers-reduced-transparency:reduce){html[data-theme-effect]:not([data-theme-effect=""]) :is(.panel,.stat,.sidebar,.topbar){background:var(--panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 @media(prefers-reduced-motion:reduce){html[data-theme-effect]:not([data-theme-effect=""]) *{transition:none!important}}
 @media(forced-colors:active){html[data-theme-effect]:not([data-theme-effect=""]) :is(.panel,.stat,.sidebar,.topbar){background:Canvas;box-shadow:none;backdrop-filter:none;border-color:CanvasText}}
+
+/* Theme catalog: larger visual samples and readable family descriptions. */
+.theme-family-button .family-copy{display:flex;flex-direction:column;gap:6px;min-width:0}
+.theme-family-button .family-copy strong{font-weight:600;font-size:12px;line-height:1.5}
+.theme-family-button .family-copy small{color:var(--muted);font-size:11px;line-height:1.6;font-weight:400}
+#view-themes .special-family-button{flex-direction:column;align-items:stretch;padding:12px;gap:12px;border-radius:14px}
+.special-family-button .family-colors{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:5px}
+.special-family-button .family-colors i{display:block;position:relative;width:100%;height:56px;border-radius:8px;border:1px solid var(--border);overflow:hidden}
+.special-family-button .family-colors i::after{content:"";position:absolute;inset:14px 9px;border:1px solid color-mix(in srgb,var(--family-brand) 65%,transparent);border-radius:5px;background:color-mix(in srgb,var(--family-brand) 18%,transparent);box-shadow:0 4px 12px #0002}
+.theme-category-tabs button:focus-visible,.chatgpt-theme-card:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+#view-themes .chatgpt-theme-card p{font-size:12px;line-height:1.7}
+#view-themes .theme-grid{margin-bottom:18px}
+#theme-palette-note{line-height:1.7;margin:12px 0}
+.current-theme-swatch{overflow:hidden}
+@media(max-width:600px){#view-themes .special-family-button{padding:10px}.special-family-button .family-colors i{height:44px}}
