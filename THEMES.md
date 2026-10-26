@@ -1,6 +1,6 @@
 # Temas e aparência
 
-O catálogo atual tem **19 famílias e 38 variantes**. Os 20 temas anteriores foram recuperados como base e suas cores foram revisadas; nove famílias complementares foram adicionadas. São adaptações para o Studio, sem pretensão de reproduzir integralmente um aplicativo externo.
+O catálogo atual tem **28 famílias e 56 variantes**: 19 famílias clássicas (38 variantes) e nove especiais (18 variantes). Os 20 temas anteriores foram recuperados como base e suas cores foram revisadas; nove famílias complementares foram adicionadas. São adaptações para o Studio, sem pretensão de reproduzir integralmente um aplicativo externo.
 
 | Família | Característica | Modos |
 | --- | --- | --- |
@@ -66,3 +66,11 @@ Os ajustes de leitura são independentes do projeto:
 - Código: 12, 14, 16 ou 18 px.
 
 A prévia acompanha os ajustes. Restaurar leitura redefine somente as preferências de leitura. As escolhas persistem no navegador e nos backups; backups antigos recebem os padrões dos campos novos e valores fora das opções são normalizados. Valores numéricos não finitos continuam sendo rejeitados pela validação estrutural existente.
+
+## Temas especiais
+
+A aba **Temas especiais**, dentro de Aparência, reúne Liquid Glass, Glassmorphism, Frosted Glass, Acrylic, Mica, Aurora Glass, Holographic Glass, Neumorphism e Soft UI. Cada estilo possui versões clara e escura: 18 novas variantes, além das 38 clássicas.
+
+Os estilos aplicam vidro fosco, textura, reflexos, gradientes ou relevo conforme a família. Campos e editores mantêm fundos legíveis; navegadores sem suporte a desfoque usam superfícies sólidas. A preferência de transparência reduzida desativa o desfoque. A seleção acompanha os backups e é restaurada ao reabrir o Studio.
+
+As abas aceitam teclado (setas, Home e End). Navegar entre as abas não aplica outro tema automaticamente. Teste adicional: `node tests/special-themes.cjs`; a suíte completa `npm run test:themes` inclui temas clássicos e especiais.

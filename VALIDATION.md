@@ -30,7 +30,7 @@ npm test
 npm run test:themes
 ```
 
-`npm test` executa regressão, exportação OCI CLI e idiomas. O comando de temas verifica aparência, contraste, persistência e layout. Para executar uma suíte isolada, use `node tests/regression.cjs`, `node tests/oci-cli.cjs`, `node tests/languages.cjs` ou `node tests/themes.cjs`.
+`npm test` executa regressão, exportação OCI CLI e idiomas. O comando de temas verifica aparência, contraste, persistência e layout dos temas clássicos e especiais. Para executar uma suíte isolada, use `node tests/regression.cjs`, `node tests/oci-cli.cjs`, `node tests/languages.cjs` ou `node tests/themes.cjs`.
 
 Artefatos são gravados em `work/`, ignorado pelo Git. O workflow [Validate Studio](.github/workflows/validate.yml) usa esses testes no GitHub Actions.
 
@@ -42,3 +42,7 @@ Artefatos são gravados em `work/`, ignorado pelo Git. O workflow [Validate Stud
 ## Limites
 
 Build, testes de navegador e validação de schema não comprovam permissões IAM, disponibilidade regional, custos ou conectividade real. Antes de aplicar o Terraform exportado, revise a configuração e execute `terraform fmt`, `terraform init`, `terraform validate` e `terraform plan` no seu ambiente. O HCL manual Universal exige revisão própria.
+
+## Temas especiais
+
+A inclusão foi verificada com 18 variantes em nove famílias: 432 combinações de página/largura, 54 verificações de contraste básico, restauração após recarregar e tratamentos visuais distintos. A suíte clássica manteve 14 verificações, 646 combinações de destaque e 912 layouts aprovados. Não houve provisionamento OCI.

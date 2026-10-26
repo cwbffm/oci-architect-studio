@@ -469,3 +469,32 @@ html[data-density=relaxed] .sidebar nav a{padding-top:14px;padding-bottom:14px}
 
 .export-format-control{display:flex;gap:22px;align-items:center;margin-bottom:16px}.export-format-control label{min-width:180px;max-width:100%}.export-format-control p{margin:0;flex:1}#view-export .code-top{flex-wrap:wrap}
 @media(max-width:600px){.export-format-control{display:block}.export-format-control label{display:block}.export-format-control p{margin-top:12px}}
+
+/* Optional special themes. Solid token colors remain the no-filter fallback. */
+.theme-category-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.theme-category-tabs button{padding:11px 16px;border:1px solid var(--border);border-radius:12px;background:var(--panel);color:var(--text);font:inherit;cursor:pointer}
+.theme-category-tabs [aria-selected=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+:where(html[data-theme-effect]:not([data-theme-effect=""])){--special-shadow:0 14px 36px #00000030;--special-light:#ffffff20;--special-dark:#00000035}
+:where(html[data-theme-effect]:not([data-theme-effect=""])) body{background:radial-gradient(ellipse at 15% 10%,#407aa525,transparent 48%),radial-gradient(ellipse at 85% 60%,#7865a521,transparent 55%),var(--bg);background-attachment:fixed}
+:where(html[data-theme-effect]:not([data-theme-effect=""])) :is(.panel,.stat,.sidebar,.topbar){border-radius:18px;box-shadow:var(--special-shadow);background:var(--panel)}
+:where(html[data-theme-effect]:not([data-theme-effect=""])) .sidebar{background:var(--sidebar);border-radius:0 20px 20px 0}
+:where(html[data-theme-effect]:not([data-theme-effect=""])) .topbar{border-radius:0 0 18px 18px}
+@supports (backdrop-filter:blur(16px)){
+:where(html[data-theme-effect]:not([data-theme-effect=""]):not([data-theme-effect=mica]):not([data-theme-effect=neumorphism]):not([data-theme-effect=soft-ui])) :is(.panel,.stat,.sidebar,.topbar){background:color-mix(in srgb,var(--panel) 86%,transparent);backdrop-filter:blur(20px) saturate(115%);-webkit-backdrop-filter:blur(20px) saturate(115%);border-color:color-mix(in srgb,var(--border) 82%,transparent)}
+}
+html[data-theme-effect=liquid-glass] :is(.panel,.stat){box-shadow:inset 0 1px 1px #ffffff45,inset 0 -1px 2px #6dbddd35,0 12px 30px #00000025;border-radius:22px}
+html[data-theme-effect=glassmorphism] :is(.panel,.stat){box-shadow:inset 0 1px #ffffff25,0 16px 38px #00000025}
+html[data-theme-effect=frosted-glass] :is(.panel,.stat){background:color-mix(in srgb,var(--panel) 96%,transparent);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);box-shadow:inset 0 1px #ffffff40,0 8px 24px #52718c20}
+html[data-theme-effect=acrylic] :is(.panel,.stat){background-image:repeating-linear-gradient(115deg,#ffffff03 0 1px,transparent 1px 4px);box-shadow:inset 0 1px #ffffff20,0 8px 28px #00000025}
+html[data-theme-effect=mica] :is(.panel,.stat){box-shadow:0 3px 10px #00000012;border-radius:12px}
+html[data-theme-effect=aurora-glass] body{background:radial-gradient(ellipse at 10% 25%,#008e9a38,transparent 60%),radial-gradient(ellipse at 85% 70%,#7650c53b,transparent 60%),var(--bg)}
+html[data-theme-effect=holographic-glass] :is(.panel,.stat){border-top-color:#7bb4c6;border-right-color:#a390bb;border-bottom-color:#bc91b1;box-shadow:inset 0 1px #ffffff25,0 8px 26px #29205622}
+html[data-theme-effect=neumorphism] :is(.panel,.stat){border:1px solid var(--border);box-shadow:8px 8px 18px var(--special-dark),-7px -7px 18px var(--special-light);border-radius:20px}
+html[data-theme-effect=neumorphism] input{box-shadow:inset 2px 2px 5px #00000018,inset -2px -2px 5px #ffffff15}
+html[data-theme-mode=light][data-theme-effect=neumorphism]{--special-dark:#899db338;--special-light:#ffffff}
+html[data-theme-effect=soft-ui] body{background:var(--bg)}
+html[data-theme-effect=soft-ui] :is(.panel,.stat){border-radius:24px;box-shadow:0 7px 22px #76563c12}
+@media(prefers-reduced-transparency:reduce){:where(html[data-theme-effect]:not([data-theme-effect=""])) :is(.panel,.stat,.sidebar,.topbar){background:var(--panel)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+@media(prefers-reduced-motion:reduce){:where(html[data-theme-effect]:not([data-theme-effect=""])) *{transition:none!important}}
+
+html[data-theme-effect=liquid-glass] body{background:radial-gradient(ellipse at 10% 5%,#358ba54a,transparent 55%),radial-gradient(ellipse at 90% 55%,#6066ae40,transparent 60%),var(--bg)}
