@@ -18,6 +18,7 @@ const {chromium}=require('playwright'),fs=require('fs'),assert=require('assert/s
  await p.evaluate(()=>{s.theme='nexus-command-dark';applyTheme();save();showPage('themes')});await p.reload();assert.equal(await p.evaluate(()=>s.theme),'nexus-command-dark');
  assert(await p.evaluate(()=>{const t=themes.find(t=>t.id===s.theme);return ['text','muted'].every(k=>[t.bg,t.sidebar,t.panel,t.tokens.raised].every(bg=>colorContrast(t.tokens[k],bg)>=4.5))}),'Nexus contrast');
  assert(await p.evaluate(()=>getComputedStyle(document.body).backgroundImage.includes('data:image/webp;base64,')));
+ assert(await p.evaluate(()=>{const frame=getComputedStyle(document.querySelector('.stat'),'::after');return frame.pointerEvents==='none'&&frame.borderImageSource.includes('data:image/svg+xml')}),'Decorative chamfer frame is embedded and does not intercept clicks');
  const atlas=await p.evaluate(()=>getComputedStyle(document.body).backgroundImage);
  await p.evaluate(()=>{writeThemeAccent('custom','#d5b6ff');applyTheme();save()});await p.reload();assert.equal(await p.evaluate(()=>currentChatgptAccent()),'#d5b6ff');
  assert.equal(await p.evaluate(()=>loadState(JSON.parse(JSON.stringify(s))).specialAccents['nexus-command-dark'].custom),'#d5b6ff');

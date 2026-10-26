@@ -89,3 +89,7 @@ laranja identifica ações principais. Preserva o menu, o construtor e os painé
 do projeto; a imagem decorativa não representa dados operacionais.
 Seu fundo WebP está incorporado ao HTML para uso offline. As cores personalizadas
 são salvas independentemente de Titanium Orange e dos temas clássicos.
+
+O acabamento Nexus usa molduras SVG incorporadas com cantos chanfrados, trilhos
+metálicos e luzes ciano, sem bloquear os controles. Menu, abas e etapas ativas
+usam laranja; os painéis mantêm o construtor e a navegação existentes.
