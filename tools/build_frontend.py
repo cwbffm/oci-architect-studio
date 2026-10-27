@@ -8,12 +8,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build():
     source = ROOT / "frontend"
-    styles = "\n".join((source / "styles" / name).read_text(encoding='utf-8') for name in ("studio.css", "special-previews.css", "titanium-orange.css", "nexus-command.css", "atmosphere.css", "workspace.css"))
+    styles = "\n".join((source / "styles" / name).read_text(encoding='utf-8') for name in ("studio.css", "special-previews.css", "titanium-orange.css", "nexus-command.css"))
     wallpaper = base64.b64encode((source / "assets" / "titanium-orange.webp").read_bytes()).decode('ascii')
     styles = styles.replace("{{TITANIUM_WALLPAPER}}", "data:image/webp;base64," + wallpaper)
     nexus_wallpaper = base64.b64encode((source / "assets" / "nexus-command.webp").read_bytes()).decode('ascii')
     styles = styles.replace("{{NEXUS_WALLPAPER}}", "data:image/webp;base64," + nexus_wallpaper)
-    scripts = "\n".join((source / "js" / name).read_text(encoding='utf-8') for name in ("special-themes.js", "atmosphere.js", "studio.js", "atmosphere-i18n.js"))
+    scripts = "\n".join((source / "js" / name).read_text(encoding='utf-8') for name in ("special-themes.js", "studio.js"))
     template = (source / "index.template.html").read_text(encoding='utf-8')
     return template.replace("{{STUDIO_STYLES}}", "<style>" + styles + "</style>").replace("{{STUDIO_SCRIPTS}}", "<script>" + scripts + "</script>")
 

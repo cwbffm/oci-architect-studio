@@ -3,8 +3,8 @@ const {chromium}=require('playwright'),fs=require('fs'),assert=require('assert/s
  const p=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
  await p.route('https://studio.test/**',r=>r.fulfill({contentType:'text/html',body:fs.readFileSync('index.html','utf8')}));await p.goto('https://studio.test/#themes');
  assert.deepEqual(await p.evaluate(()=>themes.filter(t=>t.special).map(t=>t.id)),['titanium-orange-dark','nexus-command-dark']);assert.equal(await p.evaluate(()=>themes.filter(t=>!t.special).length),38);
- await p.locator('#atmosphere-category').selectOption('special');assert.equal(await p.locator('.theme-family-button').count(),2);await p.locator('[data-family=titanium-orange]').click();await p.locator('#atmosphere-apply').click();assert.equal(await p.locator('.theme-card').count(),1);assert.equal(await p.locator('.chatgpt-mode-heading').isVisible(),false);
- assert(await p.evaluate(()=>{return getComputedStyle(document.querySelector('.stat')).borderRadius==='14px'&&getComputedStyle(document.querySelector('.stat'),'::after').content==='none'}),'Titanium uses the shared unobstructed panel style');
+ await p.locator('[data-category=special]').click();assert.equal(await p.locator('.theme-family-button').count(),2);await p.locator('[data-family=titanium-orange]').click();assert.equal(await p.locator('.theme-card').count(),1);assert.equal(await p.locator('.chatgpt-mode-heading').isVisible(),false);
+ assert(await p.evaluate(()=>{const frame=getComputedStyle(document.querySelector('.stat'),'::after');return frame.pointerEvents==='none'&&frame.borderImageSource.includes('data:image/svg+xml')}),'Titanium decorative frame is embedded and does not intercept clicks');
  const readable=await p.evaluate(()=>{const t=themes.find(t=>t.special);return ['text','muted'].every(k=>[t.bg,t.sidebar,t.panel,t.tokens.raised].every(bg=>colorContrast(t.tokens[k],bg)>=4.5))});assert(readable,'Theme text contrast');
  const code=await p.evaluate(()=>generateTerraform(s).code);await p.reload();assert.equal(await p.evaluate(()=>s.theme),'titanium-orange-dark');
  await p.evaluate(()=>showPage('themes'));await p.locator('[data-action=next-theme]').first().click();assert.equal(await p.evaluate(()=>s.theme),'titanium-orange-dark');
@@ -19,7 +19,7 @@ const {chromium}=require('playwright'),fs=require('fs'),assert=require('assert/s
  await p.evaluate(()=>{s.theme='nexus-command-dark';applyTheme();save();showPage('themes')});await p.reload();assert.equal(await p.evaluate(()=>s.theme),'nexus-command-dark');
  assert(await p.evaluate(()=>{const t=themes.find(t=>t.id===s.theme);return ['text','muted'].every(k=>[t.bg,t.sidebar,t.panel,t.tokens.raised].every(bg=>colorContrast(t.tokens[k],bg)>=4.5))}),'Nexus contrast');
  assert(await p.evaluate(()=>getComputedStyle(document.body).backgroundImage.includes('data:image/webp;base64,')));
- assert(await p.evaluate(()=>{return getComputedStyle(document.querySelector('.stat')).borderRadius==='14px'&&getComputedStyle(document.querySelector('.stat'),'::after').content==='none'}),'Nexus uses the shared unobstructed panel style');
+ assert(await p.evaluate(()=>{const frame=getComputedStyle(document.querySelector('.stat'),'::after');return frame.pointerEvents==='none'&&frame.borderImageSource.includes('data:image/svg+xml')}),'Decorative chamfer frame is embedded and does not intercept clicks');
  const atlas=await p.evaluate(()=>getComputedStyle(document.body).backgroundImage);
  await p.evaluate(()=>{writeThemeAccent('custom','#d5b6ff');applyTheme();save()});await p.reload();assert.equal(await p.evaluate(()=>currentChatgptAccent()),'#d5b6ff');
  assert.equal(await p.evaluate(()=>loadState(JSON.parse(JSON.stringify(s))).specialAccents['nexus-command-dark'].custom),'#d5b6ff');

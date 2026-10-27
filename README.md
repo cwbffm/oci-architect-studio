@@ -38,7 +38,7 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 | **Tags** | Organizar tags freeform e defined tags e revisar o padrão aplicado ao projeto. |
 | **Rede e roteamento** | Explorar uma topologia hub-and-spoke e acompanhar decisões de ida e retorno no laboratório lógico. |
 | **Terraform e OCI CLI** | Escolher `main.tf` ou `deploy-oci.sh`, revisar as variáveis e copiar/baixar o formato selecionado. |
-| **Aparência e leitura** | Explorar 40 variantes no Estúdio de atmosferas, com prévia, 17 destaques e ajustes de leitura; aplicar somente ao confirmar. A interface oferece oito idiomas. |
+| **Aparência e leitura** | Escolher entre 40 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
 | **Backups e exportação** | Salvar e restaurar o projeto em JSON e exportar uma cópia limpa da ferramenta em HTML. |
 
 ## Como usar
