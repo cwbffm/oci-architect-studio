@@ -26,9 +26,23 @@ O catálogo atual tem **21 famílias e 40 variantes**: 19 famílias clássicas (
 
 ## Organização
 
-As famílias aparecem em ordem alfabética, com Padrão primeiro, em uma grade de botões com amostras de cor. O campo de busca filtra as famílias pelo nome e informa quando não há resultados, sem mudar o tema ativo. Ao selecionar uma família, o modo atual é mantido e duas prévias permitem comparar claro e escuro. Ambas acompanham o destaque selecionado, incluindo cores personalizadas e o contraste adequado ao modo. O estado selecionado é indicado visualmente e por `aria-pressed`; os botões funcionam com teclado e preservam o foco.
+A tela Estúdio de atmosferas reúne um fundo panorâmico, uma prévia compacta do
+construtor com os dados do projeto e uma barra inferior de personalização. O menu
+lateral fica compacto, com ícones e rótulos, somente nesta tela.
 
-A busca e a grade de famílias ficam junto às prévias, enquanto tema atual e cor de destaque ficam no painel lateral curto. Texto/espaçamento tem um painel próprio junto às prévias, com controles em colunas e amostra de leitura. As cores de destaque ficam sempre visíveis, sem controle para recolher. Texto/espaçamento permanece em uma seção recolhível. A seleção de destaque usa somente amostras clicáveis, com nome acessível, dica de nome e indicação da cor ativa. A amostra multicolorida abre o campo de cor personalizada. Os botões de amostra permanecem montados ao trocar de cor para preservar o foco do teclado. O controle de cor personalizada também permanece montado durante os eventos de seleção. As 17 opções de destaque estão disponíveis, incluindo a cor padrão da família e uma cor personalizada. Os nomes públicos não usam a marca ChatGPT.
+O catálogo horizontal tem busca, filtro por categoria e navegação por setas. Em
+Todos os temas, Nexus Command, Titanium Orange e quatro clássicos aparecem em
+destaque. Os modos disponíveis, as 17 cores de destaque e a cor personalizada
+ficam acessíveis na barra. Texto e espaçamento abre os controles de leitura.
+
+A intensidade ajusta as imagens dos temas especiais. Interface/Fundo permite
+examinar a cena com ou sem o formulário. O fundo portuário do estúdio é exclusivo
+da prévia de Nexus; o fundo de conexões do tema no restante do aplicativo é mantido.
+
+As alterações são temporárias até clicar em Aplicar tema. Sair da tela descarta
+as escolhas pendentes; a aplicação salva somente preferências de aparência.
+Recursos, tags, redes e código gerado são preservados. A prévia é uma representação
+estática e resumida do construtor, sem scripts ou ações de provisionamento.
 
 ## Paletas e legibilidade
 
@@ -97,3 +111,15 @@ usam laranja; os painéis mantêm o construtor e a navegação existentes.
 Titanium Orange também usa molduras chanfradas e relevos metálicos, com trilhos
 e pontos de fixação em cobre/âmbar, controles ativos laranja e identificação
 TITANIUM ORANGE na lateral. O fundo de montanhas e globo é preservado.
+
+## Estúdio de atmosferas
+
+A tela de Aparência apresenta uma cena panorâmica, uma prévia estática do
+construtor real e uma barra inferior com categoria, busca, temas, modos, cores
+sempre visíveis e acesso aos ajustes de leitura. O controle de intensidade vale
+para os fundos especiais. Interface/Fundo alterna o foco da visualização.
+
+As mudanças são experimentadas em uma cópia temporária. Aplicar tema salva
+somente a aparência; sair da tela descarta alterações pendentes. Recursos,
+tags e código gerado são preservados. A prévia não executa scripts e não
+aceita operações de edição ou provisionamento.
