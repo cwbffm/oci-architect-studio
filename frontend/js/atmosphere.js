@@ -5,7 +5,8 @@ var ATMOSPHERE_KEYS=['theme','accent','accentPreset','specialAccents','appearanc
 function atmospherePageChanged(next){
  document.body.classList.toggle('atmosphere-open',next==='themes');
  if(next!=='themes'&&atmosphereDraftState){atmosphereDraftState=null;const frame=$('atmosphere-preview');if(frame)delete frame.dataset.initialized;applyTheme();}
- if(next==='themes')for(const link of document.querySelectorAll('#navigation a')){if(!link.hasAttribute('aria-label'))link.setAttribute('aria-label',link.textContent.trim());link.title=link.textContent.trim();const label=link.querySelector('.nav-text');if(label){const short={builder:'Construtor',catalog:'Shapes',network:'Rede',iam:'IAM',tags:'Tags',export:'Exportação',themes:'Aparência',guide:'Guia'};label.dataset.compactLabel=short[link.dataset.page]||link.textContent.trim();}}
+ for(const link of document.querySelectorAll('#navigation a')){if(!link.hasAttribute('aria-label'))link.setAttribute('aria-label',link.textContent.trim());link.title=link.textContent.trim();}
+ atmosphereUpdateRail();
 }
 function withAtmosphereDraft(action){
  if(page!=='themes'||atmosphereRendering)return action();

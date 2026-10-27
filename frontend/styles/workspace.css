@@ -1,0 +1,97 @@
+/* Shared visual and responsive structure for every project page. */
+.workspace-shell{--workspace-radius:14px;--workspace-gap:24px;--workspace-surface:var(--special-glass,var(--panel));--workspace-line:color-mix(in srgb,var(--border) 70%,transparent)}
+html:root .workspace-shell main{max-width:1480px;padding:30px 30px 40px;margin:0 auto;min-width:0}
+html:root .workspace-shell .app{min-width:0}
+html:root .workspace-shell .topbar{position:sticky;top:0;z-index:25;min-height:54px;height:54px;margin:0;padding:0 28px;border:0;border-bottom:1px solid var(--workspace-line);border-radius:0;background:var(--special-topbar,var(--sidebar));box-shadow:0 4px 20px #0002;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+html:root .workspace-shell :is(.panel,.stat){border:1px solid var(--workspace-line);border-radius:var(--workspace-radius);background:var(--workspace-surface);background-image:none;box-shadow:0 12px 32px #0003;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+html:root .workspace-shell .page-heading{border:0;padding:0;margin:0 0 26px;min-width:0;gap:20px;align-items:center}
+html:root .workspace-shell .page-heading h1{font-size:calc(30px * var(--read-scale,1));line-height:1.25;font-weight:600;letter-spacing:-.7px;text-shadow:none}
+html:root .workspace-shell .page-heading p{font-size:calc(12px * var(--read-scale,1));line-height:1.7;color:var(--muted)}
+html:root .workspace-shell :is(input,select,textarea){border-radius:7px;border-color:var(--workspace-line);box-shadow:none}
+html:root .workspace-shell .button{border-radius:7px;min-height:38px}
+html:root .workspace-shell .button.primary{background:var(--special-brand,var(--accent));color:var(--special-brand-ink,var(--accent-ink));border-color:var(--workspace-line);box-shadow:0 3px 15px #0002}
+html:root .workspace-shell .resource-form{padding:0;overflow:hidden}
+html:root .workspace-shell .resource-tabs{padding:12px 18px;gap:5px;border-bottom:1px solid var(--workspace-line);background:color-mix(in srgb,var(--raised) 50%,var(--panel));border-radius:var(--workspace-radius) var(--workspace-radius) 0 0;box-shadow:none;overflow-x:auto}
+html:root .workspace-shell .resource-tabs button{padding:9px 12px;border:1px solid transparent;border-radius:6px;min-height:34px;white-space:nowrap}
+html:root .workspace-shell .resource-tabs button.active{background:color-mix(in srgb,var(--accent) 13%,var(--panel));color:var(--accent);border-color:var(--workspace-line);box-shadow:none}
+html:root .workspace-shell .form-heading{padding:0;margin:22px 24px;border:0;box-shadow:none}
+html:root .workspace-shell #resource-form{display:grid;grid-template-columns:155px minmax(0,1fr);grid-template-areas:'steps selector' 'steps policy' 'steps fields' 'steps hints' 'steps footer';gap:18px 24px;padding:0 24px 22px;min-width:0}
+html:root .workspace-shell #service-selector{grid-area:selector;min-width:0;margin:0}
+html:root .workspace-shell #service-policy-banner{grid-area:policy;min-width:0;margin:0;border-radius:8px;background:color-mix(in srgb,var(--mint) 8%,var(--panel));box-shadow:none}
+html:root .workspace-shell #builder-steps{grid-area:steps;align-self:stretch;display:flex;flex-direction:column;gap:7px;padding:0 18px 0 0;margin:0;border:0;border-right:1px solid var(--workspace-line);border-radius:0;background:transparent;box-shadow:none}
+html:root .workspace-shell #builder-steps button{display:flex;flex-direction:row;justify-content:flex-start;align-items:center;gap:12px;min-height:62px;padding:10px 8px;border:1px solid transparent;border-radius:7px;text-align:left;background:transparent;box-shadow:none;color:var(--muted);font-size:calc(11px * var(--read-scale,1))}
+html:root .workspace-shell #builder-steps button .step-number{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;margin:0;border:1px solid var(--border);border-radius:50%;background:var(--raised);color:var(--muted);font-size:11px}
+html:root .workspace-shell #builder-steps button[aria-current=step]{color:var(--accent);border-color:var(--workspace-line);background:color-mix(in srgb,var(--accent) 10%,var(--panel))}
+html:root .workspace-shell #builder-steps button[aria-current=step] .step-number{color:var(--special-brand-ink,var(--accent-ink));background:var(--special-brand,var(--accent));border-color:transparent}
+html:root .workspace-shell #resource-fields{grid-area:fields;min-width:0}
+html:root .workspace-shell #form-hints{grid-area:hints;min-width:0}
+html:root .workspace-shell #resource-form .wizard-footer{grid-area:footer;position:static;display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;min-width:0;margin:4px 0 0;padding:18px 0 0;border-top:1px solid var(--workspace-line);background:transparent;box-shadow:none}
+html:root .workspace-shell .wizard-footer .wizard-footer-hint{margin-right:auto;max-width:250px}
+html:root .workspace-shell .builder-grid{grid-template-columns:minmax(0,1fr) 300px;gap:var(--workspace-gap);align-items:start}
+html:root .workspace-shell .plan-column{gap:20px;min-width:0}
+html:root .workspace-shell .compact-stats{gap:16px;margin-bottom:26px}
+html:root .workspace-shell .compact-stats .stat{padding:16px 18px;min-height:84px}
+html:root .workspace-shell .compact-stats .stat strong{font-size:26px}
+html:root .workspace-shell .draft-label{color:var(--accent)}
+html:root .workspace-shell .project-context,html:root .workspace-shell .draft-summary{padding:22px}
+html:root .workspace-shell .configuration-group{border-radius:9px;background:color-mix(in srgb,var(--raised) 40%,var(--panel));border:1px solid var(--workspace-line)}
+html:root .workspace-shell :is(.iam-layout,.network-layout,.export-layout,.tag-layout){gap:var(--workspace-gap);min-width:0}
+html:root .workspace-shell :is(.terminal,pre.code,textarea.code){border-radius:9px}
+html:root .workspace-shell dialog{border-radius:14px;border-color:var(--border);box-shadow:0 25px 80px #0007}
+html:root .workspace-shell footer{border-color:var(--workspace-line)}
+html:root .workspace-shell.atmosphere-open main{max-width:none;padding:0;margin:0}
+html:root .workspace-shell.atmosphere-open footer{display:none}
+html:root .workspace-shell .atmosphere-dock{border-radius:14px}
+@media(min-width:701px){
+ html:root .workspace-shell #sidebar{width:82px!important;padding:8px 4px!important;gap:0;border:0!important;border-right:1px solid var(--workspace-line)!important;border-radius:0!important;background:var(--special-sidebar,var(--sidebar))!important;box-shadow:none!important}
+ html:root .workspace-shell .app{margin-left:82px}
+ html:root .workspace-shell #sidebar .brand{display:flex;justify-content:center;padding:5px 8px 14px!important;min-height:58px;margin:0;border:0!important;box-shadow:none!important}
+ html:root .workspace-shell #sidebar .brand>span:last-child,html:root .workspace-shell #sidebar .nav-label,html:root .workspace-shell #sidebar .sidebar-bottom{display:none}
+ html:root .workspace-shell #sidebar .brand-icon{width:28px;color:var(--text)}
+ html:root .workspace-shell #sidebar .brand-icon svg{width:28px;height:30px}
+ html:root .workspace-shell #sidebar #navigation{padding:8px 0;gap:0;overflow-y:auto;overflow-x:hidden;min-height:0}
+ html:root .workspace-shell #sidebar .sidebar-group{border:0!important;padding:0!important}
+ html:root .workspace-shell #sidebar nav a{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px;padding:10px 2px!important;min-height:62px;border-radius:6px;border:1px solid transparent;font-size:10px;color:var(--muted)}
+ html:root .workspace-shell #sidebar .nav-text{display:block;width:100%;min-width:0;font-size:0;line-height:1.4;text-align:center;white-space:nowrap;overflow-wrap:normal}
+ html:root .workspace-shell #sidebar .nav-text::after{display:block;content:attr(data-compact-label);font-size:9px}
+ html:root .workspace-shell #sidebar nav a.active{color:var(--accent);border-color:var(--workspace-line);background:color-mix(in srgb,var(--accent) 13%,var(--sidebar));box-shadow:inset 3px 0 var(--special-brand,var(--accent))}
+ html:root .workspace-shell #sidebar nav a.active::before{display:none}
+}
+@media(max-width:1199px){
+ html:root .workspace-shell main{padding:26px 24px 32px}
+ html:root .workspace-shell .builder-grid{grid-template-columns:minmax(0,1fr)}
+ html:root .workspace-shell .plan-column{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+ html:root .workspace-shell .plan-column .reference-note{grid-column:1/-1}
+ html:root .workspace-shell .plan-panel{min-height:250px}
+}
+@media(max-width:900px){
+ html:root .workspace-shell #resource-form{grid-template-columns:minmax(0,1fr);grid-template-areas:'steps' 'selector' 'policy' 'fields' 'hints' 'footer';gap:18px;padding:0 20px 20px}
+ html:root .workspace-shell #builder-steps{flex-direction:row;gap:6px;overflow-x:auto;padding:0 0 10px;border:0;border-bottom:1px solid var(--workspace-line)}
+ html:root .workspace-shell #builder-steps button{flex:0 0 auto;min-width:135px;min-height:48px;padding:8px;font-size:11px}
+ html:root .workspace-shell .plan-column{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html:root .workspace-shell .plan-column .plan-panel{grid-column:1/-1}
+}
+@media(max-width:700px){
+ html:root .workspace-shell main{padding:22px 15px 30px}
+ html:root .workspace-shell .app{margin-left:0}
+ html:root .workspace-shell .topbar{padding:0 14px;min-height:60px;height:60px;gap:10px}
+ html:root .workspace-shell .page-heading{align-items:flex-start;gap:16px;margin-bottom:22px}
+ html:root .workspace-shell .page-heading h1{font-size:calc(25px * var(--read-scale,1))}
+ html:root .workspace-shell .builder-grid{gap:20px}
+ html:root .workspace-shell .plan-column{grid-template-columns:minmax(0,1fr)}
+ html:root .workspace-shell .compact-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ html:root .workspace-shell .compact-stats .stat{padding:13px;min-height:80px}
+ html:root .workspace-shell .compact-stats .stat strong{font-size:23px}
+ html:root .workspace-shell .form-heading{margin:18px 16px}
+ html:root .workspace-shell #resource-form{padding:0 16px 18px}
+ html:root .workspace-shell .resource-tabs{padding:10px 12px}
+ html:root .workspace-shell #sidebar{background:var(--sidebar);border-radius:0;box-shadow:none}
+ html:root .workspace-shell #sidebar .brand{border-bottom:1px solid var(--border);box-shadow:none}
+ html:root .workspace-shell #sidebar nav a.active{color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--sidebar));box-shadow:none}
+ html:root .workspace-shell .wizard-footer .wizard-footer-hint{width:100%;max-width:none}
+}
+@media(prefers-reduced-transparency:reduce){html:root .workspace-shell :is(.panel,.stat,.topbar){background:var(--panel);backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(forced-colors:active){html:root .workspace-shell :is(.panel,.stat,.topbar){background:Canvas;box-shadow:none;backdrop-filter:none}html:root .workspace-shell .button.primary{color:ButtonText;background:ButtonFace}}
+html:root .workspace-shell #builder-steps button{flex:0 0 auto}
+html:root .workspace-shell .plan-column>.panel{margin:0}
+@media(max-width:700px){html:root .workspace-shell #sidebar:not(.open){visibility:hidden;pointer-events:none}html:root .workspace-shell #sidebar.open{visibility:visible;pointer-events:auto;box-shadow:0 0 0 100vw #0008}}

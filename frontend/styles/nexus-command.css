@@ -1,59 +1,7 @@
-/* Scoped industrial finish: classic themes and Titanium keep their own surfaces. */
+/* Theme palette and scenery; structure is shared by workspace.css. */
 :root{--nexus-wallpaper:url("{{NEXUS_WALLPAPER}}")}
-html:root[data-theme-effect=nexus-command] body{background-image:linear-gradient(rgb(3 16 27 / var(--wallpaper-shade,.3)),rgb(3 16 27 / var(--wallpaper-shade,.3))),var(--nexus-wallpaper);background-size:cover;background-position:center top;background-repeat:no-repeat;background-attachment:fixed}
-html[data-theme-effect=nexus-command]{--shell-radius:4px;--shell-filter:blur(14px) saturate(105%);--shell-shadow:inset 0 0 0 2px #061019,inset 0 0 0 3px #63849a55,inset 0 6px 12px #a9dff316,0 0 0 2px #0009,0 0 0 3px #58728255,0 12px 28px #0008;--shell-texture:linear-gradient(135deg,#b6edff18 0,transparent 7%,transparent 93%,#ff9b3812),repeating-linear-gradient(0deg,#ffffff02 0 1px,transparent 1px 4px)}
-html:root[data-theme-effect=nexus-command] :is(.panel,.stat){border-color:var(--special-edge);padding-inline:max(20px,var(--panel-padding,20px))}
-html:root[data-theme-effect=nexus-command] .sidebar{border-radius:0 4px 4px 0;border:1px solid var(--special-edge);background-image:linear-gradient(#04101af5 45%,#04101a80 78%,#04101af0),var(--nexus-wallpaper);background-size:cover;background-position:left bottom;box-shadow:inset 0 0 0 3px #03101d,inset -5px 0 0 #7db9d433,5px 0 15px #0008}
-html:root[data-theme-effect=nexus-command] .topbar{border:1px solid var(--special-edge);box-shadow:inset 0 0 0 3px #07121a,inset 0 -5px #507b9033,0 4px 18px #0008;background-image:var(--shell-texture)}
-html:root[data-theme-effect=nexus-command] #sidebar .brand{border-bottom:1px solid var(--special-edge);box-shadow:0 3px #061019,0 4px #56809655}
-html:root[data-theme-effect=nexus-command] #sidebar nav a.active{color:var(--accent);border-color:var(--special-edge);border-radius:3px;background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 18%,#06121b),#06121b);box-shadow:inset 3px 0 var(--accent),inset 0 1px #c1ecff55,0 0 12px var(--special-glow)}
-html[data-theme-effect=nexus-command] .page-heading{border-bottom:1px solid var(--special-edge);padding-bottom:24px}
-html[data-theme-effect=nexus-command] .page-heading h1{color:var(--text);text-shadow:0 0 16px #7ad1ff25}
-html[data-theme-effect=nexus-command] :is(.resource-tabs,.builder-steps){border-radius:3px;box-shadow:inset 0 1px #9ccfe63b,inset 0 -1px #000}
-html:root[data-theme-effect=nexus-command] .button.primary{border-radius:4px;box-shadow:inset 0 1px #ffe1bccc,0 0 14px #ff9b3830}
-html[data-theme-effect=nexus-command] :is(input,select,textarea){border-radius:4px;box-shadow:inset 0 2px 5px #0006}
-#view-themes .special-theme-preview[data-preview-effect=nexus-command],.theme-family-button[data-family=nexus-command] .family-colors i{background-image:linear-gradient(#03101b44,#03101b88),var(--nexus-wallpaper)!important;background-size:cover!important;background-position:right top!important;border-radius:3px}
-#view-themes .special-theme-preview[data-preview-effect=nexus-command]{box-shadow:inset 0 0 0 2px #04101a,inset 0 0 0 3px #8fd4f055,0 0 0 1px #577f93}
-@media(max-width:600px){html:root[data-theme-effect=nexus-command] :is(.panel,.stat){padding-inline:14px}}
-@media(prefers-reduced-transparency:reduce){html:root[data-theme-effect=nexus-command] body,html:root[data-theme-effect=nexus-command] .sidebar{background-image:none!important;background-color:var(--bg)}}
-@media(forced-colors:active){html:root[data-theme-effect=nexus-command] body,html:root[data-theme-effect=nexus-command] .sidebar{background-image:none!important}}
-
-/* Machined frame with chamfered corners, inner steel rails and cyan light strips. */
-:root{--nexus-frame:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22steel%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23b2d1df%22%2F%3E%3Cstop%20offset%3D%22.16%22%20stop-color%3D%22%232c4b60%22%2F%3E%3Cstop%20offset%3D%22.45%22%20stop-color%3D%22%23081722%22%2F%3E%3Cstop%20offset%3D%22.72%22%20stop-color%3D%22%23608ca0%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23163548%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M14%201H106L119%2014V106L106%20119H14L1%20106V14Z%22%20fill%3D%22none%22%20stroke%3D%22%2302080e%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M14%203H106L117%2014V106L106%20117H14L3%20106V14Z%22%20fill%3D%22none%22%20stroke%3D%22url%28%23steel%29%22%20stroke-width%3D%225%22%2F%3E%3Cpath%20d%3D%22M15%206H105L114%2015V105L105%20114H15L6%20105V15Z%22%20fill%3D%22none%22%20stroke%3D%22%23a0c4d3%22%20stroke-opacity%3D%22.65%22%2F%3E%3Cpath%20d%3D%22M16%209H104L111%2016V104L104%20111H16L9%20104V16Z%22%20fill%3D%22none%22%20stroke%3D%22%23030b12%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20d%3D%22M17%2011H103L109%2017V103L103%20109H17L11%20103V17Z%22%20fill%3D%22none%22%20stroke%3D%22%234c788c%22%20stroke-width%3D%22.8%22%2F%3E%3Cpath%20d%3D%22M26%204H46M74%204H93M116%2027V48M116%2076V96M27%20116H47M76%20116H96M4%2027V47M4%2076V95%22%20stroke%3D%22%2345d9ff%22%20stroke-width%3D%221.7%22%2F%3E%3Cpath%20d%3D%22M97%205H104L115%2016M5%2099V105L15%20115%22%20fill%3D%22none%22%20stroke%3D%22%23e3af6d%22%20stroke-opacity%3D%22.8%22%2F%3E%3Cg%20fill%3D%22%2303101a%22%20stroke%3D%22%236793a5%22%20stroke-width%3D%22.7%22%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%222.3%22%2F%3E%3Ccircle%20cx%3D%22107%22%20cy%3D%2213%22%20r%3D%222.3%22%2F%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%22107%22%20r%3D%222.3%22%2F%3E%3Ccircle%20cx%3D%22107%22%20cy%3D%22107%22%20r%3D%222.3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
-
-html:root[data-theme-effect=nexus-command]{--shell-radius:10px;--shell-shadow:inset 0 0 20px #8cc9ee08,0 10px 25px #0009;--shell-texture:linear-gradient(125deg,#8cbed015,transparent 35%,#02080e44),repeating-linear-gradient(0deg,#ffffff02 0 1px,transparent 1px 4px)}
-html:root[data-theme-effect=nexus-command] :is(.panel,.stat,.topbar,#sidebar .brand,#sidebar .sidebar-bottom){position:relative;border-color:#355970;background-color:#06121be8}
-html:root[data-theme-effect=nexus-command] :is(.panel,.stat,.topbar,#sidebar .brand,#sidebar .sidebar-bottom)::after{content:"";position:absolute;inset:-4px;z-index:2;pointer-events:none;border:18px solid transparent;border-image:var(--nexus-frame) 22 / 18px / 0 stretch}
-html:root[data-theme-effect=nexus-command] .panel{padding-inline:20px}
-html:root[data-theme-effect=nexus-command] .resource-form{padding:8px 12px 16px}
-html:root[data-theme-effect=nexus-command] .resource-tabs{padding:0 8px;background:linear-gradient(#10232f,#06121c);border-bottom:1px solid #6c9bae;gap:0}
-html:root[data-theme-effect=nexus-command] .resource-tabs button{border-radius:3px;padding:13px 12px}
-html:root[data-theme-effect=nexus-command] .resource-tabs button.active{color:var(--special-brand);border:1px solid #b77935;background:linear-gradient(#6b401d55,#08131c);box-shadow:inset 0 3px var(--special-brand),0 -2px 12px #ff9b3833}
-html:root[data-theme-effect=nexus-command] .form-heading{margin-top:10px;border-top:1px solid #446b80;padding-top:22px;box-shadow:inset 0 3px #020a10}
-html:root[data-theme-effect=nexus-command] .service-icon{color:var(--special-brand);border:1px solid #ab6c2c;background:linear-gradient(135deg,#ff9b3822,#07121a);box-shadow:inset 0 1px #ffe0b955}
-html:root[data-theme-effect=nexus-command] #sidebar nav a.active{color:var(--special-brand);border-color:#b6752e;background:linear-gradient(110deg,#ff9b3833,#07121b);box-shadow:inset 3px 0 var(--special-brand),inset 0 2px #ffbd6d,0 0 14px #ff9b3828}
-html:root[data-theme-effect=nexus-command] #sidebar nav a.active::before{background:var(--special-brand)}
-html:root[data-theme-effect=nexus-command] .builder-steps{border-color:#9a642f;border-radius:7px}
-html:root[data-theme-effect=nexus-command] .builder-steps button[aria-current=step]{color:var(--special-brand);background:linear-gradient(130deg,#ff9b3833,#06121b);border-color:#a36a2c;box-shadow:inset 0 1px #ffbb6966}
-html:root[data-theme-effect=nexus-command] .builder-steps button[aria-current=step] .step-number{background:var(--special-brand);color:#07121b}
-html:root[data-theme-effect=nexus-command] .draft-label,html:root[data-theme-effect=nexus-command] .brand-icon{color:var(--special-brand)}
-html:root[data-theme-effect=nexus-command] #sidebar{padding:12px 16px 16px;border:1px solid #48798e;box-shadow:inset 0 0 0 4px #020a11,inset -6px 0 #69a8c333,4px 0 14px #00bcf52b}
-html:root[data-theme-effect=nexus-command] #sidebar .brand{padding:14px 10px 18px;min-height:88px;margin:0 0 6px}
-html:root[data-theme-effect=nexus-command] .brand small{font-size:0;letter-spacing:1.6px;line-height:1.8}
-html:root[data-theme-effect=nexus-command] .brand small::before{content:"STUDIO";display:block;color:var(--text);font-size:9px}
-html:root[data-theme-effect=nexus-command] .brand small::after{content:"NEXUS COMMAND";display:block;color:var(--special-brand);font-size:9px}
-html:root[data-theme-effect=nexus-command] #sidebar .sidebar-group+.sidebar-group{border-top:1px solid #648b9d88;padding-top:15px}
-html:root[data-theme-effect=nexus-command] #sidebar .sidebar-bottom{padding:17px 12px;margin-top:6px;background:#041019ed}
-html:root[data-theme-effect=nexus-command] .topbar{margin:4px 5px 0;height:66px}
-html:root[data-theme-effect=nexus-command] .draft-summary{padding-block:22px}
-html:root[data-theme-effect=nexus-command] .button.primary{background:linear-gradient(#ffb64b,var(--special-brand));border:1px solid #ffd597;color:#07121b;box-shadow:inset 0 0 0 2px #c36a2433,inset 0 2px #ffe3bb,0 0 18px #ff9b3833}
-html:root[data-theme-effect=nexus-command] .stats{gap:20px}
-html:root[data-theme-effect=nexus-command] .builder-grid{gap:26px}
-html:root[data-theme-effect=nexus-command] .stat{min-height:88px}
-@media(max-width:700px){html:root[data-theme-effect=nexus-command] .stats{gap:12px}html:root[data-theme-effect=nexus-command] .resource-form{padding:6px 8px 14px}html:root[data-theme-effect=nexus-command] .resource-tabs button{padding:10px 8px}html:root[data-theme-effect=nexus-command] .topbar{height:auto;min-height:64px}html:root[data-theme-effect=nexus-command] .panel{padding-inline:14px}}
-@media(forced-colors:active){html:root[data-theme-effect=nexus-command] :is(.panel,.stat,.topbar,#sidebar .brand,#sidebar .sidebar-bottom)::after{display:none}}
-
-html:root[data-theme-effect=nexus-command] .builder-steps button[aria-current=step]{border-color:#a36a2c;background:linear-gradient(110deg,#ff9b3840,#07141c);box-shadow:inset 0 1px #ffbb6980}
-html:root[data-theme-effect=nexus-command] .service-policy-banner{border-color:var(--mint);background:linear-gradient(120deg,#072a2b,#06191c);box-shadow:inset 0 1px #9fffe433}
-html:root[data-theme-effect=nexus-command] .draft-label{color:var(--special-brand)}
-html:root[data-theme-effect=nexus-command] #sidebar .text-button{color:var(--special-brand);border-color:#9e6a32;background:linear-gradient(#0c1b23,#050e15)}
+html[data-theme-effect=nexus-command]{--shell-radius:14px;--shell-filter:blur(14px) saturate(110%);--shell-texture:none;--shell-shadow:0 12px 32px #0004}
+html:root[data-theme-effect=nexus-command] body{background-image:linear-gradient(rgb(5 12 20 / var(--wallpaper-shade,.3)),rgb(5 12 20 / var(--wallpaper-shade,.3))),var(--nexus-wallpaper);background-size:cover;background-position:center top;background-repeat:no-repeat;background-attachment:fixed}
+#view-themes .special-theme-preview[data-preview-effect=nexus-command],.theme-family-button[data-family=nexus-command] .family-colors i{background-image:linear-gradient(#06101c33,#06101c88),var(--nexus-wallpaper)!important;background-size:cover!important;background-position:center!important}
+@media(prefers-reduced-transparency:reduce){html:root[data-theme-effect=nexus-command] body{background-image:none!important;background-color:var(--bg)}}
+@media(forced-colors:active){html:root[data-theme-effect=nexus-command] body{background-image:none!important}}

@@ -43,8 +43,17 @@ Artefatos são gravados em `work/`, ignorado pelo Git. O workflow [Validate Stud
 
 Build, testes de navegador e validação de schema não comprovam permissões IAM, disponibilidade regional, custos ou conectividade real. Antes de aplicar o Terraform exportado, revise a configuração e execute `terraform fmt`, `terraform init`, `terraform validate` e `terraform plan` no seu ambiente. O HCL manual Universal exige revisão própria.
 
-## Temas especiais
+## Layout comum e temas
 
-A inclusão foi verificada com 18 variantes em nove famílias: 432 combinações de página/largura, 90 verificações de contraste entre texto, texto secundário, destaques, superfícies e botões, restauração após recarregar e tratamentos visuais distintos. A suíte clássica manteve 14 verificações, 646 combinações de destaque e 912 layouts aprovados. Não houve provisionamento OCI.
+`tests/workspace.cjs` verifica as oito páginas com Nexus, Titanium e um tema claro
+em cinco larguras (120 layouts), IDs únicos e navegação comum. Também cria, edita,
+recarrega e remove um recurso pelos controles reais do construtor.
 
-A revisão das paletas verifica também: independência do destaque clássico, personalização por variante, backups antigos e inválidos, restauração da cor original, miniaturas e capturas reais de nove estilos. Os temas clássicos continuam com a suíte existente de 38 variantes.
+`tests/atmosphere.cjs` verifica prévia, aplicação e descarte de aparência sem mudar
+o projeto. As suítes de temas cobrem os 38 clássicos e os dois especiais, incluindo
+contraste, persistência, backups, idiomas e layouts. Os resultados históricos de
+catálogos anteriores estão em `docs/VALIDATION_HISTORY.md`.
+
+A navegação programática é síncrona para impedir uma segunda renderização do
+construtor após abrir uma edição. O teste de layout cobre essa regressão e o
+histórico de voltar/avançar, além do menu móvel e seu estado acessível.

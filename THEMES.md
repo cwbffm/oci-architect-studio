@@ -27,8 +27,7 @@ O catálogo atual tem **21 famílias e 40 variantes**: 19 famílias clássicas (
 ## Organização
 
 A tela Estúdio de atmosferas reúne um fundo panorâmico, uma prévia compacta do
-construtor com os dados do projeto e uma barra inferior de personalização. O menu
-lateral fica compacto, com ícones e rótulos, somente nesta tela.
+construtor com os dados do projeto e uma barra inferior de personalização. O menu lateral compacto, com ícones e rótulos, é comum a todas as páginas.
 
 O catálogo horizontal tem busca, filtro por categoria e navegação por setas. Em
 Todos os temas, Nexus Command, Titanium Orange e quatro clássicos aparecem em
@@ -36,8 +35,7 @@ destaque. Os modos disponíveis, as 17 cores de destaque e a cor personalizada
 ficam acessíveis na barra. Texto e espaçamento abre os controles de leitura.
 
 A intensidade ajusta as imagens dos temas especiais. Interface/Fundo permite
-examinar a cena com ou sem o formulário. O fundo portuário do estúdio é exclusivo
-da prévia de Nexus; o fundo de conexões do tema no restante do aplicativo é mantido.
+examinar a cena com ou sem o formulário. O fundo portuário de Nexus é usado no projeto inteiro; Titanium mantém o fundo de montanhas e globo.
 
 As alterações são temporárias até clicar em Aplicar tema. Sair da tela descarta
 as escolhas pendentes; a aplicação salva somente preferências de aparência.
@@ -97,20 +95,15 @@ recupera a cor laranja original. A suíte `npm run test:themes` cobre ambos os c
 
 ## Nexus Command
 
-Tema escuro adicional com mapa de conexões globais, instalação industrial,
-superfícies de aço azul escuro e molduras técnicas. Ciano destaca controles e
+Tema escuro adicional com porto industrial, superfícies de vidro azul-escuro e detalhes ciano e laranja. Ciano destaca controles e
 laranja identifica ações principais. Preserva o menu, o construtor e os painéis
 do projeto; a imagem decorativa não representa dados operacionais.
 Seu fundo WebP está incorporado ao HTML para uso offline. As cores personalizadas
 são salvas independentemente de Titanium Orange e dos temas clássicos.
 
-O acabamento Nexus usa molduras SVG incorporadas com cantos chanfrados, trilhos
-metálicos e luzes ciano, sem bloquear os controles. Menu, abas e etapas ativas
-usam laranja; os painéis mantêm o construtor e a navegação existentes.
+O acabamento comum usa painéis de vidro, cantos suaves, bordas discretas e navegação uniforme.
 
-Titanium Orange também usa molduras chanfradas e relevos metálicos, com trilhos
-e pontos de fixação em cobre/âmbar, controles ativos laranja e identificação
-TITANIUM ORANGE na lateral. O fundo de montanhas e globo é preservado.
+Titanium Orange usa o mesmo layout comum com sua paleta cobre/âmbar e o fundo de montanhas e globo.
 
 ## Estúdio de atmosferas
 

@@ -1,5 +1,6 @@
 // Appearance workbench labels follow the existing eight-language interface.
 for(const [source,...translations] of [
+['Porto industrial, vidro escuro e detalhes ciano e âmbar.','Industrial harbor, dark glass, cyan and amber details.','Puerto industrial, vidrio oscuro y detalles cian y ámbar.','Port industriel, verre sombre et détails cyan et ambre.','Industriehafen, dunkles Glas sowie Cyan- und Bernsteinakzente.','Porto industriale, vetro scuro e dettagli ciano e ambra.','工業港、ダークガラス、シアンとアンバーのアクセント。','工业港口、深色玻璃与青色和琥珀色细节。'],
 ['Temas anteriores','Previous themes','Temas anteriores','Thèmes précédents','Vorherige Designs','Temi precedenti','前のテーマ','上一个主题'],
 ['Mais temas','More themes','Más temas','Plus de thèmes','Weitere Designs','Altri temi','その他のテーマ','更多主题'],
 ['Padrão do projeto','Project default','Predeterminado del proyecto','Valeur par défaut du projet','Projektstandard','Predefinito del progetto','プロジェクトの既定値','项目默认值'],
@@ -21,3 +22,5 @@ for(const [source,...translations] of [
 ['Aparência aplicada e salva neste navegador.','Appearance applied and saved in this browser.','Apariencia aplicada y guardada en este navegador.','Apparence appliquée et enregistrée dans ce navigateur.','Darstellung angewendet und in diesem Browser gespeichert.','Aspetto applicato e salvato in questo browser.','外観を適用し、このブラウザーに保存しました。','外观已应用并保存在此浏览器中。']
 ])I18N_TEXT.set(source,translations);
 localizeInterface();
+
+atmosphereUpdateRail();

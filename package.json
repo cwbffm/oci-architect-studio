@@ -4,7 +4,7 @@
   "scripts": {
     "build": "python3 tools/build_frontend.py",
     "check:build": "python3 tools/build_frontend.py --check",
-    "test": "node tests/regression.cjs && node tests/oci-cli.cjs && node tests/languages.cjs",
+    "test": "node tests/workspace.cjs && node tests/regression.cjs && node tests/oci-cli.cjs && node tests/languages.cjs",
     "test:themes": "node tests/atmosphere.cjs && node tests/themes.cjs && node tests/special-themes.cjs"
   },
   "devDependencies": {
