@@ -4,7 +4,7 @@
   "scripts": {
     "build": "python3 tools/build_frontend.py",
     "check:build": "python3 tools/build_frontend.py --check",
-    "test": "node tests/regression.cjs && node tests/oci-cli.cjs && node tests/languages.cjs && node tests/prism-layout.cjs && node tests/monolith-layout.cjs && node tests/architect-suite.cjs",
+    "test": "node tests/regression.cjs && node tests/oci-cli.cjs && node tests/languages.cjs && node tests/restored-interface.cjs",
     "test:themes": "node tests/themes.cjs && node tests/theme-migrations.cjs"
   },
   "devDependencies": {

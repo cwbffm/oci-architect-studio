@@ -1,7 +1,7 @@
-# Temas e aparência
+# Temas
 
-O Studio oferece somente **Dracula Escuro** e **Dracula Claro**. O padrão é Dracula Escuro.
+O Studio oferece 38 variantes clássicas em 19 famílias, com modos claro e escuro. O tema inicial é Escuro. O catálogo inclui Dracula, GitHub, Monokai, VS Code, Oracle Redwood, Ayu e outras famílias.
 
-Preferências antigas são migradas para a variante clara ou escura correspondente, preservando recursos, tags e configuração do projeto. As cores de destaque e os controles de texto e espaçamento continuam disponíveis.
+Temas especiais, fundos decorativos e a aba de temas especiais foram removidos. Projetos antigos com esses temas são migrados para Claro ou Escuro conforme o modo anterior, preservando os recursos. As cores de destaque continuam sempre visíveis e as preferências de leitura são independentes do projeto.
 
-`npm run test:themes` verifica o catálogo, a persistência e a migração dos temas removidos.
+Execute `npm run test:themes` para verificar contraste, persistência, layout e migração dos temas removidos.

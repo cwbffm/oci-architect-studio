@@ -1,17 +1,14 @@
 """Bundle maintained sources into a portable, standalone HTML document."""
 from pathlib import Path
 import argparse
-import base64
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def build():
     source = ROOT / "frontend"
-    styles = "\n".join((source / "styles" / name).read_text(encoding='utf-8') for name in ("studio.css", "prism-layout.css", "prism-reference.css", "monolith.css", "architect-suite.css"))
-    monolith_wallpaper = base64.b64encode((source / "assets" / "monolith.webp").read_bytes()).decode("ascii")
-    styles = styles.replace("{{MONOLITH_WALLPAPER}}", "data:image/webp;base64," + monolith_wallpaper)
-    scripts = "\n".join((source / "js" / name).read_text(encoding='utf-8') for name in ("studio.js", "prism.js", "monolith.js", "architect-suite.js"))
+    styles = (source / "styles" / "studio.css").read_text(encoding='utf-8')
+    scripts = (source / "js" / "studio.js").read_text(encoding='utf-8')
     template = (source / "index.template.html").read_text(encoding='utf-8')
     return template.replace("{{STUDIO_STYLES}}", "<style>" + styles + "</style>").replace("{{STUDIO_SCRIPTS}}", "<script>" + scripts + "</script>")
 
