@@ -38,7 +38,7 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 | **Tags** | Organizar tags freeform e defined tags e revisar o padrão aplicado ao projeto. |
 | **Rede e roteamento** | Explorar uma topologia hub-and-spoke e acompanhar decisões de ida e retorno no laboratório lógico. |
 | **Terraform e OCI CLI** | Escolher `main.tf` ou `deploy-oci.sh`, revisar as variáveis e copiar/baixar o formato selecionado. |
-| **Aparência e leitura** | Escolher entre 39 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
+| **Aparência e leitura** | Escolher entre Dracula Escuro e Dracula Claro, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
 | **Backups e exportação** | Salvar e restaurar o projeto em JSON e exportar uma cópia limpa da ferramenta em HTML. |
 
 ## Como usar
@@ -133,3 +133,5 @@ Para configurar uma publicação própria, selecione **Settings → Pages → Bu
 ### Prévia: três modos de trabalho
 
 O Studio reúne Topologia de Precisão (trabalhar), Sala de Revisão (checklist e observações locais) e Observatório do Projeto (inventário isométrico para apresentar). Todos usam os mesmos recursos do projeto. A revisão manual fica neste navegador e pode ser exportada como relatório JSON; alterações no plano exigem nova conferência do checklist. Não há colaboração em tempo real ou validação de permissões na OCI.
+
+Catálogo atual: somente Dracula Escuro e Dracula Claro. Preferências anteriores migram pelo modo claro/escuro.
