@@ -1,6 +1,7 @@
 from pathlib import Path
 import os,json,subprocess,tempfile,shutil,base64,concurrent.futures
 root=Path(__file__).resolve().parents[1]/'work';cases=json.loads((root/'cli-cases.json').read_text());schemas=json.loads((root/'oci-cli-schemas.json').read_text());all_calls=[];results=[]
+cli_python=Path(os.environ.get('OCI_CLI_PYTHON',root/'oci-cli-env/bin/python'))
 mock='''#!/usr/bin/env python3
 import os,sys,json,pathlib
 args=sys.argv[1:];idx=args.index('--from-json');cmd=' '.join(args[:idx]);file=args[idx+1][7:];payload=json.load(open(file));log=pathlib.Path(os.environ['OCI_MOCK_LOG']);calls=json.loads(log.read_text()) if log.exists() else [];calls.append({'command':cmd,'payload':payload,'args':args,'region':os.environ.get('OCI_CLI_REGION'),'mode':os.stat(file).st_mode&0o777});log.write_text(json.dumps(calls));query=args[args.index('--query')+1] if '--query' in args else None
@@ -33,6 +34,7 @@ with tempfile.TemporaryDirectory(prefix='oci-cli-verify-') as folder:
   calls=json.loads(log.read_text());assert len(calls)==len(entry['generated']['operations']),name
   for call in calls:
    assert call['mode']==0o600,(name,'payload permissions')
+   assert call['command']!='iam policy create',(name,'unexpected IAM policy in infrastructure export')
    allowed=schemas[call['command']];assert 'ERROR' not in allowed,call['command'];unknown=set(call['payload'])-set(allowed);assert not unknown,(name,call['command'],unknown)
    if '--wait-for-state' in call['args']:assert call['args'][call['args'].index('--wait-for-state')+1] in allowed['waitForState'][0].split('|'),call['command']
    if call['command']=='compute instance launch' and 'metadata' in call['payload']:
@@ -53,7 +55,7 @@ with tempfile.TemporaryDirectory(prefix='oci-cli-verify-') as folder:
  for call in all_calls:unique.setdefault(call['command'],call)
  def probe(pair):
   cmd,call=pair;file=folder/(cmd.replace(' ','-')+'.json');file.write_text(json.dumps(call['payload']));args=list(call['args']);args[args.index('--from-json')+1]='file://'+str(file)
-  r=subprocess.run([str(root/'oci-cli-env/bin/python'),str(Path(__file__).with_name('oci-cli-offline-probe.py')),*args],capture_output=True,text=True)
+  r=subprocess.run([str(cli_python),str(Path(__file__).with_name('oci-cli-offline-probe.py')),*args],capture_output=True,text=True)
   return {'command':cmd,'valid':r.returncode==0,'error':r.stderr[-1400:] if r.returncode else ''}
  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:probes=list(pool.map(probe,unique.items()))
  for item in probes:print(item['command'],item['valid'],item['error'],flush=True)

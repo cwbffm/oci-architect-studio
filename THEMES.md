@@ -1,9 +1,10 @@
 # Temas e aparência
 
-O catálogo atual tem **21 famílias e 40 variantes**: 19 famílias clássicas (38 variantes) e Titanium Orange e Nexus Command como temas especiais escuros.
+O catálogo atual tem **20 famílias e 39 variantes**, todas com modos claro e escuro. Os temas especiais foram removidos.
 
 | Família | Característica | Modos |
 | --- | --- | --- |
+| Monolith | Pedra, prata e âmbar | Claro |
 | Padrão | Cinzas neutros | Claro e escuro |
 | Absolutely | Tons quentes e violeta suave | Claro e escuro |
 | Ayu | Azul acinzentado com âmbar | Claro e escuro |
@@ -26,7 +27,7 @@ O catálogo atual tem **21 famílias e 40 variantes**: 19 famílias clássicas (
 
 ## Organização
 
-As famílias aparecem em ordem alfabética, com Padrão primeiro, em uma grade de botões com amostras de cor. O campo de busca filtra as famílias pelo nome e informa quando não há resultados, sem mudar o tema ativo. Ao selecionar uma família, o modo atual é mantido e duas prévias permitem comparar claro e escuro. Ambas acompanham o destaque selecionado, incluindo cores personalizadas e o contraste adequado ao modo. O estado selecionado é indicado visualmente e por `aria-pressed`; os botões funcionam com teclado e preservam o foco.
+As famílias aparecem em ordem alfabética, com Monolith primeiro e Padrão em seguida, em uma grade de botões com amostras de cor. O campo de busca filtra as famílias pelo nome e informa quando não há resultados, sem mudar o tema ativo. Ao selecionar uma família, o modo atual é mantido quando disponível. As prévias permitem comparar as variantes existentes; Monolith possui somente a variante clara. Ambas acompanham o destaque selecionado, incluindo cores personalizadas e o contraste adequado ao modo. O estado selecionado é indicado visualmente e por `aria-pressed`; os botões funcionam com teclado e preservam o foco.
 
 A busca e a grade de famílias ficam junto às prévias, enquanto tema atual e cor de destaque ficam no painel lateral curto. Texto/espaçamento tem um painel próprio junto às prévias, com controles em colunas e amostra de leitura. As cores de destaque ficam sempre visíveis, sem controle para recolher. Texto/espaçamento permanece em uma seção recolhível. A seleção de destaque usa somente amostras clicáveis, com nome acessível, dica de nome e indicação da cor ativa. A amostra multicolorida abre o campo de cor personalizada. Os botões de amostra permanecem montados ao trocar de cor para preservar o foco do teclado. O controle de cor personalizada também permanece montado durante os eventos de seleção. As 17 opções de destaque estão disponíveis, incluindo a cor padrão da família e uma cor personalizada. Os nomes públicos não usam a marca ChatGPT.
 
@@ -40,11 +41,11 @@ As variantes claras adicionadas são adaptações próprias do Studio; não são
 
 As preferências são salvas no navegador. Backups mantêm recursos e Terraform. IDs antigos de Catppuccin, Dracula, Nord e Tokyo Night são migrados para a variante correspondente. Famílias removidas do catálogo ampliado migram para o modo neutro claro ou escuro. Nenhum tema personalizado de backup é executado ou importado.
 
-A interface mantém seus oito idiomas. O gerador Terraform não foi alterado nesta revisão.
+A interface mantém seus oito idiomas. As preferências visuais não alteram o código de infraestrutura.
 
 ## Testes
 
-`tests/themes.cjs` verifica os 38 temas, persistência, backups, migração, 17 destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Também cobre a busca, a seleção por amostras, o foco das amostras e mudanças sucessivas de cor personalizada. A instalação com `npm ci` e a configuração do Chromium estão em [VALIDATION.md](VALIDATION.md). Para executar somente temas:
+`tests/themes.cjs` verifica os 39 temas clássicos, persistência, backups, migração, 17 destaques por tema, alternância de modos, teclado e oito páginas em três larguras. Também cobre a busca, a seleção por amostras, o foco das amostras e mudanças sucessivas de cor personalizada. A instalação com `npm ci` e a configuração do Chromium estão em [VALIDATION.md](VALIDATION.md). Para executar somente temas:
 
 ```sh
 node tests/themes.cjs
@@ -67,33 +68,20 @@ Os ajustes de leitura são independentes do projeto:
 
 A prévia acompanha os ajustes. Restaurar leitura redefine somente as preferências de leitura. As escolhas persistem no navegador e nos backups; backups antigos recebem os padrões dos campos novos e valores fora das opções são normalizados. Valores numéricos não finitos continuam sendo rejeitados pela validação estrutural existente.
 
-## Tema especial atual
+## Migração dos temas removidos
 
-Titanium Orange é um dos dois temas especiais. Mantém o construtor, a navegação e os
-painéis do Studio, com superfícies pretas, detalhes laranja e um fundo original
-de montanhas e globo iluminado. O WebP é incorporado ao HTML e funciona offline.
-A preferência de transparência reduzida desativa as imagens decorativas.
+Titanium Orange, Nexus Command e os 27 temas especiais antigos são aceitos somente na leitura de projetos salvos. Preferências escuras migram para Padrão Escuro e claras para Monolith Claro. Cores exclusivas desses temas são descartadas; recursos, tags, IAM e demais dados do projeto são preservados. O catálogo não inclui aba de temas especiais, fundos ou estilos desses temas.
 
-Os 38 temas clássicos continuam disponíveis. Preferências dos 27 temas especiais
-removidos migram para Titanium Orange; cores desses temas são descartadas sem
-alterar os recursos do projeto ou os geradores Terraform e OCI CLI.
+`tests/theme-migrations.cjs` verifica a migração dos 29 IDs históricos, a restauração do projeto salvo no navegador e a remoção das preferências obsoletas. `npm run test:themes` executa esse teste junto da suíte das 39 variantes atuais.
 
-O destaque especial é salvo separadamente do destaque clássico. Restaurar padrão
-recupera a cor laranja original. A suíte `npm run test:themes` cobre ambos os catálogos.
+## Layout Prisma de Trabalho — prévia local
 
-## Nexus Command
+A navegação superior, os campos, os painéis e o espaçamento são compartilhados pelas oito páginas. O construtor apresenta biblioteca de serviços pesquisável no topo, configuração à esquerda e revisão à direita. O diagrama fica em uma aba própria na navegação superior. O diagrama usa somente recursos do plano e referências locais; não representa estado ao vivo da OCI. Os nós permitem editar o recurso correspondente. A prévia de código usa os mesmos geradores e validadores da página de exportação.
 
-Tema escuro adicional com mapa de conexões globais, instalação industrial,
-superfícies de aço azul escuro e molduras técnicas. Ciano destaca controles e
-laranja identifica ações principais. Preserva o menu, o construtor e os painéis
-do projeto; a imagem decorativa não representa dados operacionais.
-Seu fundo WebP está incorporado ao HTML para uso offline. As cores personalizadas
-são salvas independentemente de Titanium Orange e dos temas clássicos.
+Em telas menores, as áreas são empilhadas. Prisma tem variantes clara e escura; novas instalações começam na escura. Preferências públicas existentes e projetos salvos são preservados. Os temas atuais compartilham a mesma estrutura de navegação e formulários.
 
-O acabamento Nexus usa molduras SVG incorporadas com cantos chanfrados, trilhos
-metálicos e luzes ciano, sem bloquear os controles. Menu, abas e etapas ativas
-usam laranja; os painéis mantêm o construtor e a navegação existentes.
+## Monolith — prévia local
 
-Titanium Orange também usa molduras chanfradas e relevos metálicos, com trilhos
-e pontos de fixação em cobre/âmbar, controles ativos laranja e identificação
-TITANIUM ORANGE na lateral. O fundo de montanhas e globo é preservado.
+A revisão Monolith substitui a família visual Prisma na prévia local (IDs internos preservados) e adiciona a página Visão geral. A navegação lateral e as superfícies compactas são compartilhadas por todas as páginas. A arte dos monólitos é incorporada ao HTML e funciona offline. Indicadores, barras e inventário usam somente recursos locais; não representam telemetria, saúde ou custos da OCI. O construtor, o diagrama separado e os geradores existentes permanecem disponíveis.
+
+Monolith Escuro (`prism-dark`) foi removido. Projetos que o utilizavam migram para Padrão Escuro. Novos projetos usam Monolith Claro.

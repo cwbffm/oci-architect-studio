@@ -1,0 +1,169 @@
+/* Compact Prisma reference: one header, one shelf, two focused work surfaces. */
+html:root body.prism-layout.prism-reference .prism-header{margin:8px 14px 0;padding:0 20px;gap:18px;border-radius:13px;min-height:58px;background:linear-gradient(110deg,var(--sidebar),color-mix(in srgb,var(--blue) 4%,var(--sidebar)));box-shadow:inset 0 1px #ffffff07}
+html:root body.prism-layout.prism-reference .prism-header .brand{width:195px;font-size:17px;padding:10px 0;gap:12px}
+html:root body.prism-layout.prism-reference .brand-icon{width:26px;height:30px}
+html:root body.prism-layout.prism-reference .brand small{margin-top:3px;letter-spacing:2px;font-size:9px}
+html:root body.prism-layout.prism-reference #navigation{min-height:57px;flex-basis:auto;flex-wrap:nowrap;width:auto;overflow-x:auto}
+html:root body.prism-layout.prism-reference #navigation a{padding:17px 12px;min-height:57px;font-size:12px;gap:8px}
+html:root body.prism-layout.prism-reference #navigation a[data-page=catalog],html:root body.prism-layout.prism-reference #navigation a[data-page=guide]{display:none}
+html:root body.prism-layout.prism-reference #navigation a svg{display:block;width:14px;height:14px}
+html:root body.prism-layout.prism-reference .top-actions{gap:9px;margin-left:auto;flex-shrink:0}
+html:root body.prism-layout.prism-reference .local-label{display:flex;align-items:center;gap:8px;order:2;border:1px solid var(--border);padding:8px 12px;border-radius:7px;font-size:10px;letter-spacing:0;white-space:nowrap}
+html:root body.prism-layout.prism-reference .region-control{order:1;border:0;padding:0 12px 0 0}
+html:root body.prism-layout.prism-reference .region-control select{border:0;background:transparent;font-size:12px;width:110px;min-height:32px}
+html:root body.prism-layout.prism-reference .language-control{order:4}
+html:root body.prism-layout.prism-reference .text-size-button{order:3;border-radius:50%;width:32px;height:32px;min-width:32px;font-size:13px;background:var(--raised)}
+html:root body.prism-layout.prism-reference .top-actions>.icon-button{order:5}
+html:root body.prism-layout.prism-reference .prism-route-context{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+html:root body.prism-layout.prism-reference main{padding:10px 14px 0;max-width:1920px}
+html:root body.prism-layout.prism-reference #view-builder>.builder-heading,html:root body.prism-layout.prism-reference #view-builder>.compact-stats{display:none}
+html:root body.prism-layout.prism-reference .prism-library{padding:12px 16px 8px;margin:0 0 12px;border-radius:11px;background:linear-gradient(115deg,color-mix(in srgb,var(--blue) 9%,var(--panel)),var(--panel) 60%,color-mix(in srgb,var(--accent) 6%,var(--panel)));box-shadow:inset 0 1px #ffffff06}
+html:root body.prism-layout.prism-reference .prism-library-top{gap:16px;flex-wrap:nowrap;margin-bottom:10px}
+html:root body.prism-layout.prism-reference .prism-library h2{font-size:14px}
+html:root body.prism-layout.prism-reference .resource-tabs{flex:1;flex-wrap:nowrap;gap:4px;overflow:auto;scrollbar-width:none}
+html:root body.prism-layout.prism-reference .resource-tabs>button{padding:6px 10px;font-size:11px;white-space:nowrap;flex-shrink:0}
+html:root body.prism-layout.prism-reference .prism-search{flex:0 1 260px;width:260px;margin-left:auto;height:32px}
+html:root body.prism-layout.prism-reference .prism-search input{min-height:30px;padding:7px;font-size:11px}
+html:root body.prism-layout.prism-reference .prism-service-list{gap:10px;padding-bottom:4px}
+html:root body.prism-layout.prism-reference .prism-service{flex:0 0 165px;min-height:70px;padding:11px 12px;gap:11px;border-radius:8px;background:linear-gradient(130deg,var(--input),var(--panel));box-shadow:inset 0 1px #ffffff05}
+html:root body.prism-layout.prism-reference .prism-service strong{font-size:12px}
+html:root body.prism-layout.prism-reference .prism-service small{font-size:10px;margin-top:4px}
+html:root body.prism-layout.prism-reference .prism-service-icon{display:grid;place-items:center;width:31px;height:34px;border-radius:6px;background:color-mix(in srgb,var(--accent) 8%,transparent)}
+html:root body.prism-layout.prism-reference .prism-service.selected{border-color:#ff9a7c;box-shadow:inset 0 0 0 1px #ff9a7c,0 0 12px #ff8a7d18;background:linear-gradient(110deg,#ff987b17,var(--input))}
+html:root body.prism-layout.prism-reference .builder-grid{grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:16px}
+html:root body.prism-layout.prism-reference .builder-section-title{padding:14px 18px;gap:14px;border-radius:11px 11px 0 0;background:linear-gradient(110deg,var(--panel),var(--sidebar));justify-content:flex-start}
+html:root body.prism-layout.prism-reference .builder-section-title h2{font-size:17px;margin:0 0 5px}
+html:root body.prism-layout.prism-reference .builder-section-title p{font-size:12px;color:var(--muted);margin:0;line-height:1.5}
+html:root body.prism-layout.prism-reference .builder-section-title .service-icon{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--border);border-radius:9px;color:var(--accent);background:var(--raised)}
+html:root body.prism-layout.prism-reference .builder-section-title .service-icon svg{width:27px;height:27px}
+html:root body.prism-layout.prism-reference #builder-step-count{display:none}
+html:root body.prism-layout.prism-reference .form-heading{display:none}
+html:root body.prism-layout.prism-reference .resource-form{border-radius:0 0 11px 11px;background:linear-gradient(130deg,var(--panel),var(--sidebar));box-shadow:inset 0 1px #ffffff05}
+html:root body.prism-layout.prism-reference #resource-form{grid-template-columns:202px minmax(0,1fr);padding:0;min-height:0}
+html:root body.prism-layout.prism-reference .service-policy-banner{display:none}
+html:root body.prism-layout.prism-reference #builder-steps{grid-column:1;grid-row:1/5;padding:13px 12px;gap:7px;background:linear-gradient(180deg,color-mix(in srgb,var(--blue) 6%,var(--panel)),var(--sidebar));align-self:stretch}
+html:root body.prism-layout.prism-reference #builder-steps>button{padding:11px 12px;gap:12px;font-size:12px;min-height:42px;flex-direction:row;justify-content:flex-start}
+html:root body.prism-layout.prism-reference #builder-steps>button[aria-current=step]{background:linear-gradient(110deg,#ff9d7e,#b94c91);border-color:#ee8aab;color:#241329;box-shadow:inset 0 1px #ffe3ca40}
+html:root body.prism-layout.prism-reference #builder-steps>button .step-number{width:19px;height:19px;border:0;background:none;font-size:0;position:relative}
+html:root body.prism-layout.prism-reference #builder-steps>button .step-number::after{content:'◇';font-size:19px;color:currentColor}
+html:root body.prism-layout.prism-reference #builder-steps>.prism-secondary-step{display:none}
+html:root body.prism-layout.prism-reference #prism-governance-links{display:grid;gap:8px}
+html:root body.prism-layout.prism-reference #prism-governance-links>a{display:flex;align-items:center;gap:14px;padding:11px 12px;font-size:12px;color:var(--muted)}
+html:root body.prism-layout.prism-reference #prism-governance-links>a svg{width:18px;height:18px}
+html:root body.prism-layout.prism-reference .prism-more{font-size:11px;color:var(--muted);padding:9px 12px;position:relative}
+html:root body.prism-layout.prism-reference .prism-more summary{cursor:pointer}
+html:root body.prism-layout.prism-reference .prism-more>div{display:grid;gap:5px;margin-top:10px}
+html:root body.prism-layout.prism-reference .prism-more :is(a,button){font-size:11px;padding:7px;text-align:left;border:0;background:var(--input);color:var(--muted);border-radius:4px}
+html:root body.prism-layout.prism-reference .service-selector{grid-column:2;grid-row:1;margin:17px 18px 0}
+html:root body.prism-layout.prism-reference .service-selector label{font-size:12px;gap:6px}
+html:root body.prism-layout.prism-reference #resource-fields{grid-column:2;padding:12px 18px;min-height:0;max-height:360px;overflow:auto;scrollbar-width:thin}
+html:root body.prism-layout.prism-reference [data-step-pane=service]>.step-title,html:root body.prism-layout.prism-reference [data-step-pane=service]>.step-description{display:none}
+html:root body.prism-layout.prism-reference .wizard-pane{min-height:0}
+html:root body.prism-layout.prism-reference :is(input:not([type=checkbox]):not([type=color]),select,textarea){min-height:35px;font-size:12px;border-radius:6px;background:linear-gradient(120deg,var(--input),color-mix(in srgb,var(--blue) 3%,var(--input)));padding:8px 11px}
+html:root body.prism-layout.prism-reference .fields{gap:12px}
+html:root body.prism-layout.prism-reference .fields label{font-size:12px}
+html:root body.prism-layout.prism-reference .fields label>input,html:root body.prism-layout.prism-reference .fields label>select{margin-top:5px}
+html:root body.prism-layout.prism-reference .prism-general-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:12px;margin-top:12px}
+html:root body.prism-layout.prism-reference .prism-general-grid>label{font-size:12px;display:grid;gap:5px}
+html:root body.prism-layout.prism-reference .prism-general-grid .field-block>label{font-size:12px;margin-bottom:5px}
+html:root body.prism-layout.prism-reference .prism-general-grid .shape-control{display:block}
+html:root body.prism-layout.prism-reference .prism-general-grid .shape-control>input{width:100%;font-family:var(--ui-font);font-size:12px}
+html:root body.prism-layout.prism-reference .prism-general-grid .shape-open-button{display:none}
+html:root body.prism-layout.prism-reference [data-step-pane=service]>.advanced-settings{margin:10px 0 0;padding:0;border-radius:6px}
+html:root body.prism-layout.prism-reference [data-step-pane=service]>.advanced-settings>summary{padding:8px 10px;font-size:11px}
+html:root body.prism-layout.prism-reference #form-hints{grid-column:2;padding:0 18px;font-size:10px}
+html:root body.prism-layout.prism-reference #form-hints:empty{display:none}
+html:root body.prism-layout.prism-reference .wizard-footer{display:none}
+html:root body.prism-layout.prism-reference #prism-compact-actions{grid-column:2;padding:0 18px 16px;display:flex;gap:12px;justify-content:flex-end;align-items:center}
+html:root body.prism-layout.prism-reference .button{min-height:36px;border-radius:6px;font-size:12px;padding:8px 16px}
+html:root body.prism-layout.prism-reference .button.primary{background:linear-gradient(110deg,#ffa57f,#ff4c80);color:#231221;border-color:#f78398;box-shadow:0 0 14px #f0749222,inset 0 1px #ffe5ce77;font-weight:650}
+html:root body.prism-layout.prism-reference .plan-column{display:flex;gap:12px}
+html:root body.prism-layout.prism-reference .plan-column>.panel{padding:0;border-radius:11px;overflow:hidden;background:linear-gradient(120deg,var(--panel),var(--sidebar));box-shadow:inset 0 1px #ffffff07}
+html:root body.prism-layout.prism-reference .prism-panel-heading{padding:12px 17px;margin:0;border-bottom:1px solid var(--border);gap:8px}
+html:root body.prism-layout.prism-reference .prism-panel-heading h2{font-size:14px}
+html:root body.prism-layout.prism-reference .prism-map-tools{display:flex;align-items:center;gap:8px;margin-left:auto}
+html:root body.prism-layout.prism-reference .prism-map-tools button{font-size:13px;min-height:24px;width:24px;height:24px;border-radius:4px}
+html:root body.prism-layout.prism-reference .prism-map-tools #prism-zoom-label{width:45px;font-size:11px}
+html:root body.prism-layout.prism-reference #prism-diagram{border:0;border-radius:0;min-height:115px;margin:0 14px;background-size:13px 13px;overflow:auto}
+html:root body.prism-layout.prism-reference #prism-diagram>svg{height:132px;min-width:440px;width:100%;stroke:none}
+html:root body.prism-layout.prism-reference .prism-caption{display:none}
+html:root body.prism-layout.prism-reference .prism-export .prism-panel-heading{border:0;padding-bottom:0;min-height:48px}
+html:root body.prism-layout.prism-reference .prism-export .prism-panel-heading>.button{font-size:12px;padding:8px 15px;min-height:34px}
+html:root body.prism-layout.prism-reference .prism-export-tabs{padding:0 17px;margin:0 0 8px;gap:0}
+html:root body.prism-layout.prism-reference .prism-export-tabs button{padding:6px 20px;font-size:11px;border-radius:5px;min-width:125px}
+html:root body.prism-layout.prism-reference .prism-export-tabs button[aria-pressed=true]{background:linear-gradient(120deg,#fb968b45,#bd4d8340);border-color:#ca7a8a}
+html:root body.prism-layout.prism-reference .prism-code-layout{padding:0 17px 14px;grid-template-columns:minmax(0,1fr) 215px;gap:16px}
+html:root body.prism-layout.prism-reference #prism-code{height:115px;max-height:115px;font-size:10px;line-height:18px;padding:9px 12px;background:linear-gradient(120deg,var(--input),var(--sidebar));color:var(--mint)}
+html:root body.prism-layout.prism-reference .prism-export-actions{gap:9px;flex-direction:column;align-items:stretch;padding-top:0}
+html:root body.prism-layout.prism-reference .prism-export-actions .text-button{font-size:11px;line-height:1.5;padding:6px 0;display:flex;align-items:center;gap:11px;text-align:left;white-space:normal;color:var(--text)}
+html:root body.prism-layout.prism-reference .prism-export-actions svg{width:17px;height:17px;flex-shrink:0}
+html:root body.prism-layout.prism-reference .quick-lab{display:none}
+html:root body.prism-layout.prism-reference .prism-project-details{width:100%;border:1px solid var(--border);border-radius:9px;font-size:12px;background:var(--panel);padding:12px 17px}
+html:root body.prism-layout.prism-reference .prism-project-details>summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:var(--muted)}
+html:root body.prism-layout.prism-reference .prism-project-details>summary svg{width:15px;height:15px}
+html:root body.prism-layout.prism-reference .prism-project-details .panel{margin-top:15px;padding:15px}
+html:root body.prism-layout.prism-reference footer{font-size:10px;padding:12px 0;margin-top:14px}
+html:root body.prism-layout.prism-reference .prism-map:fullscreen{background:var(--panel);padding:25px}
+html:root body.prism-layout.prism-reference .prism-map:fullscreen #prism-diagram>svg{height:75vh}
+@media(min-width:1101px){html:root body.prism-layout.prism-reference .prism-project-details:not([open]){border:0;background:none;padding:0 2px;font-size:10px;opacity:.65}}
+@media(max-width:1350px){html:root body.prism-layout.prism-reference .prism-header{gap:8px;padding:0 14px}html:root body.prism-layout.prism-reference .prism-header .brand{width:160px;font-size:15px}html:root body.prism-layout.prism-reference #navigation a{padding:16px 9px;font-size:11px}html:root body.prism-layout.prism-reference .local-label{display:none}html:root body.prism-layout.prism-reference .top-actions{gap:5px}html:root body.prism-layout.prism-reference #resource-form{grid-template-columns:175px minmax(0,1fr)}html:root body.prism-layout.prism-reference .prism-library h2{font-size:12px}html:root body.prism-layout.prism-reference .prism-search{flex-basis:190px}html:root body.prism-layout.prism-reference .prism-code-layout{grid-template-columns:minmax(0,1fr) 175px;gap:10px}}
+@media(min-width:901px) and (max-width:1100px){html:root body.prism-layout.prism-reference .prism-header{flex-wrap:nowrap}html:root body.prism-layout.prism-reference .prism-header .brand{width:130px;font-size:14px}html:root body.prism-layout.prism-reference #navigation a{padding-inline:7px;font-size:10px}html:root body.prism-layout.prism-reference .region-control select{width:90px;font-size:11px}html:root body.prism-layout.prism-reference #resource-form{grid-template-columns:142px minmax(0,1fr)}html:root body.prism-layout.prism-reference #builder-steps>button{font-size:11px;padding:9px 7px}html:root body.prism-layout.prism-reference .prism-library-top{flex-wrap:wrap}html:root body.prism-layout.prism-reference .resource-tabs{flex-basis:60%}html:root body.prism-layout.prism-reference .prism-general-grid{grid-template-columns:1fr}html:root body.prism-layout.prism-reference .prism-code-layout{grid-template-columns:1fr}html:root body.prism-layout.prism-reference .prism-export-actions{flex-direction:row;flex-wrap:wrap;gap:8px 18px}}
+@media(max-width:900px){html:root body.prism-layout.prism-reference .prism-header{flex-wrap:wrap;margin:8px 10px 0;gap:0;padding:0 12px}html:root body.prism-layout.prism-reference .prism-header .brand{width:auto;flex:1;min-width:140px}html:root body.prism-layout.prism-reference #navigation{order:3;flex-basis:100%;min-height:43px}html:root body.prism-layout.prism-reference #navigation a{min-height:43px;padding:12px 10px;font-size:11px}html:root body.prism-layout.prism-reference main{padding:10px 10px 0}html:root body.prism-layout.prism-reference .builder-grid{grid-template-columns:1fr}html:root body.prism-layout.prism-reference .prism-library-top{flex-wrap:wrap;gap:10px}html:root body.prism-layout.prism-reference .resource-tabs{order:3;flex-basis:100%}html:root body.prism-layout.prism-reference .prism-search{flex:1;min-width:140px}html:root body.prism-layout.prism-reference .plan-column{display:flex}html:root body.prism-layout.prism-reference #resource-form{grid-template-columns:175px minmax(0,1fr)}html:root body.prism-layout.prism-reference #resource-fields{max-height:none}html:root body.prism-layout.prism-reference .prism-code-layout{grid-template-columns:minmax(0,1fr) 200px}}
+@media(max-width:600px){html:root body.prism-layout.prism-reference .prism-header .brand{font-size:14px;min-width:115px;width:115px}html:root body.prism-layout.prism-reference .prism-header .brand small{font-size:7px}html:root body.prism-layout.prism-reference .brand-icon{width:20px}html:root body.prism-layout.prism-reference .region-control{display:none}html:root body.prism-layout.prism-reference .top-actions{gap:4px}html:root body.prism-layout.prism-reference .prism-library h2{font-size:12px}html:root body.prism-layout.prism-reference .prism-search{flex-basis:100%}html:root body.prism-layout.prism-reference #resource-form{grid-template-columns:1fr}html:root body.prism-layout.prism-reference #builder-steps{grid-column:1;grid-row:auto;flex-direction:row;flex-wrap:wrap;padding:10px;gap:5px}html:root body.prism-layout.prism-reference #builder-steps>button{flex:1;font-size:10px;padding:8px 6px;min-width:80px;flex-direction:row}html:root body.prism-layout.prism-reference #prism-governance-links{display:flex;gap:4px;flex-basis:100%;align-items:center;flex-wrap:wrap}html:root body.prism-layout.prism-reference #prism-governance-links>a{font-size:10px;padding:7px;gap:6px}html:root body.prism-layout.prism-reference .prism-more{font-size:10px;padding:6px}html:root body.prism-layout.prism-reference .service-selector,html:root body.prism-layout.prism-reference #resource-fields,html:root body.prism-layout.prism-reference #form-hints,html:root body.prism-layout.prism-reference #prism-compact-actions{grid-column:1}html:root body.prism-layout.prism-reference .service-selector{grid-row:auto;margin:12px 14px 0}html:root body.prism-layout.prism-reference #resource-fields{padding:12px 14px}html:root body.prism-layout.prism-reference .prism-general-grid{grid-template-columns:1fr}html:root body.prism-layout.prism-reference .builder-section-title p{font-size:11px}html:root body.prism-layout.prism-reference .prism-code-layout{grid-template-columns:1fr}html:root body.prism-layout.prism-reference .prism-export-actions{flex-direction:row;flex-wrap:wrap;gap:10px 16px}html:root body.prism-layout.prism-reference .prism-export-tabs button{min-width:100px}html:root body.prism-layout.prism-reference .prism-panel-heading{padding:12px;flex-wrap:wrap}html:root body.prism-layout.prism-reference .prism-panel-heading h2{font-size:13px}html:root body.prism-layout.prism-reference .prism-panel-heading .button{font-size:10px;padding:7px 10px}html:root body.prism-layout.prism-reference #prism-compact-actions{padding:0 14px 14px;gap:8px}html:root body.prism-layout.prism-reference #prism-compact-actions .button{font-size:11px;padding:8px 12px}html:root body.prism-layout.prism-reference .prism-more>div{position:relative}}
+html:root body.prism-layout.prism-reference .prism-node[data-category=network]{fill:color-mix(in srgb,var(--mint) 13%,var(--input));stroke:var(--mint)}
+html:root body.prism-layout.prism-reference .prism-node[data-category=compute]{fill:color-mix(in srgb,var(--blue) 14%,var(--input));stroke:var(--blue)}
+html:root body.prism-layout.prism-reference .prism-node[data-category=storage]{fill:color-mix(in srgb,var(--accent) 13%,var(--input));stroke:var(--accent)}
+html:root body.prism-layout.prism-reference .prism-node-icon{stroke:var(--text);fill:none;stroke-width:1.4}
+html:root body.prism-layout.prism-reference .prism-service{max-height:78px;min-height:70px}
+html:root body.prism-layout.prism-reference .prism-service strong{line-height:1.3}
+html:root body.prism-layout.prism-reference #prism-governance-links a{padding-block:9px}
+html:root body.prism-layout.prism-reference #builder-steps{align-content:start;justify-content:flex-start}
+html:root body.prism-layout.prism-reference #builder-steps{grid-row:1/4;min-height:0}
+html:root body.prism-layout.prism-reference #builder-steps>button{height:40px;min-height:40px;flex:0 0 40px;box-sizing:border-box;line-height:1.4;padding:8px 12px}
+html:root body.prism-layout.prism-reference #prism-governance-links>a{height:38px;box-sizing:border-box;line-height:1.4}
+html:root body.prism-layout.prism-reference #builder-steps>button .step-number::after{display:none}
+html:root body.prism-layout.prism-reference #builder-steps>button .step-number svg{width:18px;height:18px;stroke:currentColor}
+html:root body.prism-layout.prism-reference .prism-service{--service-tone:var(--accent)}
+html:root body.prism-layout.prism-reference .prism-service[data-type=compute]{--service-tone:#ffb16f}
+html:root body.prism-layout.prism-reference .prism-service[data-type=volume]{--service-tone:#ff8996}
+html:root body.prism-layout.prism-reference .prism-service[data-type=lb]{--service-tone:#c985f0}
+html:root body.prism-layout.prism-reference .prism-service[data-type=bucket]{--service-tone:#aa88ed}
+html:root body.prism-layout.prism-reference .prism-service[data-type=adb]{--service-tone:#a5c8e7}
+html:root body.prism-layout.prism-reference .prism-service[data-type=vault]{--service-tone:#b39bea}
+html:root body.prism-layout.prism-reference .prism-service-icon{color:var(--service-tone);background:color-mix(in srgb,var(--service-tone) 8%,transparent)}
+html:root body.prism-layout.prism-reference .prism-map-empty{min-height:132px;padding:15px;gap:7px}
+html:root body.prism-layout.prism-reference .prism-map-empty span{max-width:300px;font-size:10px}
+html:root body.prism-layout.prism-reference #prism-code .code-keyword{color:var(--accent)}
+html:root body.prism-layout.prism-reference #prism-code .code-string{color:var(--blue)}
+html:root body.prism-layout.prism-reference #prism-code .code-comment{color:var(--muted)}
+@media(max-width:600px){html:root body.prism-layout.prism-reference #builder-steps{grid-row:auto}html:root body.prism-layout.prism-reference #builder-steps>button{flex:1;height:auto;min-height:40px;padding:8px 6px}}
+html:root body.prism-layout.prism-reference #prism-diagram{height:132px;min-height:132px}
+html:root body.prism-layout.prism-reference .prism-map:fullscreen #prism-diagram{height:75vh}
+/* Fill the available desktop workspace instead of keeping preview-sized panels. */
+html:root body.prism-layout.prism-reference main{max-width:none;width:100%}
+@media(min-width:1101px){
+ html:root body.prism-layout.prism-reference .builder-grid{min-height:calc(100dvh - 285px);align-items:stretch}
+ html:root body.prism-layout.prism-reference .builder-main{display:flex;flex-direction:column;min-height:0}
+ html:root body.prism-layout.prism-reference .resource-form{display:flex;flex:1;min-height:0}
+ html:root body.prism-layout.prism-reference #resource-form{flex:1;min-width:0;grid-template-rows:auto minmax(0,1fr) auto}
+ html:root body.prism-layout.prism-reference #resource-fields{grid-row:2;max-height:none;min-height:0;align-self:start}
+ html:root body.prism-layout.prism-reference #prism-compact-actions{grid-row:3;align-self:end}
+ html:root body.prism-layout.prism-reference .plan-column{display:grid;grid-template-rows:minmax(180px,.9fr) minmax(220px,1.1fr) auto;gap:12px;min-height:0}
+ html:root body.prism-layout.prism-reference .prism-map{display:flex;flex-direction:column;min-height:0}
+ html:root body.prism-layout.prism-reference #prism-diagram{flex:1;height:auto;min-height:132px}
+ html:root body.prism-layout.prism-reference .prism-export{display:flex;flex-direction:column;min-height:0}
+ html:root body.prism-layout.prism-reference .prism-code-layout{flex:1;min-height:0}
+ html:root body.prism-layout.prism-reference #prism-code{height:100%;min-height:115px;max-height:none}
+}
+@media(min-width:1101px){
+ html:root body.prism-layout.prism-reference .builder-grid{height:calc(100dvh - 285px);min-height:440px}
+ html:root body.prism-layout.prism-reference .builder-main{height:100%;min-height:0}
+ html:root body.prism-layout.prism-reference #resource-fields{align-self:stretch;overflow:auto}
+ html:root body.prism-layout.prism-reference .plan-column{height:100%;grid-template-rows:minmax(150px,.9fr) minmax(190px,1.1fr) auto}
+ html:root body.prism-layout.prism-reference .prism-map,html:root body.prism-layout.prism-reference .prism-export{min-height:0}
+}
+/* Architecture has its own destination; the builder keeps configuration and review. */
+@media(min-width:1101px){html:root body.prism-layout.prism-reference .plan-column{grid-template-rows:minmax(220px,1fr) auto}}
+html:root body.prism-layout.prism-reference #view-diagram>.prism-map{display:flex;flex-direction:column;min-height:400px;height:calc(100dvh - 230px);border:1px solid var(--border);border-radius:11px;overflow:hidden;background:var(--panel)}
+html:root body.prism-layout.prism-reference #view-diagram #prism-diagram{flex:1;height:auto;min-height:200px}
+html:root body.prism-layout.prism-reference #view-diagram>.prism-map:fullscreen{height:100vh}

@@ -26,3 +26,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Prévia de apresentação local
+
+A cena isométrica dos recursos é gerada pelo próprio Studio a partir dos recursos e referências do projeto. Não depende de serviços de mapa, telemetria ou imagens externas.

@@ -34,11 +34,11 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 | --- | --- |
 | **Planejamento de recursos** | Configurar 22 tipos nativos, organizar referências entre recursos e usar o recurso Universal para HCL manual. |
 | **Compute e imagens** | Consultar shapes e sistemas operacionais, configurar Linux ou Windows e distinguir licenciamento nativo de BYOL. |
-| **Policies IAM** | Gerar statements de referência e conferir os escopos e as dependências dos serviços. |
+| **Policies IAM** | Consultar sugestões opcionais, conferir escopos e exportar separadamente da infraestrutura. |
 | **Tags** | Organizar tags freeform e defined tags e revisar o padrão aplicado ao projeto. |
 | **Rede e roteamento** | Explorar uma topologia hub-and-spoke e acompanhar decisões de ida e retorno no laboratório lógico. |
 | **Terraform e OCI CLI** | Escolher `main.tf` ou `deploy-oci.sh`, revisar as variáveis e copiar/baixar o formato selecionado. |
-| **Aparência e leitura** | Escolher entre 40 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
+| **Aparência e leitura** | Escolher entre 39 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
 | **Backups e exportação** | Salvar e restaurar o projeto em JSON e exportar uma cópia limpa da ferramenta em HTML. |
 
 ## Como usar
@@ -46,7 +46,7 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 1. Abra a [demonstração](https://cwbffm.github.io/oci-architect-studio/) ou baixe o repositório e abra `index.html` no navegador.
 2. Selecione a região e configure o contexto do projeto.
 3. Escolha um serviço, preencha os campos e associe suas dependências.
-4. Revise as policies, as tags e as pendências indicadas pela ferramenta.
+4. Revise as tags e as pendências; consulte as sugestões IAM se precisar.
 5. Escolha Terraform ou OCI CLI na exportação e salve um backup JSON do projeto.
 
 O projeto fica no armazenamento local do navegador. Exporte o backup para preservá-lo ao trocar de navegador, computador ou limpar os dados do site.
@@ -86,7 +86,7 @@ Revise as variáveis, a autenticação, a região e as alterações do plano ant
 
 Em **Código e exportação**, selecione **OCI CLI** e baixe `deploy-oci.sh`. O script usa comandos nativos da Oracle e requer Bash, Python 3 e OCI CLI autenticada. Variáveis pendentes são preenchidas no terminal. Há suporte aos 22 tipos nativos, respeitando os limites indicados na tela; Universal/HCL e Windows BYOL permanecem em Terraform.
 
-Veja [OCI_CLI.md](OCI_CLI.md) para cobertura, execução, região de origem IAM e validação sem acesso à tenancy. OCI CLI executa criação direta e não mantém state nem plan do Terraform.
+Veja [OCI_CLI.md](OCI_CLI.md) para cobertura, execução, região de origem para criação de tags e validação sem acesso à tenancy. OCI CLI executa criação direta e não mantém state nem plan do Terraform.
 
 ## Exemplos de uso
 
@@ -105,7 +105,7 @@ Consulte [VALIDATION.md](VALIDATION.md) para os comandos atuais de verificação
 
 - A aplicação planeja e gera código; ela não executa Terraform ou OCI CLI nem implanta recursos na sua tenancy.
 - O catálogo de referência não garante disponibilidade regional ou capacidade. Importe dados da sua região quando necessário.
-- As policies geradas exigem revisão de identidade, escopo e permissões efetivas.
+- Policies são opcionais: `main.tf` e `deploy-oci.sh` não criam IAM policies, mesmo ao importar um projeto antigo que habilitava essa opção. A aba IAM permite copiar statements ou baixar um pacote independente, com revisão própria de identidade, escopo e permissões.
 - O laboratório de redes é uma simulação lógica; não envia pacotes nem comprova conectividade real na OCI.
 - O HCL manual do recurso Universal exige revisão.
 
@@ -129,3 +129,7 @@ Para configurar uma publicação própria, selecione **Settings → Pages → Bu
 ## Mais projetos
 
 [Perfil de Fabio Ferreira](https://github.com/cwbffm) · [Laboratório Terraform OCI](https://github.com/cwbffm/oci-terraform-network) · [Scripts e automações](https://github.com/cwbffm/scriptz)
+
+### Prévia: três modos de trabalho
+
+O Studio reúne Topologia de Precisão (trabalhar), Sala de Revisão (checklist e observações locais) e Observatório do Projeto (inventário isométrico para apresentar). Todos usam os mesmos recursos do projeto. A revisão manual fica neste navegador e pode ser exportada como relatório JSON; alterações no plano exigem nova conferência do checklist. Não há colaboração em tempo real ou validação de permissões na OCI.
