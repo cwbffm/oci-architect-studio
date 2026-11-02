@@ -1,0 +1,36 @@
+/* Approved navigation 02: full-width main header and compact sidebar beneath it. */
+body.studio-navigation{--studio-header-height:68px;--studio-sidebar-width:208px}
+body.studio-navigation .app{margin-left:0}
+body.studio-navigation main{margin-left:var(--studio-sidebar-width)}
+body.studio-navigation .sidebar{top:var(--studio-header-height);width:var(--studio-sidebar-width);height:calc(100dvh - var(--studio-header-height));padding:14px 14px 16px;overflow-y:auto;background:var(--sidebar)}
+body.studio-navigation .topbar{height:68px;min-height:68px;padding:0 24px 0 20px;gap:16px;display:flex;align-items:center;position:sticky;top:0;z-index:40;background:var(--panel);border-bottom:1px solid var(--border)}
+body.studio-navigation .topbar-brand{display:flex;align-items:center;gap:10px;height:68px;width:188px;min-width:0;flex-shrink:0;padding:0 10px 0 0;margin:0;border-right:1px solid var(--border);font-size:16px;line-height:1.25;letter-spacing:-.3px}
+body.studio-navigation .topbar-brand .brand-icon,body.studio-navigation .topbar-brand .brand-icon svg{width:28px;height:28px}
+body.studio-navigation .topbar-brand small{display:block;color:var(--muted);font-size:8px;letter-spacing:1.3px;margin-top:4px}
+body.studio-navigation .breadcrumb{min-width:0;flex:1;flex-basis:auto}
+body.studio-navigation #navigation{padding-top:0}
+body.studio-navigation .sidebar-group{margin-bottom:18px}
+body.studio-navigation .nav-label{font-size:9px;letter-spacing:1px;margin:10px 10px 8px}
+body.studio-navigation .sidebar-links a{min-height:36px;padding:8px 10px;border-radius:6px;font-size:11px;gap:10px;margin:3px 0}
+body.studio-navigation .sidebar-links svg{width:17px;height:17px;stroke-width:1.5}
+body.studio-navigation .region-button,body.studio-navigation .language-button{height:36px;border-radius:6px}
+body.studio-navigation .sidebar-bottom{margin-top:auto;padding-top:14px;font-size:10px}
+body.studio-navigation .sidebar-bottom .text-button{min-height:34px;border-radius:6px}
+body.studio-navigation .top-actions{gap:8px;flex-shrink:0}
+body.studio-navigation .topbar .text-size-button{height:36px;min-width:34px;border-radius:6px}
+@media(max-width:1100px){body.studio-navigation .topbar .local-label{display:none}}
+@media(max-width:1100px) and (min-width:701px){body.studio-navigation .topbar-brand{width:188px;font-size:14px}body.studio-navigation .topbar{gap:10px;padding-right:12px}}
+@media(max-width:700px){
+ body.studio-navigation{--studio-header-height:105px}
+ body.studio-navigation main{margin-left:0}
+ body.studio-navigation .sidebar{width:235px}
+ body.studio-navigation .topbar{height:auto;min-height:94px;flex-wrap:wrap;padding:10px 12px;gap:8px}
+ body.studio-navigation .topbar-brand{height:32px;width:auto;border:0;font-size:13px;padding:0}
+ body.studio-navigation .topbar-brand small{display:none}
+ body.studio-navigation .breadcrumb{flex:1;flex-basis:auto;justify-content:flex-end}
+ body.studio-navigation .breadcrumb>span{display:none}
+ body.studio-navigation .top-actions{flex-basis:100%;max-width:100%;gap:5px;flex-wrap:wrap;margin-left:auto;justify-content:flex-end}
+ body.studio-navigation .region-button,body.studio-navigation .language-button{height:34px;font-size:11px}
+}
+
+@media(max-width:1100px){body.studio-navigation .region-menu{top:calc(var(--studio-header-height) + 8px);max-height:calc(100dvh - var(--studio-header-height) - 20px)}}

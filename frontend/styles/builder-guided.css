@@ -1,0 +1,71 @@
+/* Approved builder 03: direct questions and one OCI service selector. */
+#view-builder .builder-heading{margin-bottom:20px}
+#view-builder h1{font-size:29px;line-height:1.2}
+#view-builder .builder-heading p{font-size:12px;max-width:650px}
+#view-builder #stats,#view-builder .quick-lab,#view-builder .draft-summary,#view-builder .reference-note{display:none}
+#view-builder .builder-grid{display:block}
+#view-builder .builder-main{max-width:900px;margin:auto;min-width:0}
+#view-builder .resource-form,#view-builder #resource-form{min-width:0;max-width:100%}
+#view-builder .form-heading{margin:16px 20px}
+#view-builder .form-heading h3{font-size:17px}
+#view-builder .form-heading p{font-size:11px}
+#view-builder .form-heading>.badge{display:none}
+#view-builder #resource-form{padding:0 20px}
+#view-builder .step-title{font-size:19px;line-height:1.3}
+#view-builder .step-description{margin-bottom:16px;font-size:12px}
+#view-builder .builder-steps{display:flex;border:0;gap:5px;margin:16px 0 20px;border-radius:7px}
+#view-builder .builder-steps button{flex:1;display:flex;flex-direction:row;justify-content:center;gap:6px;border:1px solid var(--border);border-radius:5px;background:transparent;padding:8px 5px;font-size:10px}
+#view-builder .builder-steps button[aria-current=step]{background:var(--raised)}
+#view-builder .wizard-footer{margin-top:18px;padding:12px 0;gap:10px}
+#view-builder .wizard-footer-hint{display:none}
+#view-builder #builder-next{margin-left:auto;max-width:240px;white-space:normal}
+#view-builder .builder-guide{border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:14px 16px;margin-bottom:16px}
+#view-builder .builder-guide h2{font-size:12px;display:block;margin:0 0 4px}
+#view-builder .builder-guide p{font-size:11px;color:var(--muted);line-height:1.6;margin:0}
+#view-builder .builder-guide .builder-guide-step{font-size:10px;margin-bottom:5px;letter-spacing:.4px}
+#view-builder .service-policy-banner{margin:12px 0 16px}
+#view-builder .policy-disclosure>summary{padding:10px 12px}
+#view-builder .policy-summary-text>strong{font-size:11px}
+#view-builder .policy-summary-text>#selected-policy-caption{display:none}
+#view-builder .builder-plan-disclosure{border:1px solid var(--border);border-radius:8px;padding:0 16px;max-width:900px;margin:18px auto 0;background:var(--panel)}
+#view-builder .builder-plan-disclosure>summary{padding:13px 0;font-size:12px;cursor:pointer}
+#view-builder .builder-plan-disclosure>summary>.count{margin-left:8px}
+#view-builder .plan-column{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-bottom:16px}
+#view-builder .plan-column .plan-panel{grid-column:1/-1}
+@media(max-width:700px){#view-builder h1{font-size:25px}#view-builder #resource-form{padding:0 15px}}
+@media(max-width:600px){#view-builder .plan-column{grid-template-columns:1fr}#view-builder .builder-steps button{flex-direction:column;font-size:9px}}
+/* Six refinements: a single contextual explanation and a lighter, explicit review flow. */
+#view-builder .form-heading{display:none}
+#view-builder #resource-form{padding-top:18px}
+#view-builder #service-selector[hidden],#view-builder #builder-service-summary[hidden],#view-builder #builder-configure-later[hidden],#view-builder #builder-success[hidden]{display:none!important}
+#view-builder .builder-service-summary{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--border);border-radius:6px;background:var(--panel);padding:10px 12px;font-size:11px;min-width:0}
+#view-builder .builder-service-summary>div{min-width:0;overflow-wrap:anywhere}
+#view-builder .builder-service-summary>.text-button{white-space:nowrap;flex-shrink:0;font-size:10px}
+#view-builder .builder-stage-meta{margin:0 0 9px;font-size:10px}
+#view-builder .step-title{margin-bottom:7px}
+#view-builder .builder-optional-note{font-size:11px;color:var(--muted);padding:10px 12px;border:1px solid var(--border);border-radius:6px;line-height:1.6;margin:0 0 16px}
+#view-builder .builder-optional-close{font-size:10px;margin:0 14px 12px}
+#view-builder .builder-review-group{border:1px solid var(--border);border-radius:7px;padding:14px;margin:14px 0}
+#view-builder .builder-review-group>h4{font-size:13px;margin:0 0 10px}
+#view-builder .builder-review-group>p{font-size:11px;line-height:1.6;margin:8px 0}
+#view-builder .builder-review-list{list-style:none;padding:0;margin:0}
+#view-builder .builder-review-list li{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--border);padding:10px 0;font-size:11px}
+#view-builder .builder-review-list li:last-child{border-bottom:0}
+#view-builder .builder-review-list li>div{min-width:0;flex:1}
+#view-builder .builder-review-list strong,#view-builder .builder-review-list span.small{display:block;font-size:11px;line-height:1.5}
+#view-builder .builder-review-list code{display:block;font-size:10px;white-space:normal;overflow-wrap:anywhere}
+#view-builder .builder-review-list .text-button{font-size:10px;flex-shrink:0;white-space:nowrap;display:flex;gap:4px;align-items:center}
+#view-builder .builder-review-list .text-button svg{width:13px;height:13px}
+#view-builder .builder-local-valid{font-size:11px}
+#view-builder .builder-success{border:1px solid var(--border);border-radius:8px;padding:18px;margin-bottom:18px;background:var(--panel)}
+#view-builder .builder-success h2{font-size:17px;margin:0 0 8px;outline:none}
+#view-builder .builder-success p{font-size:11px;color:var(--muted);line-height:1.6;margin:5px 0}
+#view-builder .builder-success-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+#view-builder .wizard-footer{flex-wrap:wrap}
+#view-builder #builder-configure-later{font-size:11px}
+@media(max-width:600px){#view-builder .builder-review-list li{flex-wrap:wrap}#view-builder .builder-review-list li>div{flex-basis:100%}#view-builder .builder-service-summary{align-items:flex-start}#view-builder .builder-success-actions .button{font-size:11px}}
+
+/* Keep image compatibility errors next to the initialization script controls. */
+.initialization-image-alert{display:block;margin:12px 0 16px;overflow-wrap:anywhere}
+.initialization-image-alert strong{display:block}
+.initialization-image-alert p{margin:6px 0 8px}

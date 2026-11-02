@@ -2,6 +2,11 @@
 function translatePortuguesePortugal(source){
  const exact={
   'Escolher idioma':'Selecionar idioma',
+  'Vamos configurar seu recurso?':'Vamos configurar o seu recurso?',
+  'O que você quer criar?':'O que pretende criar?',
+  'Como esse recurso deve funcionar?':'Como deve funcionar este recurso?',
+  'Como ele vai se conectar?':'Como se vai ligar à rede?',
+  'Escolha a rede e os acessos que este recurso precisa.':'Escolha a rede e os acessos de que este recurso necessita.',
   'Revisar e exportar':'Rever e exportar',
   'Revisão':'Revisão',
   'Revisar IAM':'Rever IAM',

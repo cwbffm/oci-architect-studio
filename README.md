@@ -148,3 +148,11 @@ A aba Aparência organiza os temas em lista dupla e mantém Texto, Código e Esp
 O seletor de idioma diferencia **BR — Português (Brasil)** e **PT — Português (Portugal)**. O menu de região inclui 85 identificadores do catálogo oficial do SDK Oracle, com países, pesquisa, filtros por tipo e favoritos locais. A troca de região exibe um aviso para revisar OCIDs sem apagar recursos ou configurações.
 
 [Validação](VALIDATION.md) · [Aparência 13](docs/APARENCIA_13_FINAL.md) · [Regiões e tradução](docs/REGIOES_TRADUCAO_MELHORIAS.md).
+
+## Navegação
+
+O conceito 02 (topo principal e lateral enxuta) usa o topo principal e a lateral enxuta. [Detalhes e validação](docs/NAVEGACAO_02.md).
+
+## Construtor
+
+O conceito 03 (Perguntas diretas) usa um único dropdown para todos os serviços OCI. O projeto/plano fica abaixo do formulário e abre ao incluir um recurso. [Detalhes e validação](docs/CONSTRUTOR_03.md). Inclui revisão por grupos, ações de confirmação e alerta de incompatibilidade da imagem com o script de inicialização.
