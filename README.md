@@ -1,5 +1,7 @@
 # OCI Architect Studio
 
+> **Interface atual:** layout clássico com Aparência 13 (lista dupla e painel fixo com três abas), tema claro padrão e melhorias de idiomas/regiões. [Detalhes da implementação](docs/APARENCIA_13_FINAL.md).
+
 <a href="https://cwbffm.github.io/oci-architect-studio/">
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/repository-cover-mobile-dark.svg">
@@ -38,7 +40,7 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 | **Tags** | Organizar tags freeform e defined tags e revisar o padrão aplicado ao projeto. |
 | **Rede e roteamento** | Explorar uma topologia hub-and-spoke e acompanhar decisões de ida e retorno no laboratório lógico. |
 | **Terraform e OCI CLI** | Escolher `main.tf` ou `deploy-oci.sh`, revisar as variáveis e copiar/baixar o formato selecionado. |
-| **Aparência e leitura** | Escolher entre 40 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece oito idiomas. |
+| **Aparência e leitura** | Escolher entre 38 variantes de temas, 17 opções de destaque e preferências de leitura. A interface oferece nove idiomas, incluindo BR e PT. |
 | **Backups e exportação** | Salvar e restaurar o projeto em JSON e exportar uma cópia limpa da ferramenta em HTML. |
 
 ## Como usar
@@ -137,3 +139,12 @@ A interface voltou à base `0fe5f49`, com menu lateral, construtor sequencial, c
 Foram preservadas as correções funcionais de `351a164`: validação dos recursos e enums, coerência entre VCN/subnet/rotas/OKE, restrições de Load Balancer público, bloqueios de conversão OCI CLI e separação das policies IAM. As policies são opcionais, não bloqueiam a infraestrutura e não são incluídas no Terraform nem no script OCI CLI; continuam disponíveis para exportação independente.
 
 `npm test` verifica regressões, exportações, idiomas e a interface restaurada. `npm run test:themes` verifica os temas clássicos e a migração dos temas especiais removidos. A publicação utiliza o workflow GitHub Pages na branch `docker-compose`.
+
+
+## Aparência, idiomas e regiões
+
+A aba Aparência organiza os temas em lista dupla e mantém Texto, Código e Espaçamento em um painel fixo com três abas. As cores de destaque continuam sempre visíveis. Novos projetos iniciam no tema claro; escolhas existentes são preservadas.
+
+O seletor de idioma diferencia **BR — Português (Brasil)** e **PT — Português (Portugal)**. O menu de região inclui 85 identificadores do catálogo oficial do SDK Oracle, com países, pesquisa, filtros por tipo e favoritos locais. A troca de região exibe um aviso para revisar OCIDs sem apagar recursos ou configurações.
+
+[Validação](VALIDATION.md) · [Aparência 13](docs/APARENCIA_13_FINAL.md) · [Regiões e tradução](docs/REGIOES_TRADUCAO_MELHORIAS.md).

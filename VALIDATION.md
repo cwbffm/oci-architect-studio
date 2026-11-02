@@ -30,7 +30,7 @@ npm test
 npm run test:themes
 ```
 
-`npm test` executa regressão, exportação OCI CLI, idiomas e a interface restaurada. `npm run test:themes` verifica contraste, persistência, leitura e layout dos 38 temas clássicos e a migração dos temas especiais removidos.
+`npm test` executa regressão, exportação OCI CLI, nove idiomas, interface clássica, Aparência 13 e seletores de região. `npm run test:themes` verifica contraste, persistência, leitura e layout dos 38 temas clássicos e a migração dos temas especiais removidos.
 
 Artefatos são gravados em `work/`, ignorado pelo Git. O workflow [Validate Studio](.github/workflows/validate.yml) usa esses testes no GitHub Actions.
 
@@ -72,3 +72,11 @@ node tests/validate-terraform.cjs
 Se o executável ou a pasta estiverem em outro caminho, defina `TERRAFORM` e `TF_VALIDATION_DIR`. O relatório fica em `work/terraform-validation-results.json`. Não há execução de `plan` ou `apply`, consulta de permissões ou criação de recursos. A validade de um HCL Universal de exemplo não valida qualquer HCL digitado pelo usuário.
 
 A OCI CLI oficial **3.95.1** passou na conferência offline de **25 scripts, 36 comandos simulados e 29 caminhos oficiais**, com sockets bloqueados. As dependências npm foram auditadas sem vulnerabilidades conhecidas.
+
+## Aparência 13, idiomas e regiões
+
+A suíte inclui painel fixo com três abas, teclado, persistência de preferências e preservação de recursos/HCL/OCI CLI. São 30 combinações de largura/tema/aba. A suíte de idiomas cobre 72 navegações e 216 layouts; a suíte clássica cobre 78 etapas e 160 layouts.
+
+Os testes de região selecionam os 85 identificadores pelo dropdown e verificam os exportadores, ordenação, países, filtros, favoritos após recarregar, região personalizada/cancelamento e troca não destrutiva. Indicadores e datas são localizados sem modificar valores de máquina.
+
+Os testes podem usar o Chromium instalado pelo Playwright via `CHROMIUM_PATH`. As capturas ficam em `work/published-previews/`; nenhuma pasta específica da máquina é necessária no CI.

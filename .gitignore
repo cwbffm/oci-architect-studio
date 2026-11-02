@@ -16,3 +16,7 @@ data/
 *.tfplan
 *.pyc
 _site/
+
+# Maintained public OCI region catalog (other data directories remain ignored).
+!frontend/data/
+!frontend/data/oci-regions.json

@@ -1,0 +1,37 @@
+/* Approved appearance 13: two-column theme list, fixed reading panel and three tabs.
+   Accent controls deliberately keep their existing styles and arrangement. */
+#view-themes .appearance-gallery{display:grid;grid-template-columns:minmax(230px,.9fr) minmax(0,1.6fr);gap:14px 18px;align-content:start;min-width:0}
+#view-themes .theme-family-control{grid-column:1;grid-row:1/5;display:flex;align-items:stretch;gap:8px;padding:12px;margin:0;min-width:0}
+#view-themes #theme-search{width:100%;max-width:none;min-height:32px;font-size:11px}
+#view-themes #theme-family-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:370px;overflow-y:auto;overflow-x:hidden;gap:5px;width:100%;padding:2px 4px 2px 1px}
+#view-themes .theme-family-button{width:100%;min-height:30px;font-size:10px;padding:6px}
+#view-themes .chatgpt-mode-heading{grid-column:2;grid-row:1;margin:4px 0 0;align-self:start}
+#view-themes #theme-grid{grid-column:2;grid-row:2;align-self:start;gap:6px}
+#view-themes .theme-shell{flex:1 1 125px}
+#view-themes .themes-caption{grid-column:2;grid-row:3;margin:2px 0;font-size:10px}
+#view-themes .reading-settings{grid-column:2;grid-row:4;align-self:start;margin:0;padding:0;border:1px solid var(--border);border-radius:8px;background:var(--panel);min-width:0}
+#view-themes .fixed-reading-heading{margin:0;padding:13px 14px;font-size:12px;font-weight:600;line-height:1.5;color:var(--text);cursor:default}
+#view-themes .reading-tabs{display:flex;gap:4px;padding:4px;margin:0 14px 12px;background:var(--raised);border-radius:6px}
+#view-themes .reading-tabs button{flex:1;border:0;border-radius:4px;background:transparent;color:var(--muted);font-size:11px;padding:7px;cursor:pointer;min-height:30px}
+#view-themes .reading-tabs button[aria-selected=true]{background:var(--panel);color:var(--text)}
+#view-themes .reading-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+#view-themes .reading-panels{padding:0 14px 12px}
+#view-themes .reading-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;min-width:0}
+#view-themes .reading-panel[hidden]{display:none!important}
+#view-themes .reading-settings label{font-size:11px;gap:5px;margin:0;min-width:0}
+#view-themes .reading-settings select{font-size:12px;min-height:33px;padding:6px 8px;border-radius:6px;width:100%;min-width:0}
+#view-themes .reading-preview{margin:0 14px 12px;padding:12px 13px;border-radius:6px;min-width:0}
+#view-themes .reading-preview strong{font-size:11px}
+#view-themes .reading-preview p{margin:6px 0;font-size:13px}
+#view-themes .reading-preview code{white-space:pre-wrap;overflow-wrap:anywhere}
+#view-themes .reading-settings>.text-button{margin:0 0 11px 14px;font-size:10px}
+@media(max-width:700px){
+ #view-themes .appearance-gallery{grid-template-columns:1fr;gap:12px}
+ #view-themes .theme-family-control{grid-column:1;grid-row:auto;padding:9px}
+ #view-themes #theme-family-list{max-height:130px}
+ #view-themes .chatgpt-mode-heading,#view-themes #theme-grid,#view-themes .themes-caption,#view-themes .reading-settings{grid-column:1;grid-row:auto}
+ #view-themes .chatgpt-theme-card{grid-template-columns:20px 1fr;padding:7px}
+ #view-themes .chatgpt-preview{width:20px;height:24px}
+ #view-themes .reading-panel{grid-template-columns:1fr}
+}
+@media(max-width:480px){#view-themes .theme-card h3{font-size:11px}#view-themes .reading-tabs button{font-size:10px}}

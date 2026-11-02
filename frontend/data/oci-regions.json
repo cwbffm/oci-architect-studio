@@ -1,0 +1,602 @@
+{
+  "source": "https://github.com/oracle/oci-python-sdk/blob/master/src/oci/regions_definitions.py",
+  "reviewedAt": "2026-11-02",
+  "note": "Catálogo do SDK oficial; inclusão não indica assinatura da tenancy, acesso ao realm ou disponibilidade de todos os serviços. Regiões novas e privadas podem ser informadas manualmente.",
+  "regions": [
+    {
+      "id": "ap-chuncheon-1",
+      "realm": "oc1",
+      "label": "Chuncheon",
+      "country": "KR",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-hyderabad-1",
+      "realm": "oc1",
+      "label": "Hyderabad",
+      "country": "IN",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-melbourne-1",
+      "realm": "oc1",
+      "label": "Melbourne",
+      "country": "AU",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-mumbai-1",
+      "realm": "oc1",
+      "label": "Mumbai",
+      "country": "IN",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-osaka-1",
+      "realm": "oc1",
+      "label": "Osaka",
+      "country": "JP",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-seoul-1",
+      "realm": "oc1",
+      "label": "Seul",
+      "country": "KR",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-sydney-1",
+      "realm": "oc1",
+      "label": "Sydney",
+      "country": "AU",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-tokyo-1",
+      "realm": "oc1",
+      "label": "Tóquio",
+      "country": "JP",
+      "category": "commercial"
+    },
+    {
+      "id": "ca-montreal-1",
+      "realm": "oc1",
+      "label": "Montreal",
+      "country": "CA",
+      "category": "commercial"
+    },
+    {
+      "id": "ca-toronto-1",
+      "realm": "oc1",
+      "label": "Toronto",
+      "country": "CA",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-amsterdam-1",
+      "realm": "oc1",
+      "label": "Amesterdão",
+      "country": "NL",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-frankfurt-1",
+      "realm": "oc1",
+      "label": "Frankfurt",
+      "country": "DE",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-zurich-1",
+      "realm": "oc1",
+      "label": "Zurique",
+      "country": "CH",
+      "category": "commercial"
+    },
+    {
+      "id": "me-jeddah-1",
+      "realm": "oc1",
+      "label": "Jeddah",
+      "country": "SA",
+      "category": "commercial"
+    },
+    {
+      "id": "me-dubai-1",
+      "realm": "oc1",
+      "label": "Dubai",
+      "country": "AE",
+      "category": "commercial"
+    },
+    {
+      "id": "sa-saopaulo-1",
+      "realm": "oc1",
+      "label": "São Paulo",
+      "country": "BR",
+      "category": "commercial"
+    },
+    {
+      "id": "uk-cardiff-1",
+      "realm": "oc1",
+      "label": "Cardiff",
+      "country": "GB",
+      "category": "commercial"
+    },
+    {
+      "id": "uk-london-1",
+      "realm": "oc1",
+      "label": "Londres",
+      "country": "GB",
+      "category": "commercial"
+    },
+    {
+      "id": "us-ashburn-1",
+      "realm": "oc1",
+      "label": "Ashburn",
+      "country": "US",
+      "category": "commercial"
+    },
+    {
+      "id": "us-phoenix-1",
+      "realm": "oc1",
+      "label": "Phoenix",
+      "country": "US",
+      "category": "commercial"
+    },
+    {
+      "id": "us-sanjose-1",
+      "realm": "oc1",
+      "label": "San José",
+      "country": "US",
+      "category": "commercial"
+    },
+    {
+      "id": "sa-vinhedo-1",
+      "realm": "oc1",
+      "label": "Vinhedo",
+      "country": "BR",
+      "category": "commercial"
+    },
+    {
+      "id": "sa-santiago-1",
+      "realm": "oc1",
+      "label": "Santiago",
+      "country": "CL",
+      "category": "commercial"
+    },
+    {
+      "id": "il-jerusalem-1",
+      "realm": "oc1",
+      "label": "Jerusalém",
+      "country": "IL",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-marseille-1",
+      "realm": "oc1",
+      "label": "Marselha",
+      "country": "FR",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-singapore-1",
+      "realm": "oc1",
+      "label": "Singapura",
+      "country": "SG",
+      "category": "commercial"
+    },
+    {
+      "id": "me-abudhabi-1",
+      "realm": "oc1",
+      "label": "Abu Dhabi",
+      "country": "AE",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-milan-1",
+      "realm": "oc1",
+      "label": "Milão",
+      "country": "IT",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-stockholm-1",
+      "realm": "oc1",
+      "label": "Estocolmo",
+      "country": "SE",
+      "category": "commercial"
+    },
+    {
+      "id": "af-johannesburg-1",
+      "realm": "oc1",
+      "label": "Joanesburgo",
+      "country": "ZA",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-paris-1",
+      "realm": "oc1",
+      "label": "Paris",
+      "country": "FR",
+      "category": "commercial"
+    },
+    {
+      "id": "mx-queretaro-1",
+      "realm": "oc1",
+      "label": "Querétaro",
+      "country": "MX",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-madrid-1",
+      "realm": "oc1",
+      "label": "Madrid",
+      "country": "ES",
+      "category": "commercial"
+    },
+    {
+      "id": "us-chicago-1",
+      "realm": "oc1",
+      "label": "Chicago",
+      "country": "US",
+      "category": "commercial"
+    },
+    {
+      "id": "mx-monterrey-1",
+      "realm": "oc1",
+      "label": "Monterrey",
+      "country": "MX",
+      "category": "commercial"
+    },
+    {
+      "id": "us-saltlake-2",
+      "realm": "oc1",
+      "label": "Salt Lake City",
+      "country": "US",
+      "category": "commercial"
+    },
+    {
+      "id": "sa-bogota-1",
+      "realm": "oc1",
+      "label": "Bogotá",
+      "country": "CO",
+      "category": "commercial"
+    },
+    {
+      "id": "sa-valparaiso-1",
+      "realm": "oc1",
+      "label": "Valparaíso",
+      "country": "CL",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-singapore-2",
+      "realm": "oc1",
+      "label": "Singapura",
+      "country": "SG",
+      "category": "commercial"
+    },
+    {
+      "id": "me-riyadh-1",
+      "realm": "oc1",
+      "label": "Riade",
+      "country": "SA",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-delhi-1",
+      "realm": "oc1",
+      "label": "Deli",
+      "country": "IN",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-batam-1",
+      "realm": "oc1",
+      "label": "Batam",
+      "country": "ID",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-madrid-3",
+      "realm": "oc1",
+      "label": "Madrid",
+      "country": "ES",
+      "category": "commercial"
+    },
+    {
+      "id": "eu-turin-1",
+      "realm": "oc1",
+      "label": "Turim",
+      "country": "IT",
+      "category": "commercial"
+    },
+    {
+      "id": "ap-kulai-2",
+      "realm": "oc1",
+      "label": "Kulai",
+      "country": "MY",
+      "category": "commercial"
+    },
+    {
+      "id": "af-casablanca-1",
+      "realm": "oc1",
+      "label": "Casablanca",
+      "country": "MA",
+      "category": "commercial"
+    },
+    {
+      "id": "us-langley-1",
+      "realm": "oc2",
+      "label": "Langley",
+      "country": "US",
+      "category": "government"
+    },
+    {
+      "id": "us-luke-1",
+      "realm": "oc2",
+      "label": "Luke",
+      "country": "US",
+      "category": "government"
+    },
+    {
+      "id": "us-gov-ashburn-1",
+      "realm": "oc3",
+      "label": "Ashburn",
+      "country": "US",
+      "category": "government"
+    },
+    {
+      "id": "us-gov-chicago-1",
+      "realm": "oc3",
+      "label": "Chicago",
+      "country": "US",
+      "category": "government"
+    },
+    {
+      "id": "us-gov-phoenix-1",
+      "realm": "oc3",
+      "label": "Phoenix",
+      "country": "US",
+      "category": "government"
+    },
+    {
+      "id": "uk-gov-london-1",
+      "realm": "oc4",
+      "label": "Londres",
+      "country": "GB",
+      "category": "government"
+    },
+    {
+      "id": "uk-gov-cardiff-1",
+      "realm": "oc4",
+      "label": "Cardiff",
+      "country": "GB",
+      "category": "government"
+    },
+    {
+      "id": "ap-chiyoda-1",
+      "realm": "oc8",
+      "label": "Chiyoda",
+      "country": "JP",
+      "category": "restricted"
+    },
+    {
+      "id": "ap-ibaraki-1",
+      "realm": "oc8",
+      "label": "Ibaraki",
+      "country": "JP",
+      "category": "restricted"
+    },
+    {
+      "id": "me-dcc-muscat-1",
+      "realm": "oc9",
+      "label": "Mascate",
+      "country": "OM",
+      "category": "restricted"
+    },
+    {
+      "id": "me-ibri-1",
+      "realm": "oc9",
+      "label": "Ibri",
+      "country": "OM",
+      "category": "restricted"
+    },
+    {
+      "id": "ap-dcc-canberra-1",
+      "realm": "oc10",
+      "label": "Camberra",
+      "country": "AU",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-milan-1",
+      "realm": "oc14",
+      "label": "Milão",
+      "country": "IT",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-milan-2",
+      "realm": "oc14",
+      "label": "Milão",
+      "country": "IT",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-dublin-2",
+      "realm": "oc14",
+      "label": "Dublin",
+      "country": "IE",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-rating-2",
+      "realm": "oc14",
+      "label": "Ratingen",
+      "country": "DE",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-rating-1",
+      "realm": "oc14",
+      "label": "Ratingen",
+      "country": "DE",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-dublin-1",
+      "realm": "oc14",
+      "label": "Dublin",
+      "country": "IE",
+      "category": "restricted"
+    },
+    {
+      "id": "ap-dcc-gazipur-1",
+      "realm": "oc15",
+      "label": "Gazipur",
+      "country": "BD",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-madrid-2",
+      "realm": "oc19",
+      "label": "Madrid",
+      "country": "ES",
+      "category": "sovereign"
+    },
+    {
+      "id": "eu-frankfurt-2",
+      "realm": "oc19",
+      "label": "Frankfurt",
+      "country": "DE",
+      "category": "sovereign"
+    },
+    {
+      "id": "eu-jovanovac-1",
+      "realm": "oc20",
+      "label": "Jovanovac",
+      "country": "RS",
+      "category": "restricted"
+    },
+    {
+      "id": "me-dcc-doha-1",
+      "realm": "oc21",
+      "label": "Doha",
+      "country": "QA",
+      "category": "restricted"
+    },
+    {
+      "id": "me-alrayyan-1",
+      "realm": "oc21",
+      "label": "Al Rayyan",
+      "country": "QA",
+      "category": "restricted"
+    },
+    {
+      "id": "us-somerset-1",
+      "realm": "oc23",
+      "label": "Somerset",
+      "country": "US",
+      "category": "restricted"
+    },
+    {
+      "id": "us-thames-1",
+      "realm": "oc23",
+      "label": "Thames",
+      "country": "US",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-dcc-zurich-1",
+      "realm": "oc24",
+      "label": "Zurique",
+      "country": "CH",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-crissier-1",
+      "realm": "oc24",
+      "label": "Crissier",
+      "country": "CH",
+      "category": "restricted"
+    },
+    {
+      "id": "me-abudhabi-3",
+      "realm": "oc26",
+      "label": "Abu Dhabi",
+      "country": "AE",
+      "category": "restricted"
+    },
+    {
+      "id": "me-alain-1",
+      "realm": "oc26",
+      "label": "Al Ain",
+      "country": "AE",
+      "category": "restricted"
+    },
+    {
+      "id": "me-abudhabi-2",
+      "realm": "oc29",
+      "label": "Abu Dhabi",
+      "country": "AE",
+      "category": "restricted"
+    },
+    {
+      "id": "me-abudhabi-4",
+      "realm": "oc29",
+      "label": "Abu Dhabi",
+      "country": "AE",
+      "category": "restricted"
+    },
+    {
+      "id": "ap-seoul-2",
+      "realm": "oc35",
+      "label": "Seul",
+      "country": "KR",
+      "category": "restricted"
+    },
+    {
+      "id": "ap-suwon-1",
+      "realm": "oc35",
+      "label": "Suwon",
+      "country": "KR",
+      "category": "restricted"
+    },
+    {
+      "id": "ap-chuncheon-2",
+      "realm": "oc35",
+      "label": "Chuncheon",
+      "country": "KR",
+      "category": "restricted"
+    },
+    {
+      "id": "us-ashburn-2",
+      "realm": "oc42",
+      "label": "Ashburn",
+      "country": "US",
+      "category": "restricted"
+    },
+    {
+      "id": "us-newark-1",
+      "realm": "oc42",
+      "label": "Newark",
+      "country": "US",
+      "category": "restricted"
+    },
+    {
+      "id": "eu-budapest-1",
+      "realm": "oc51",
+      "label": "Budapeste",
+      "country": "HU",
+      "category": "restricted"
+    },
+    {
+      "id": "sa-riodejaneiro-1",
+      "realm": "oc52",
+      "label": "Rio de Janeiro",
+      "country": "BR",
+      "category": "restricted"
+    }
+  ]
+}
