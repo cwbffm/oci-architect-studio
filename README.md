@@ -155,4 +155,4 @@ O conceito 02 (topo principal e lateral enxuta) usa o topo principal e a lateral
 
 ## Construtor
 
-O conceito 03 (Perguntas diretas) usa um único dropdown para todos os serviços OCI. O projeto/plano fica abaixo do formulário e abre ao incluir um recurso. [Detalhes e validação](docs/CONSTRUTOR_03.md). Inclui revisão por grupos, ações de confirmação e alerta de incompatibilidade da imagem com o script de inicialização.
+O conceito 03 (Perguntas diretas) usa um único dropdown para todos os serviços OCI. O projeto/plano fica abaixo do formulário e abre ao incluir um recurso. [Detalhes e validação](docs/CONSTRUTOR_03.md). Inclui revisão por grupos, ações de confirmação. VMs usam quatro etapas, sem scripts de bootstrap Linux/Windows.

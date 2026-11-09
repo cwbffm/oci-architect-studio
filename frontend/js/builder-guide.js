@@ -9,16 +9,13 @@ function updateBuilderGuide(){
  const serviceStep=builderStep==='service';selector.hidden=!serviceStep;
  const summary=document.getElementById('builder-service-summary');summary.hidden=serviceStep;document.getElementById('builder-summary-type').textContent=TYPES[selectedType].label;document.getElementById('builder-summary-name').textContent=draft.name||'—';
  const count=document.getElementById('builder-plan-count');if(count){count.dataset.uiNumber=String(s.resources.length);count.setAttribute('translate','no');count.textContent=formatUiNumber(s.resources.length);}
- document.getElementById('builder-configure-later').hidden=builderStep!=='init';
  const steps=builderSteps(),next=steps[steps.findIndex(step=>step.id===builderStep)+1];if(next)document.getElementById('builder-next').title='Próxima etapa: '+next.label;
- const init=document.querySelector('[data-step-pane=init]');if(init&&!init.querySelector('.builder-optional-note')){const note=document.createElement('p');note.className='builder-optional-note';note.textContent='Opcional. Configurar depois mantém os ajustes já preenchidos. Você pode voltar antes de exportar.';init.querySelector('.step-description').after(note);}
  for(const detail of document.querySelectorAll('#resource-fields .advanced-settings')){if(detail.querySelector('.builder-optional-close'))continue;const button=document.createElement('button');button.type='button';button.className='text-button builder-optional-close';button.dataset.action='builder-close-optional';button.textContent='Configurar depois';button.title='Fecha este grupo sem apagar os valores preenchidos.';detail.append(button);}
 }
 function builderIssueTarget(message,field=''){
  const fields=TYPES[selectedType].fields,match=fields.find(f=>f.key===field||message.startsWith(f.label+':'));
  if(match)field=match.key;
- if(!field){for(const [pattern,key] of [[/nome|name/i,'name'],[/compartimento|compartment/i,'compartmentId'],[/imagem|image/i,'imageId'],[/availability.domain/i,'ad'],[/OCPU/i,'ocpus'],[/memória|memory/i,'memory'],[/DNS/i,'dns'],[/CIDR/i,'cidr'],[/subnet/i,'subnet'],[/bootstrap|script|inicializa/i,'bootstrapEnabled']])if(pattern.test(message)){field=key;break;}}
- if(field==='bootstrapEnabled'&&!document.getElementById('f-'+field)&&document.getElementById('f-winBootstrapEnabled'))field='winBootstrapEnabled';
+ if(!field){for(const [pattern,key] of [[/nome|name/i,'name'],[/compartimento|compartment/i,'compartmentId'],[/imagem|image/i,'imageId'],[/availability.domain/i,'ad'],[/OCPU/i,'ocpus'],[/memória|memory/i,'memory'],[/DNS/i,'dns'],[/CIDR/i,'cidr'],[/subnet/i,'subnet']])if(pattern.test(message)){field=key;break;}}
  const input=document.getElementById('f-'+field),pane=input?.closest('[data-step-pane]');
  const step=pane?.dataset.stepPane||(field==='name'||field==='compartmentId'?'service':'config');
  return {step:builderSteps().some(s=>s.id===step)?step:'service',field:input?field:''};
@@ -39,7 +36,6 @@ function renderBuilderReview({resource,facts,errors,scope,generated}){
  const already=new Set(['shape','image','guestOs','vmLicense','ocpus','memory','bootSize','privateIp','sshKey','ad','kmsKey','nsgIds','namespace','dns']);
  for(const f of TYPES[selectedType].fields){const value=draft[f.key];if(f.type==='heading'||already.has(f.key)||value===''||value===undefined||value===null)continue;let display=String(value);if(f.type==='ref')display=s.resources.find(r=>r.id===value)?.name||display;if(f.type==='select'){const option=f.options.find(o=>String(Array.isArray(o)?o[0]:o)===String(value));if(option)display=Array.isArray(option)?String(option[1]):String(option);}configured.push([f.label,display]);}
  const optional=[['Compartimento específico',draft.compartmentId?'Preenchido':'Usa o padrão do projeto',{step:'service',field:'compartmentId'}]];
- if(selectedType==='compute')optional.push(['Scripts de inicialização',(guestFamily(draft,s)==='WINDOWS'?draft.winBootstrapEnabled:draft.bootstrapEnabled)?'Configurado — revise o script':'Não habilitados',{step:'init',field:''}]);
  for(const [key,label]of [['sshKey','Chave pública SSH'],['kmsKey','Chave KMS'],['nsgIds','Grupos de segurança adicionais'],['dns','DNS label'],['namespace','Namespace']])if(TYPES[selectedType].fields.some(f=>f.key===key))optional.push([label,draft[key]?'Preenchido':'Não informado',builderIssueTarget('',key)]);
  const variables=generated.variables;
  review.innerHTML='<section class="builder-review-group"><h4>Configurado</h4><p class="small muted">Valores informados no formulário. Confira os ajustes e pendências abaixo.</p><dl class="review-facts">'+configured.map(([key,value])=>'<div><dt>'+esc(key)+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl><div class="review-tags"><h4>Tags do projeto <span class="count">'+s.tags.length+'</span></h4><div>'+s.tags.map(tag=>'<span class="tag-chip">'+esc((tag.namespace?tag.namespace+'.':'')+tag.key)+' <b>'+esc(tag.value)+'</b></span>').join('')+'</div><a href="#tags" class="text-button">Editar tags '+icon('arrow')+'</a></div></section>'+
@@ -53,7 +49,6 @@ function renderBuilderReview({resource,facts,errors,scope,generated}){
  document.addEventListener('click',event=>{
   const button=event.target.closest('[data-action]');if(!button)return;const action=button.dataset.action;
   if(action==='builder-change-service'){changeBuilderStep('service');document.getElementById('f-resourceType')?.focus();}
-  if(action==='builder-configure-later'&&builderStep==='init')changeBuilderStep(1);
   if(action==='builder-close-optional'){const detail=button.closest('details');detail.open=false;detail.querySelector('summary')?.focus();}
   if(action==='builder-review-step'){changeBuilderStep(button.dataset.step);const input=document.getElementById('f-'+button.dataset.field);if(input){let ancestor=input.parentElement;while(ancestor&&ancestor!==form){if(ancestor.tagName==='DETAILS')ancestor.open=true;ancestor=ancestor.parentElement;}input.focus({preventScroll:true});input.scrollIntoView({block:'nearest'});}}
   if(action==='builder-review-plan'){details.open=true;details.scrollIntoView({block:'start'});}

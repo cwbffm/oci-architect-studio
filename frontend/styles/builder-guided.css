@@ -64,8 +64,3 @@
 #view-builder .wizard-footer{flex-wrap:wrap}
 #view-builder #builder-configure-later{font-size:11px}
 @media(max-width:600px){#view-builder .builder-review-list li{flex-wrap:wrap}#view-builder .builder-review-list li>div{flex-basis:100%}#view-builder .builder-service-summary{align-items:flex-start}#view-builder .builder-success-actions .button{font-size:11px}}
-
-/* Keep image compatibility errors next to the initialization script controls. */
-.initialization-image-alert{display:block;margin:12px 0 16px;overflow-wrap:anywhere}
-.initialization-image-alert strong{display:block}
-.initialization-image-alert p{margin:6px 0 8px}

@@ -7,7 +7,7 @@ Implementado sobre a versão com topo principal e lateral enxuta.
 - Mantidos os valores técnicos do seletor, as funções de criação/edição, validação, referências entre recursos, backup e exportadores.
 - Referência IAM opcional em um único disclosure nativo; não é incluída automaticamente na infraestrutura.
 - Projeto e plano ficam em uma seção abaixo do formulário. Ao adicionar um recurso, a seção abre para mostrar o resultado local. Os campos de projeto continuam acessíveis.
-- Mantidos scripts de inicialização, configurações avançadas, HCL Universal, todos os temas, cores de destaque e a Aparência 13.
+- Mantidas configurações avançadas, HCL Universal, todos os temas, cores de destaque e a Aparência 13.
 - Os textos novos são localizados nas nove línguas disponíveis, com revisão específica para pt-PT.
 
 ## Fontes
@@ -20,7 +20,7 @@ Implementado sobre a versão com topo principal e lateral enxuta.
 
 ## Validação
 
-`npm run test:builder` verifica que há um dropdown e nenhum botão de categoria, acesso a todos os 23 tipos, 78 etapas nativas, criação e edição local de VCN, geração HCL/OCI CLI, preservação do rascunho e 60 layouts por tema/largura/etapa. O teste de navegação aguarda a navegação assíncrona do link do logo antes de verificar a rota.
+`npm run test:builder` verifica que há um dropdown e nenhum botão de categoria, acesso a todos os 23 tipos, etapas nativas, criação e edição local de VCN, geração HCL/OCI CLI, preservação do rascunho e layouts por tema/largura/etapa. O teste de navegação aguarda a navegação assíncrona do link do logo antes de verificar a rota.
 
 As suítes gerais de regressão, idiomas, interface, regiões, Aparência 13 e navegação continuam disponíveis. A prévia portátil é uma cópia da build mantida, sem scripts de demonstração ou projeto de exemplo embutido.
 
@@ -29,13 +29,15 @@ As suítes gerais de regressão, idiomas, interface, regiões, Aparência 13 e n
 - Serviço escolhido uma única vez; resumo e ação Trocar serviço nas etapas seguintes.
 - Uma pergunta e instrução por etapa, sem caixa explicativa repetida.
 - Campos essenciais primeiro; propriedades menos frequentes nos ajustes avançados.
-- Configurar depois fecha grupos ou avança a inicialização sem apagar dados já preenchidos.
+- Configurar depois fecha grupos avançados sem apagar dados já preenchidos.
 - Revisão separa Configurado, Opcional e Falta preencher, com atalhos aos campos. Variáveis de execução são diferenciadas dos erros que impedem adicionar ao plano.
 - Confirmação ao adicionar/atualizar, com ações Adicionar outro recurso e Revisar e exportar. Nenhuma implantação é executada.
 
 Validação: `npm test`, `npm run test:themes` e verificação do bundle. `tests/builder-six.cjs` cobre preservação de dados, bloqueio de configuração inválida, atalhos e confirmação.
 
 
-## Compatibilidade da imagem na inicialização
+## Remoção da inicialização de VMs
 
-O script Linux ou Windows mostra um alerta acessível junto aos controles quando a imagem não é reconhecida como compatível. Revisar imagem retorna à seleção. Corrigir a imagem ou confirmar a versão real da imagem customizada atualiza o aviso sem apagar opções do script. As validações nativas de inclusão e exportação continuam ativas. `tests/initialization-image-alert.cjs` verifica o alerta, a correção, a preservação dos ajustes e layouts claro/escuro.
+Compute usa quatro etapas: Serviço, Configuração, Rede e acesso, Revisão. Os bootstraps Linux/Windows, seus controles, diálogos e exportação de scripts foram removidos. Projetos antigos mantêm os recursos e o acesso SSH; parâmetros antigos de bootstrap são descartados ao carregar o backup. Terraform e OCI CLI ignoram os flags antigos de bootstrap. O cloud-init de criação do usuário SSH continua na etapa de acesso.
+
+`tests/vm-no-initialization.cjs` verifica ausência da etapa, migração dos backups, exportação Linux/Windows sem bootstrap, integridade do projeto original e preservação do SSH.
