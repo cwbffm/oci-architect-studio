@@ -30,7 +30,7 @@ npm test
 npm run test:themes
 ```
 
-`npm test` executa regressão, exportação OCI CLI, nove idiomas, interface clássica, Aparência 13 e seletores de região. `npm run test:themes` verifica contraste, persistência, leitura e layout dos 38 temas clássicos e a migração dos temas especiais removidos.
+`npm test` executa regressão, exportação OCI CLI, nove idiomas, formulários e temas da interface, Aparência 13, seletores de região, cabeçalho com menu "Mais" e a trilha guiada (`tests/trail.cjs`). `npm run test:themes` verifica contraste, persistência, leitura e layout dos 38 temas clássicos e a migração dos temas especiais removidos.
 
 Artefatos são gravados em `work/`, ignorado pelo Git. O workflow [Validate Studio](.github/workflows/validate.yml) usa esses testes no GitHub Actions.
 
