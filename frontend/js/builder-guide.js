@@ -6,6 +6,7 @@ function showBuilderSuccess(resource,updated=false){
 }
 function updateBuilderGuide(){
  const selector=document.getElementById('service-selector');if(!selector)return;
+ updateTrailBuilder();
  const serviceStep=builderStep==='service';selector.hidden=!serviceStep;
  const summary=document.getElementById('builder-service-summary');summary.hidden=serviceStep;document.getElementById('builder-summary-type').textContent=TYPES[selectedType].label;document.getElementById('builder-summary-name').textContent=draft.name||'—';
  const count=document.getElementById('builder-plan-count');if(count){count.dataset.uiNumber=String(s.resources.length);count.setAttribute('translate','no');count.textContent=formatUiNumber(s.resources.length);}

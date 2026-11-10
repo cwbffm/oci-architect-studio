@@ -758,9 +758,108 @@ body.studio-navigation .topbar .text-size-button{height:36px;min-width:34px;bord
 #view-builder .wizard-footer{flex-wrap:wrap}
 #view-builder #builder-configure-later{font-size:11px}
 @media(max-width:600px){#view-builder .builder-review-list li{flex-wrap:wrap}#view-builder .builder-review-list li>div{flex-basis:100%}#view-builder .builder-service-summary{align-items:flex-start}#view-builder .builder-success-actions .button{font-size:11px}}
+
+/* Guided trail (A): no persistent sidebar; three project steps under the header. */
+body.studio-trail main { margin-left: 0; }
+body.studio-trail .topbar-brand { border-right: 0; width: auto; }
+body.studio-trail .breadcrumb > * { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* "Mais" button and its menu (the former sidebar). */
+body.studio-trail .trail-more { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--input); color: var(--text); font: inherit; font-size: 12px; cursor: pointer; }
+body.studio-trail .trail-more[aria-expanded="true"] { border-color: var(--accent); }
+body.studio-trail .sidebar { inset: calc(var(--studio-header-height) + 8px) 16px auto auto; width: 260px; height: auto; max-height: calc(100dvh - var(--studio-header-height) - 24px); padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); box-shadow: 0 12px 40px #00000030; transform: none; transition: none; display: none; z-index: 50; }
+body.studio-trail .sidebar.open { display: flex; box-shadow: 0 12px 40px #00000030; }
+body.studio-trail .sidebar-links a { font-size: 13px; min-height: 40px; }
+body.studio-trail .sidebar-group { margin-bottom: 8px; }
+
+/* The trail. */
+.trail { background: var(--panel); border-bottom: 1px solid var(--border); padding: 16px 24px; }
+.trail ol { list-style: none; margin: 0 auto; padding: 0; max-width: 900px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.trail a { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 12px; border: 1px solid transparent; border-radius: 10px; color: var(--muted); text-decoration: none; }
+.trail a:hover { border-color: var(--border); }
+.trail-number { flex: none; width: 32px; height: 32px; border: 2px solid var(--border); border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--muted); background: var(--panel); }
+.trail-text { min-width: 0; display: flex; flex-direction: column; line-height: 1.3; }
+.trail-text b { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.trail-text small { font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+.trail a.trail-current { color: var(--text); background: var(--raised); border-color: var(--border); }
+.trail a.trail-current .trail-number { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.trail a.trail-done .trail-number { border-color: var(--mint); color: var(--mint); }
+
+/* Step 1: common services as cards. */
+.trail-services[hidden], .trail-tip[hidden] { display: none; }
+.trail-service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.trail-service { display: flex; align-items: flex-start; gap: 12px; min-width: 0; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--input); color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.trail-service:hover { border-color: var(--muted); }
+.trail-service[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.trail-service-icon { flex: none; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: var(--raised); border: 1px solid var(--border); }
+.trail-service-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.trail-service > span:last-child { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.trail-service strong { font-size: 14px; overflow-wrap: anywhere; }
+.trail-service strong + span { font-size: 12px; line-height: 1.45; color: var(--muted); overflow-wrap: anywhere; }
+.trail-all-services { margin: 14px 0 10px; font-size: 12px; color: var(--muted); }
+
+/* Plan strip and first-time tip. */
+.trail-plan { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 16px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+.trail-plan > strong { font-size: 14px; }
+.trail-plan-chips { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.trail-chip { max-width: 100%; padding: 4px 12px; border: 1px solid color-mix(in srgb, var(--mint) 35%, var(--border)); border-radius: 999px; background: color-mix(in srgb, var(--mint) 8%, transparent); color: var(--text); font: inherit; font-size: 12px; cursor: pointer; overflow-wrap: anywhere; }
+.trail-plan-empty { font-size: 12px; color: var(--muted); }
+.trail-plan a.button { text-decoration: none; }
+.trail-tip { margin: 12px 0 0; padding: 12px 18px; border: 1px dashed var(--border); border-radius: 12px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.trail-tip strong { color: var(--text); }
+
+/* Step 2: review. */
+#view-review { max-width: 1100px; margin: 0 auto; }
+.trail-review { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.trail-review-side { display: grid; gap: 20px; }
+.trail-review h2 { font-size: 16px; margin: 0 0 8px; }
+.review-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-top: 1px solid var(--border); }
+.review-row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.review-row-name { align-self: flex-start; max-width: 100%; padding: 0; border: 0; background: none; color: var(--text); font: inherit; font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.review-row-name:hover { text-decoration: underline; }
+.review-row small { font-size: 12px; color: var(--muted); }
+.review-issues { margin: 8px 0 0; padding-left: 18px; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.review-empty { padding: 24px 0 8px; text-align: center; color: var(--muted); }
+.review-empty p { margin: 0 0 8px; }
+.review-empty .button { margin-top: 8px; text-decoration: none; }
+.trail-review .badge { font-size: 10px; padding: 4px 8px; }
+#review-tags { margin: 4px 0 12px; }
+.trail-review-actions { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.trail-review-actions a.button { text-decoration: none; }
+
+@media (max-width: 900px) {
+  .trail-review { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .trail { padding: 10px 12px; }
+  .trail ol { gap: 6px; }
+  .trail a { flex-direction: column; gap: 4px; padding: 6px 4px; text-align: center; min-height: 0; }
+  .trail-text small { display: none; }
+  .trail-text b { font-size: 12px; }
+  .trail-number { width: 26px; height: 26px; font-size: 12px; }
+  .trail-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .trail-service { flex-direction: column; gap: 8px; padding: 12px; }
+  body.studio-trail .sidebar { right: 8px; width: min(260px, calc(100vw - 16px)); }
+  body.studio-trail .trail-more { height: 34px; }
+}
+@media (max-width: 360px) {
+  .trail-service-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Overrides for rules inherited from the former sidebar layout. */
+.trail a::before { content: none !important; }
+body.studio-trail #sidebar { height: auto; }
+body.studio-trail #navigation { flex: 0 0 auto; }
+body.studio-trail #sidebar .sidebar-bottom { margin-top: 8px; }
+body.studio-trail .builder-heading { max-width: 900px; margin-inline: auto; }
+.review-row .plan-item-icon svg { width: 18px; height: 18px; }
+@media (max-width: 700px) {
+  .trail-plan-chips { flex-basis: 100%; order: 3; }
+  .trail-plan > strong { flex: 1; }
+}
 </style>
 </head>
-<body class="studio-navigation">
+<body class="studio-navigation studio-trail">
 <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 9 5v8l-9 5-9-5V8zM3 8l9 5 9-5M12 13v8"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
@@ -784,18 +883,14 @@ body.studio-navigation .topbar .text-size-button{height:36px;min-width:34px;bord
 <aside class="sidebar" id="sidebar">
 
 
-<nav id="navigation" aria-label="Navegação principal">
+<nav id="navigation" aria-label="Mais opções">
 <section class="sidebar-group" aria-labelledby="nav-architecture"><h2 class="nav-label" id="nav-architecture">Arquitetura</h2><div class="sidebar-links">
-<a href="#builder" data-page="builder"><svg aria-hidden="true"><use href="#i-grid"/></svg><span class="nav-text">Construtor</span></a>
 <a href="#catalog" data-page="catalog"><svg aria-hidden="true"><use href="#i-chip"/></svg><span class="nav-text">Shapes e imagens</span></a>
 <a href="#network" data-page="network"><svg aria-hidden="true"><use href="#i-network"/></svg><span class="nav-text">Rede e roteamento</span></a>
 </div></section>
 <section class="sidebar-group" aria-labelledby="nav-governance"><h2 class="nav-label" id="nav-governance">Governança</h2><div class="sidebar-links">
 <a href="#iam" data-page="iam"><svg aria-hidden="true"><use href="#i-shield"/></svg><span class="nav-text">Políticas IAM</span></a>
 <a href="#tags" data-page="tags"><svg aria-hidden="true"><use href="#i-tag"/></svg><span class="nav-text">Tags do projeto</span></a>
-</div></section>
-<section class="sidebar-group" aria-labelledby="nav-delivery"><h2 class="nav-label" id="nav-delivery">Entrega</h2><div class="sidebar-links">
-<a href="#export" data-page="export"><svg aria-hidden="true"><use href="#i-code"/></svg><span class="nav-text">Código e exportação</span></a>
 </div></section>
 <section class="sidebar-group" aria-labelledby="nav-support"><h2 class="nav-label" id="nav-support">Preferências e ajuda</h2><div class="sidebar-links">
 <a href="#themes" data-page="themes"><svg aria-hidden="true"><use href="#i-palette"/></svg><span class="nav-text">Aparência</span></a>
@@ -805,10 +900,15 @@ body.studio-navigation .topbar .text-size-button{height:36px;min-width:34px;bord
 <div class="sidebar-bottom"><div class="local-status"><i></i> Workspace local</div><p>Seu projeto fica neste navegador.<br>Exporte um backup para guardar.</p><button class="text-button" data-action="backup">Salvar projeto <svg><use href="#i-arrow"/></svg></button></div>
 </aside>
 <div class="app">
-<header class="topbar"><a href="#builder" class="brand topbar-brand"><span class="brand-icon"><svg aria-hidden="true"><use href="#i-cube"/></svg></span><span>OCI <b>Architect</b><small>STUDIO / WORKSPACE</small></span></a><div class="breadcrumb"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">☰</button><span>Workspace</span><span>/</span><b id="breadcrumb">Construtor</b></div><div class="top-actions"><span class="local-label"><i></i> SEM CONEXÃO OCI</span><div class="region-control"><svg><use href="#i-globe"/></svg><select id="region" aria-label="Região OCI"><optgroup label="Comerciais · OC1"><option value="me-abudhabi-1">Abu Dhabi · me-abudhabi-1</option><option value="eu-amsterdam-1">Amesterdão · eu-amsterdam-1</option><option value="us-ashburn-1">Ashburn · us-ashburn-1</option><option value="ap-batam-1">Batam · ap-batam-1</option><option value="sa-bogota-1">Bogotá · sa-bogota-1</option><option value="uk-cardiff-1">Cardiff · uk-cardiff-1</option><option value="af-casablanca-1">Casablanca · af-casablanca-1</option><option value="us-chicago-1">Chicago · us-chicago-1</option><option value="ap-chuncheon-1">Chuncheon · ap-chuncheon-1</option><option value="ap-delhi-1">Deli · ap-delhi-1</option><option value="me-dubai-1">Dubai · me-dubai-1</option><option value="eu-stockholm-1">Estocolmo · eu-stockholm-1</option><option value="eu-frankfurt-1">Frankfurt · eu-frankfurt-1</option><option value="ap-hyderabad-1">Hyderabad · ap-hyderabad-1</option><option value="me-jeddah-1">Jeddah · me-jeddah-1</option><option value="il-jerusalem-1">Jerusalém · il-jerusalem-1</option><option value="af-johannesburg-1">Joanesburgo · af-johannesburg-1</option><option value="ap-kulai-2">Kulai · ap-kulai-2</option><option value="uk-london-1">Londres · uk-london-1</option><option value="eu-madrid-1">Madrid · eu-madrid-1</option><option value="eu-madrid-3">Madrid · eu-madrid-3</option><option value="eu-marseille-1">Marselha · eu-marseille-1</option><option value="ap-melbourne-1">Melbourne · ap-melbourne-1</option><option value="eu-milan-1">Milão · eu-milan-1</option><option value="mx-monterrey-1">Monterrey · mx-monterrey-1</option><option value="ca-montreal-1">Montreal · ca-montreal-1</option><option value="ap-mumbai-1">Mumbai · ap-mumbai-1</option><option value="ap-osaka-1">Osaka · ap-osaka-1</option><option value="eu-paris-1">Paris · eu-paris-1</option><option value="us-phoenix-1">Phoenix · us-phoenix-1</option><option value="mx-queretaro-1">Querétaro · mx-queretaro-1</option><option value="me-riyadh-1">Riade · me-riyadh-1</option><option value="us-saltlake-2">Salt Lake City · us-saltlake-2</option><option value="us-sanjose-1">San José · us-sanjose-1</option><option value="sa-santiago-1">Santiago · sa-santiago-1</option><option value="sa-saopaulo-1">São Paulo · sa-saopaulo-1</option><option value="ap-seoul-1">Seul · ap-seoul-1</option><option value="ap-singapore-1">Singapura · ap-singapore-1</option><option value="ap-singapore-2">Singapura · ap-singapore-2</option><option value="ap-sydney-1">Sydney · ap-sydney-1</option><option value="ap-tokyo-1">Tóquio · ap-tokyo-1</option><option value="ca-toronto-1">Toronto · ca-toronto-1</option><option value="eu-turin-1">Turim · eu-turin-1</option><option value="sa-valparaiso-1">Valparaíso · sa-valparaiso-1</option><option value="sa-vinhedo-1">Vinhedo · sa-vinhedo-1</option><option value="eu-zurich-1">Zurique · eu-zurich-1</option></optgroup><optgroup label="Governamentais · OC2"><option value="us-langley-1">Langley · us-langley-1</option><option value="us-luke-1">Luke · us-luke-1</option></optgroup><optgroup label="Governamentais · OC3"><option value="us-gov-ashburn-1">Ashburn · us-gov-ashburn-1</option><option value="us-gov-chicago-1">Chicago · us-gov-chicago-1</option><option value="us-gov-phoenix-1">Phoenix · us-gov-phoenix-1</option></optgroup><optgroup label="Governamentais · OC4"><option value="uk-gov-cardiff-1">Cardiff · uk-gov-cardiff-1</option><option value="uk-gov-london-1">Londres · uk-gov-london-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC8"><option value="ap-chiyoda-1">Chiyoda · ap-chiyoda-1</option><option value="ap-ibaraki-1">Ibaraki · ap-ibaraki-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC9"><option value="me-ibri-1">Ibri · me-ibri-1</option><option value="me-dcc-muscat-1">Mascate · me-dcc-muscat-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC10"><option value="ap-dcc-canberra-1">Camberra · ap-dcc-canberra-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC14"><option value="eu-dcc-dublin-1">Dublin · eu-dcc-dublin-1</option><option value="eu-dcc-dublin-2">Dublin · eu-dcc-dublin-2</option><option value="eu-dcc-milan-1">Milão · eu-dcc-milan-1</option><option value="eu-dcc-milan-2">Milão · eu-dcc-milan-2</option><option value="eu-dcc-rating-1">Ratingen · eu-dcc-rating-1</option><option value="eu-dcc-rating-2">Ratingen · eu-dcc-rating-2</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC15"><option value="ap-dcc-gazipur-1">Gazipur · ap-dcc-gazipur-1</option></optgroup><optgroup label="Soberanas · União Europeia · OC19"><option value="eu-frankfurt-2">Frankfurt · eu-frankfurt-2</option><option value="eu-madrid-2">Madrid · eu-madrid-2</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC20"><option value="eu-jovanovac-1">Jovanovac · eu-jovanovac-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC21"><option value="me-alrayyan-1">Al Rayyan · me-alrayyan-1</option><option value="me-dcc-doha-1">Doha · me-dcc-doha-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC23"><option value="us-somerset-1">Somerset · us-somerset-1</option><option value="us-thames-1">Thames · us-thames-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC24"><option value="eu-crissier-1">Crissier · eu-crissier-1</option><option value="eu-dcc-zurich-1">Zurique · eu-dcc-zurich-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC26"><option value="me-abudhabi-3">Abu Dhabi · me-abudhabi-3</option><option value="me-alain-1">Al Ain · me-alain-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC29"><option value="me-abudhabi-2">Abu Dhabi · me-abudhabi-2</option><option value="me-abudhabi-4">Abu Dhabi · me-abudhabi-4</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC35"><option value="ap-chuncheon-2">Chuncheon · ap-chuncheon-2</option><option value="ap-seoul-2">Seul · ap-seoul-2</option><option value="ap-suwon-1">Suwon · ap-suwon-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC42"><option value="us-ashburn-2">Ashburn · us-ashburn-2</option><option value="us-newark-1">Newark · us-newark-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC51"><option value="eu-budapest-1">Budapeste · eu-budapest-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC52"><option value="sa-riodejaneiro-1">Rio de Janeiro · sa-riodejaneiro-1</option></optgroup><option value="custom">Outra região…</option></select></div><div class="language-control" id="language-control" translate="no"><button type="button" class="language-button" id="language-button" aria-label="Escolher idioma" aria-haspopup="menu" aria-controls="language-menu" aria-expanded="false"><svg aria-hidden="true"><use href="#i-globe"/></svg><span id="language-current">Português (Brasil)</span><span class="language-chevron" aria-hidden="true">⌄</span></button><div class="language-menu" id="language-menu" role="menu" aria-labelledby="language-menu-title" hidden><div class="language-menu-title" id="language-menu-title">Idioma da interface</div><button type="button" role="menuitemradio" data-language="pt-BR" lang="pt-BR" aria-checked="true"><span>Português (Brasil)</span><span class="language-code" aria-hidden="true">BR</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="pt-PT" lang="pt-PT" aria-checked="false"><span>Português (Portugal)</span><span class="language-code" aria-hidden="true">PT</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="en" lang="en" aria-checked="false"><span>English</span><span class="language-code" aria-hidden="true">EN</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="es" lang="es" aria-checked="false"><span>Español</span><span class="language-code" aria-hidden="true">ES</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="fr" lang="fr" aria-checked="false"><span>Français</span><span class="language-code" aria-hidden="true">FR</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="de" lang="de" aria-checked="false"><span>Deutsch</span><span class="language-code" aria-hidden="true">DE</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="it" lang="it" aria-checked="false"><span>Italiano</span><span class="language-code" aria-hidden="true">IT</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="ja" lang="ja" aria-checked="false"><span>日本語</span><span class="language-code" aria-hidden="true">JA</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="zh-CN" lang="zh-CN" aria-checked="false"><span>简体中文</span><span class="language-code" aria-hidden="true">ZH</span><span class="language-check" aria-hidden="true">✓</span></button></div></div><button class="text-size-button" data-action="font-cycle" id="text-size-button" aria-label="Ajustar tamanho do texto">Aa</button><button class="icon-button" data-action="next-theme" aria-label="Alternar tema"><svg><use href="#i-palette"/></svg></button></div></header>
+<header class="topbar"><a href="#builder" class="brand topbar-brand"><span class="brand-icon"><svg aria-hidden="true"><use href="#i-cube"/></svg></span><span>OCI <b>Architect</b><small>STUDIO / WORKSPACE</small></span></a><div class="breadcrumb"><b id="breadcrumb">Montar o plano</b></div><div class="top-actions"><span class="local-label"><i></i> SEM CONEXÃO OCI</span><div class="region-control"><svg><use href="#i-globe"/></svg><select id="region" aria-label="Região OCI"><optgroup label="Comerciais · OC1"><option value="me-abudhabi-1">Abu Dhabi · me-abudhabi-1</option><option value="eu-amsterdam-1">Amesterdão · eu-amsterdam-1</option><option value="us-ashburn-1">Ashburn · us-ashburn-1</option><option value="ap-batam-1">Batam · ap-batam-1</option><option value="sa-bogota-1">Bogotá · sa-bogota-1</option><option value="uk-cardiff-1">Cardiff · uk-cardiff-1</option><option value="af-casablanca-1">Casablanca · af-casablanca-1</option><option value="us-chicago-1">Chicago · us-chicago-1</option><option value="ap-chuncheon-1">Chuncheon · ap-chuncheon-1</option><option value="ap-delhi-1">Deli · ap-delhi-1</option><option value="me-dubai-1">Dubai · me-dubai-1</option><option value="eu-stockholm-1">Estocolmo · eu-stockholm-1</option><option value="eu-frankfurt-1">Frankfurt · eu-frankfurt-1</option><option value="ap-hyderabad-1">Hyderabad · ap-hyderabad-1</option><option value="me-jeddah-1">Jeddah · me-jeddah-1</option><option value="il-jerusalem-1">Jerusalém · il-jerusalem-1</option><option value="af-johannesburg-1">Joanesburgo · af-johannesburg-1</option><option value="ap-kulai-2">Kulai · ap-kulai-2</option><option value="uk-london-1">Londres · uk-london-1</option><option value="eu-madrid-1">Madrid · eu-madrid-1</option><option value="eu-madrid-3">Madrid · eu-madrid-3</option><option value="eu-marseille-1">Marselha · eu-marseille-1</option><option value="ap-melbourne-1">Melbourne · ap-melbourne-1</option><option value="eu-milan-1">Milão · eu-milan-1</option><option value="mx-monterrey-1">Monterrey · mx-monterrey-1</option><option value="ca-montreal-1">Montreal · ca-montreal-1</option><option value="ap-mumbai-1">Mumbai · ap-mumbai-1</option><option value="ap-osaka-1">Osaka · ap-osaka-1</option><option value="eu-paris-1">Paris · eu-paris-1</option><option value="us-phoenix-1">Phoenix · us-phoenix-1</option><option value="mx-queretaro-1">Querétaro · mx-queretaro-1</option><option value="me-riyadh-1">Riade · me-riyadh-1</option><option value="us-saltlake-2">Salt Lake City · us-saltlake-2</option><option value="us-sanjose-1">San José · us-sanjose-1</option><option value="sa-santiago-1">Santiago · sa-santiago-1</option><option value="sa-saopaulo-1">São Paulo · sa-saopaulo-1</option><option value="ap-seoul-1">Seul · ap-seoul-1</option><option value="ap-singapore-1">Singapura · ap-singapore-1</option><option value="ap-singapore-2">Singapura · ap-singapore-2</option><option value="ap-sydney-1">Sydney · ap-sydney-1</option><option value="ap-tokyo-1">Tóquio · ap-tokyo-1</option><option value="ca-toronto-1">Toronto · ca-toronto-1</option><option value="eu-turin-1">Turim · eu-turin-1</option><option value="sa-valparaiso-1">Valparaíso · sa-valparaiso-1</option><option value="sa-vinhedo-1">Vinhedo · sa-vinhedo-1</option><option value="eu-zurich-1">Zurique · eu-zurich-1</option></optgroup><optgroup label="Governamentais · OC2"><option value="us-langley-1">Langley · us-langley-1</option><option value="us-luke-1">Luke · us-luke-1</option></optgroup><optgroup label="Governamentais · OC3"><option value="us-gov-ashburn-1">Ashburn · us-gov-ashburn-1</option><option value="us-gov-chicago-1">Chicago · us-gov-chicago-1</option><option value="us-gov-phoenix-1">Phoenix · us-gov-phoenix-1</option></optgroup><optgroup label="Governamentais · OC4"><option value="uk-gov-cardiff-1">Cardiff · uk-gov-cardiff-1</option><option value="uk-gov-london-1">Londres · uk-gov-london-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC8"><option value="ap-chiyoda-1">Chiyoda · ap-chiyoda-1</option><option value="ap-ibaraki-1">Ibaraki · ap-ibaraki-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC9"><option value="me-ibri-1">Ibri · me-ibri-1</option><option value="me-dcc-muscat-1">Mascate · me-dcc-muscat-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC10"><option value="ap-dcc-canberra-1">Camberra · ap-dcc-canberra-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC14"><option value="eu-dcc-dublin-1">Dublin · eu-dcc-dublin-1</option><option value="eu-dcc-dublin-2">Dublin · eu-dcc-dublin-2</option><option value="eu-dcc-milan-1">Milão · eu-dcc-milan-1</option><option value="eu-dcc-milan-2">Milão · eu-dcc-milan-2</option><option value="eu-dcc-rating-1">Ratingen · eu-dcc-rating-1</option><option value="eu-dcc-rating-2">Ratingen · eu-dcc-rating-2</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC15"><option value="ap-dcc-gazipur-1">Gazipur · ap-dcc-gazipur-1</option></optgroup><optgroup label="Soberanas · União Europeia · OC19"><option value="eu-frankfurt-2">Frankfurt · eu-frankfurt-2</option><option value="eu-madrid-2">Madrid · eu-madrid-2</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC20"><option value="eu-jovanovac-1">Jovanovac · eu-jovanovac-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC21"><option value="me-alrayyan-1">Al Rayyan · me-alrayyan-1</option><option value="me-dcc-doha-1">Doha · me-dcc-doha-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC23"><option value="us-somerset-1">Somerset · us-somerset-1</option><option value="us-thames-1">Thames · us-thames-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC24"><option value="eu-crissier-1">Crissier · eu-crissier-1</option><option value="eu-dcc-zurich-1">Zurique · eu-dcc-zurich-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC26"><option value="me-abudhabi-3">Abu Dhabi · me-abudhabi-3</option><option value="me-alain-1">Al Ain · me-alain-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC29"><option value="me-abudhabi-2">Abu Dhabi · me-abudhabi-2</option><option value="me-abudhabi-4">Abu Dhabi · me-abudhabi-4</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC35"><option value="ap-chuncheon-2">Chuncheon · ap-chuncheon-2</option><option value="ap-seoul-2">Seul · ap-seoul-2</option><option value="ap-suwon-1">Suwon · ap-suwon-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC42"><option value="us-ashburn-2">Ashburn · us-ashburn-2</option><option value="us-newark-1">Newark · us-newark-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC51"><option value="eu-budapest-1">Budapeste · eu-budapest-1</option></optgroup><optgroup label="Dedicadas e acesso restrito · OC52"><option value="sa-riodejaneiro-1">Rio de Janeiro · sa-riodejaneiro-1</option></optgroup><option value="custom">Outra região…</option></select></div><div class="language-control" id="language-control" translate="no"><button type="button" class="language-button" id="language-button" aria-label="Escolher idioma" aria-haspopup="menu" aria-controls="language-menu" aria-expanded="false"><svg aria-hidden="true"><use href="#i-globe"/></svg><span id="language-current">Português (Brasil)</span><span class="language-chevron" aria-hidden="true">⌄</span></button><div class="language-menu" id="language-menu" role="menu" aria-labelledby="language-menu-title" hidden><div class="language-menu-title" id="language-menu-title">Idioma da interface</div><button type="button" role="menuitemradio" data-language="pt-BR" lang="pt-BR" aria-checked="true"><span>Português (Brasil)</span><span class="language-code" aria-hidden="true">BR</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="pt-PT" lang="pt-PT" aria-checked="false"><span>Português (Portugal)</span><span class="language-code" aria-hidden="true">PT</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="en" lang="en" aria-checked="false"><span>English</span><span class="language-code" aria-hidden="true">EN</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="es" lang="es" aria-checked="false"><span>Español</span><span class="language-code" aria-hidden="true">ES</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="fr" lang="fr" aria-checked="false"><span>Français</span><span class="language-code" aria-hidden="true">FR</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="de" lang="de" aria-checked="false"><span>Deutsch</span><span class="language-code" aria-hidden="true">DE</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="it" lang="it" aria-checked="false"><span>Italiano</span><span class="language-code" aria-hidden="true">IT</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="ja" lang="ja" aria-checked="false"><span>日本語</span><span class="language-code" aria-hidden="true">JA</span><span class="language-check" aria-hidden="true">✓</span></button><button type="button" role="menuitemradio" data-language="zh-CN" lang="zh-CN" aria-checked="false"><span>简体中文</span><span class="language-code" aria-hidden="true">ZH</span><span class="language-check" aria-hidden="true">✓</span></button></div></div><button class="text-size-button" data-action="font-cycle" id="text-size-button" aria-label="Ajustar tamanho do texto">Aa</button><button class="icon-button" data-action="next-theme" aria-label="Alternar tema"><svg><use href="#i-palette"/></svg></button><button type="button" class="trail-more" data-action="menu" aria-controls="sidebar" aria-expanded="false"><span>Mais</span><span aria-hidden="true">▾</span></button></div></header>
+<nav class="trail" id="trail" aria-label="Etapas do projeto"><ol>
+<li><a href="#builder" data-page="builder"><span class="trail-number" aria-hidden="true">1</span><span class="trail-text"><b>Montar o plano</b><small>Escolha o que criar</small></span></a></li>
+<li><a href="#review" data-page="review"><span class="trail-number" aria-hidden="true">2</span><span class="trail-text"><b>Conferir</b><small>Recursos, tags e pendências</small></span></a></li>
+<li><a href="#export" data-page="export"><span class="trail-number" aria-hidden="true">3</span><span class="trail-text"><b>Exportar</b><small>Terraform ou OCI CLI</small></span></a></li>
+</ol></nav>
 <main>
 <section class="view" id="view-builder">
-<div class="page-heading builder-heading"><div><div class="eyebrow"><span></span> OCI ARCHITECT STUDIO</div><h1>Vamos configurar seu recurso?</h1><p>Escolha o serviço, responda às etapas e revise antes de adicionar ao plano.</p></div><button class="button primary" data-action="open-export"><svg><use href="#i-code"/></svg>Revisar e exportar<svg><use href="#i-arrow"/></svg></button></div>
+<div class="page-heading builder-heading"><div><div class="eyebrow"><span></span> OCI ARCHITECT STUDIO</div><h1 id="builder-title">O que você quer criar na OCI?</h1><p id="builder-subtitle">Escolha um item. A gente pergunta só o necessário e monta o código para você.</p></div></div>
 <div class="stats compact-stats" id="stats"></div>
 <div class="builder-grid">
 <div class="builder-main">
@@ -816,12 +916,15 @@ body.studio-navigation .topbar .text-size-button{height:36px;min-width:34px;bord
 <div class="panel resource-form">
 <div class="form-heading"><span class="service-icon" id="form-icon"></span><div><h3 id="form-title">Compute instance</h3><p id="form-desc"></p></div><span class="badge">TERRAFORM</span></div>
 <form id="resource-form" autocomplete="off" novalidate>
+<div class="trail-services" id="trail-services"><div class="trail-service-grid" role="group" aria-label="Serviços mais usados"><button type="button" class="trail-service" data-action="trail-pick" data-type="vcn" aria-pressed="false"><span class="trail-service-icon"><svg aria-hidden="true"><use href="#i-network"/></svg></span><span><strong>Rede</strong><span>A rede privada onde seus recursos ficam.</span></span></button><button type="button" class="trail-service" data-action="trail-pick" data-type="compute" aria-pressed="false"><span class="trail-service-icon"><svg aria-hidden="true"><use href="#i-chip"/></svg></span><span><strong>Servidor</strong><span>Uma máquina Linux ou Windows.</span></span></button><button type="button" class="trail-service" data-action="trail-pick" data-type="bucket" aria-pressed="false"><span class="trail-service-icon"><svg aria-hidden="true"><use href="#i-cube"/></svg></span><span><strong>Armazenamento</strong><span>Um bucket para guardar seus arquivos.</span></span></button><button type="button" class="trail-service" data-action="trail-pick" data-type="adb" aria-pressed="false"><span class="trail-service-icon"><svg aria-hidden="true"><use href="#i-cloud"/></svg></span><span><strong>Banco de dados</strong><span>Autonomous Database gerenciado pela Oracle.</span></span></button><button type="button" class="trail-service" data-action="trail-pick" data-type="lb" aria-pressed="false"><span class="trail-service-icon"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><span><strong>Balanceador</strong><span>Distribui o acesso entre servidores.</span></span></button><button type="button" class="trail-service" data-action="trail-pick" data-type="oke" aria-pressed="false"><span class="trail-service-icon"><svg aria-hidden="true"><use href="#i-grid"/></svg></span><span><strong>Kubernetes</strong><span>Um cluster OKE para contêineres.</span></span></button></div><p class="trail-all-services">Não achou? Escolha entre todos os serviços na lista abaixo.</p></div>
 <div class="service-selector" id="service-selector"></div><div id="builder-service-summary" class="builder-service-summary" hidden><div><strong id="builder-summary-type"></strong><span aria-hidden="true"> · </span><span id="builder-summary-name" translate="no"></span></div><button type="button" class="text-button" data-action="builder-change-service">Trocar serviço</button></div>
 <div id="service-policy-banner" class="service-policy-banner"></div>
 <nav class="builder-steps" id="builder-steps" aria-label="Etapas da configuração"></nav>
 <div class="builder-stage-meta"><span class="small muted" id="builder-step-count">Etapa 1 de 5</span></div><div id="resource-fields"></div><div id="form-hints"></div>
 <div class="form-footer wizard-footer"><button class="button subtle" type="button" data-action="builder-back" id="builder-back">Voltar</button><button class="button primary" type="button" data-action="builder-next" id="builder-next">Continuar</button><button class="button primary" type="submit" id="add-resource" hidden><svg><use href="#i-plus"/></svg>Adicionar ao plano</button></div>
 </form></div>
+<section class="trail-plan" id="trail-plan" aria-labelledby="trail-plan-title"><strong id="trail-plan-title">Seu plano</strong><div class="trail-plan-chips" id="trail-plan-chips"></div><a class="button primary" href="#review">Conferir o plano <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></section>
+<p class="trail-tip" id="trail-tip"><strong>Primeira vez?</strong> <span>Comece por um modelo pronto e mude o que quiser depois.</span> <button type="button" class="text-button" data-action="load-example">Usar modelo de rede + servidor <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></p>
 <div class="quick-lab"><div><span class="mini-icon"><svg><use href="#i-network"/></svg></span><div><h3>Valide o caminho entre suas redes.</h3><p>Simule ida e retorno em uma topologia hub-and-spoke.</p></div></div><a href="#network" class="text-button">Abrir laboratório <svg><use href="#i-arrow"/></svg></a></div>
 </div>
 <details class="builder-plan-disclosure" id="builder-project-plan"><summary>Projeto e plano de recursos <span class="count" id="builder-plan-count">0</span></summary><aside class="plan-column">
@@ -833,6 +936,13 @@ body.studio-navigation .topbar .text-size-button{height:36px;min-width:34px;bord
 <div class="panel policy-preview" hidden><div id="policy-preview"></div></div>
 <div class="reference-note"><span class="reference-circle">i</span><p>Os OCIDs pendentes serão solicitados pelo Terraform. Importe o catálogo da sua região para conferir a disponibilidade.</p></div>
 </aside></details></div>
+</section>
+<section class="view" id="view-review" hidden>
+<div class="page-heading"><div><div class="eyebrow">ETAPA 2 DE 3</div><h1>Confira seu plano</h1><p>Veja o que será criado e resolva as pendências antes de exportar.</p></div></div>
+<div class="trail-review"><div class="panel padded"><div class="section-top"><h2>Recursos no plano</h2><span class="count" id="review-count">0</span></div><div id="review-resources"></div></div>
+<div class="trail-review-side"><div class="panel padded"><h2>Tags do projeto</h2><div id="review-tags"></div><a href="#tags" class="text-button">Abrir tags <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+<div class="panel padded"><h2>Permissões (IAM)</h2><p class="section-caption">Opcional. Consulte as policies de referência para os serviços do plano.</p><a href="#iam" class="text-button">Abrir políticas IAM <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div></div>
+<div class="trail-review-actions"><a class="button" href="#builder">Voltar ao plano</a><button type="button" class="button primary" data-action="open-export" id="review-continue">Continuar para exportar <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
 </section>
 <section class="view" id="view-catalog" hidden>
 <div class="page-heading"><div><div class="eyebrow">COMPUTE / CATÁLOGO</div><h1>O shape certo. <span>A imagem certa.</span></h1><p>Explore a referência Oracle e importe o catálogo da sua tenancy.</p></div><button class="button primary" data-action="import-catalog"><svg><use href="#i-plus"/></svg>Importar JSON da OCI</button></div>
@@ -2180,14 +2290,14 @@ function toast(msg){$('toast').textContent=translateUiText(msg);$('toast').class
 function download(name,body,mime){const url=URL.createObjectURL(new Blob([body],{type:mime||'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 async function copy(text){try{await navigator.clipboard.writeText(text);toast('Copiado.');}catch(e){const t=document.createElement('textarea');t.value=text;document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();toast(ok?'Copiado.':'Cópia indisponível. Selecione o código e copie.');}}
 function options(arr,value){return arr.map(x=>{const a=Array.isArray(x)?x:[x,x];return '<option value="'+esc(a[0])+'"'+(String(value)===String(a[0])?' selected':'')+'>'+esc(a[1])+'</option>';}).join('');}
-function showPage(p){if(!$('view-'+p))p='builder';page=p;document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='view-'+p);document.querySelectorAll('[data-page]').forEach(a=>{const active=a.dataset.page===p;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});$('breadcrumb').textContent=({builder:'Construtor',catalog:'Shapes e imagens',iam:'Políticas IAM',network:'Rede e roteamento',tags:'Tags do projeto',export:'Código e exportação',themes:'Aparência',guide:'Guia e fontes'})[p]||p;$('sidebar').classList.remove('open');renderPage();window.scrollTo({top:0,behavior:'instant'});}
+function showPage(p){if(!$('view-'+p))p='builder';page=p;document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='view-'+p);document.querySelectorAll('[data-page]').forEach(a=>{const active=a.dataset.page===p;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});$('breadcrumb').textContent=({builder:'Montar o plano',review:'Conferir',catalog:'Shapes e imagens',iam:'Políticas IAM',network:'Rede e roteamento',tags:'Tags do projeto',export:'Exportar',themes:'Aparência',guide:'Guia e fontes'})[p]||p;$('sidebar').classList.remove('open');renderPage();window.scrollTo({top:0,behavior:'instant'});}
 function setPage(p){if(!$('view-'+p))p='builder';if(location.hash!=='#'+p){try{history.pushState(null,'','#'+p);}catch{location.hash=p;return;}}showPage(p);}
 function applyTheme(){const chosen=themes.find(t=>t.id===s.theme)||themes[0];s.theme=chosen.id;const colors={...chosen.tokens,bg:chosen.bg,sidebar:chosen.sidebar,panel:chosen.panel};for(const [key,value]of Object.entries(colors))document.documentElement.style.setProperty('--'+key,value);const accent=readableChatgptAccent(currentChatgptAccent(chosen),chosen);document.documentElement.style.setProperty('--accent',accent);document.documentElement.style.setProperty('--accent-ink',readableAccentInk(accent));document.documentElement.style.colorScheme=chosen.mode;document.documentElement.dataset.theme=chosen.id;document.documentElement.dataset.themeMode=chosen.mode; applyReadability();document.querySelector('meta[name="theme-color"]').content=chosen.bg;}
 
 function renderStats(){const stats=[[s.resources.length,'Recursos no plano','cube',''],[policies(s).length,'Policies sugeridas','shield','mint'],[allShapes(s).length,'Shapes no catálogo','chip','blue'],[s.tags.length,'Tags do projeto','tag','']];$('stats').innerHTML=stats.map(x=>'<div class="stat"><div class="stat-icon '+x[3]+'">'+icon(x[2])+'</div><div><strong>'+uiNumber(x[0])+'</strong><span class="metric-label">'+x[1]+'</span></div><span class="stat-end">↗</span></div>').join('');}
 function renderPlan(){$('project-name').value=s.projectName;$('plan-count').textContent=s.resources.length;
 $('plan-list').innerHTML=s.resources.length?s.resources.map(r=>'<div class="plan-item"><span class="plan-item-icon">'+icon(TYPES[r.type].icon)+'</span><div class="plan-item-main"><button data-action="edit-resource" data-id="'+r.id+'">'+esc(r.name)+'</button><small>'+esc(r.values.shape||TYPES[r.type].label)+'</small></div><button class="icon-button" data-action="remove-resource" data-id="'+r.id+'" aria-label="Remover '+esc(r.name)+'">'+icon('trash')+'</button></div>').join(''):'<div class="plan-empty">'+icon('cube')+'<p><strong>Sua arquitetura começa aqui.</strong>Configure seu primeiro recurso e adicione ao plano.</p></div>';
-const errs=s.resources.flatMap(r=>validateResource(r,s));$('plan-status').textContent=errs.length?errs.length+' ajuste(s) pendente(s)':s.resources.length?s.resources.length+' recurso(s) configurado(s)':'Pronto para começar';$('plan-status').className=errs.length?'status-bad':'';
+const errs=s.resources.flatMap(r=>validateResource(r,s));$('plan-status').textContent=errs.length?errs.length+' ajuste(s) pendente(s)':s.resources.length?s.resources.length+' recurso(s) configurado(s)':'Pronto para começar';$('plan-status').className=errs.length?'status-bad':'';renderTrail();if(page==='review')renderReview();
 const p=policies(s);$('policy-preview').innerHTML=p.length?p.slice(0,3).map(x=>'<div class="policy-line">'+esc(x.verb+' '+x.type)+'</div>').join('')+(p.length>3?'<p class="small">+ '+(p.length-3)+' statements para revisar</p>':''):'<div class="policy-line">Aguardando o primeiro recurso…</div>';
 }
 function renderField(f,v){if(f.type==='heading')return '<div class="field-heading">'+esc(f.label)+'</div>';const val=v[f.key]??f.value,attrs=' id="f-'+f.key+'" name="'+f.key+'"'+(f.required?' required':'')+(f.min!==undefined?' min="'+f.min+'"':'')+(f.max!==undefined?' max="'+f.max+'"':'')+(f.placeholder?' placeholder="'+esc(f.placeholder)+'"':'');let input='';
@@ -2206,7 +2316,7 @@ $('form-hints').innerHTML=msgs.length?'<div class="notice small">'+msgs.map(esc)
 function gatherDraft(){const v={...draft};for(const el of $('resource-form').elements)if(el.name&&el.name!=='resourceType')v[el.name]=el.type==='checkbox'?el.checked:el.value;return v;}
 function chooseType(type,values){dismissBuilderSuccess();selectedType=type;editingId='';builderStep='service';draft=values||initialValues(type);renderBuilder();toast(TYPES[type].label+': '+(type==='universal'?'informe o HCL no editor; sugestões IAM são opcionais.':servicePolicies(s,type,draft).length+' sugestões IAM disponíveis para consulta opcional.'));}
 function updateAll(){renderStats();renderPlan();renderPage();save();}
-function renderPage(){if(page==='builder')renderBuilder();if(page==='catalog')renderCatalog();if(page==='iam')renderIam();if(page==='network')renderNetwork();if(page==='tags')renderTags();if(page==='export')renderExport();if(page==='themes')renderThemes();}
+function renderPage(){if(page==='builder')renderBuilder();if(page==='catalog')renderCatalog();if(page==='iam')renderIam();if(page==='network')renderNetwork();if(page==='tags')renderTags();if(page==='export')renderExport();if(page==='themes')renderThemes();if(page==='review')renderReview();renderTrail();}
 function renderCatalog(){$('shape-total').textContent=allShapes(s).length;document.querySelectorAll('[data-action="catalog-tab"]').forEach(x=>x.classList.toggle('active',x.dataset.tab===catalogTab));
 if(catalogTab==='sync'){const comp=s.compartmentId||'<COMPARTMENT_OCID>';const shape=(draft.shape||'VM.Standard.E5.Flex');const cmd='# Execute no OCI Cloud Shell ou CLI autenticada.\noci compute shape list --compartment-id '+shellQuote(comp)+' --region '+shellQuote(s.region)+' --all > shapes.json\n\n# Imagens compatíveis com o shape selecionado (versões recentes):\noci compute image list --compartment-id '+shellQuote(comp)+' --region '+shellQuote(s.region)+' --shape '+shellQuote(shape)+' --all > images.json\n\n# Para imagens de outros shapes, repita image list --shape.\n# CLI mantém apenas as imagens de plataforma recentes visíveis em ListImages.';
 $('catalog-content').innerHTML='<div class="two-cols"><div class="panel padded"><h2>Catálogo verificado na sua tenancy</h2><p class="muted">Execute os comandos e importe shapes.json e images.json. Não há credenciais no navegador.</p><div class="notice">A importação será associada à região '+esc(s.region)+'. Importe novamente ao mudar de região. Dados da região anterior são preservados no backup, mas não são usados.</div><label>Shape consultado<input id="catalog-shape-context" value="'+esc(shape)+'"></label><p class="small muted">Ao importar imagens, informe aqui o mesmo shape utilizado em image list --shape. A ferramenta registrará essa compatibilidade.</p><button class="button primary" data-action="import-catalog">Importar JSON</button><p class="small muted">Última importação: '+(s.catalog.importedAt?uiDate(s.catalog.importedAt):esc(translateUiText('nenhuma')))+' · '+esc(s.catalog.region||'—')+'</p><p class="small muted">Marketplace, imagens customizadas e BYOI também podem ser usados por OCID no construtor.</p></div><div class="panel code-panel"><div class="code-top"><span>consulta-catalogo.sh</span><button class="text-button" data-action="copy-sync">Copiar</button></div><pre id="sync-code">'+esc(cmd)+'</pre></div></div>';return;}
@@ -2697,15 +2807,15 @@ const OCI_REGION_CATALOG = {"source": "https://github.com/oracle/oci-python-sdk/
  activate(tabs[0]);
 })();
 
-// Shell geometry and drawer accessibility only. No project, generation or deployment side effects.
+// Shell geometry and "Mais" menu accessibility only. No project, generation or deployment side effects.
 (()=>{
  const header=document.querySelector('.topbar'),sidebar=document.getElementById('sidebar'),toggle=document.querySelector('[data-action="menu"]');if(!header||!sidebar||!toggle)return;
  function syncHeight(){const height=Math.ceil(header.getBoundingClientRect().height);if(height>0)document.body.style.setProperty('--studio-header-height',height+'px');}
  function syncDrawer(){toggle.setAttribute('aria-expanded',String(sidebar.classList.contains('open')));}
  new ResizeObserver(syncHeight).observe(header);new MutationObserver(syncDrawer).observe(sidebar,{attributes:true,attributeFilter:['class']});
  document.addEventListener('keydown',event=>{if(!event.defaultPrevented&&event.key==='Escape'&&sidebar.classList.contains('open')){sidebar.classList.remove('open');toggle.focus();}});
- document.addEventListener('pointerdown',event=>{if(innerWidth<=700&&sidebar.classList.contains('open')&&!sidebar.contains(event.target)&&!toggle.contains(event.target))sidebar.classList.remove('open');});
- window.addEventListener('resize',()=>{if(innerWidth>700)sidebar.classList.remove('open');syncHeight();});
+ document.addEventListener('pointerdown',event=>{if(sidebar.classList.contains('open')&&!sidebar.contains(event.target)&&!toggle.contains(event.target))sidebar.classList.remove('open');});
+ window.addEventListener('resize',syncHeight);
  syncHeight();syncDrawer();
 })();
 
@@ -2717,6 +2827,7 @@ function showBuilderSuccess(resource,updated=false){
 }
 function updateBuilderGuide(){
  const selector=document.getElementById('service-selector');if(!selector)return;
+ updateTrailBuilder();
  const serviceStep=builderStep==='service';selector.hidden=!serviceStep;
  const summary=document.getElementById('builder-service-summary');summary.hidden=serviceStep;document.getElementById('builder-summary-type').textContent=TYPES[selectedType].label;document.getElementById('builder-summary-name').textContent=draft.name||'—';
  const count=document.getElementById('builder-plan-count');if(count){count.dataset.uiNumber=String(s.resources.length);count.setAttribute('translate','no');count.textContent=formatUiNumber(s.resources.length);}
@@ -2770,6 +2881,117 @@ function renderBuilderReview({resource,facts,errors,scope,generated}){
  if(!list||!details)return;let previous=s.resources.length;if(previous)details.open=true;
  new MutationObserver(()=>{if(s.resources.length>previous)details.open=true;previous=s.resources.length;const count=document.getElementById('builder-plan-count');count.dataset.uiNumber=String(previous);count.textContent=formatUiNumber(previous);const card=document.getElementById('builder-success');if(card?.dataset.resourceId&&!s.resources.some(r=>r.id===card.dataset.resourceId))dismissBuilderSuccess();}).observe(list,{childList:true});
 })();
+
+// Guided trail (A): three project steps, common service cards and the review page.
+// Presentation only: resources, validation and exporters remain authoritative in studio.js.
+function trailSection(current) {
+  return { builder: 'builder', catalog: 'builder', network: 'builder', review: 'review', iam: 'review', tags: 'review', export: 'export' }[current] || '';
+}
+function renderTrail() {
+  const nav = document.getElementById('trail');
+  if (!nav) return;
+  const order = ['builder', 'review', 'export'], section = trailSection(page), reached = order.indexOf(section);
+  nav.querySelectorAll('a[data-page]').forEach((link, index) => {
+    link.classList.toggle('trail-current', link.dataset.page === section);
+    link.classList.toggle('trail-done', reached > index);
+  });
+  const chips = document.getElementById('trail-plan-chips');
+  if (chips) {
+    chips.innerHTML = s.resources.length
+      ? s.resources.map(r => '<button type="button" class="trail-chip" data-action="edit-resource" data-id="' + esc(r.id) + '" translate="no">' + esc(r.name) + '</button>').join('')
+      : '<span class="trail-plan-empty">Nenhum recurso ainda.</span>';
+  }
+  const tip = document.getElementById('trail-tip');
+  if (tip) tip.hidden = s.resources.length > 0;
+}
+function updateTrailBuilder() {
+  const cards = document.getElementById('trail-services');
+  if (!cards) return;
+  const serviceStep = builderStep === 'service';
+  cards.hidden = !serviceStep || Boolean(editingId);
+  cards.querySelectorAll('[data-type]').forEach(card => card.setAttribute('aria-pressed', String(card.dataset.type === selectedType)));
+  document.getElementById('builder-title').textContent = editingId ? 'Editar recurso' : serviceStep ? 'O que você quer criar na OCI?' : 'Vamos configurar seu recurso?';
+  document.getElementById('builder-subtitle').textContent = serviceStep && !editingId
+    ? 'Escolha um item. A gente pergunta só o necessário e monta o código para você.'
+    : 'Escolha o serviço, responda às etapas e revise antes de adicionar ao plano.';
+}
+function renderReview() {
+  const list = document.getElementById('review-resources');
+  if (!list) return;
+  const count = document.getElementById('review-count');
+  count.textContent = formatUiNumber(s.resources.length);
+  count.setAttribute('translate', 'no');
+  list.innerHTML = s.resources.length
+    ? s.resources.map(r => {
+        const issues = validateResource(r, s);
+        return '<article class="review-row"><span class="plan-item-icon">' + icon(TYPES[r.type].icon) + '</span><div class="review-row-main"><button type="button" class="review-row-name" data-action="edit-resource" data-id="' + esc(r.id) + '" translate="no">' + esc(r.name) + '</button><small>' + esc(TYPES[r.type].label) + '</small>' +
+          (issues.length ? '<ul class="review-issues">' + issues.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '') +
+          '</div><span class="badge ' + (issues.length ? 'warning' : 'mint') + '">' + (issues.length ? 'Falta ajustar' : 'Pronto') + '</span></article>';
+      }).join('')
+    : '<div class="review-empty"><p><strong>Seu plano ainda está vazio.</strong></p><p>Adicione um recurso para conferir aqui.</p><a class="button primary" href="#builder">Montar o plano</a></div>';
+  const tagErrors = tagAudit(s).errors;
+  document.getElementById('review-tags').innerHTML = tagErrors.length
+    ? '<span class="badge warning">Falta ajustar</span><ul class="review-issues">' + tagErrors.map(x => '<li>' + esc(x.message) + '</li>').join('') + '</ul>'
+    : '<span class="badge mint">Pronto</span><p class="section-caption">As tags do projeto estão prontas para exportar.</p>';
+}
+document.addEventListener('click', event => {
+  const card = event.target.closest('[data-action="trail-pick"]');
+  if (card && TYPES[card.dataset.type]) {
+    chooseType(card.dataset.type);
+    document.getElementById('f-name')?.focus({ preventScroll: true });
+  }
+});
+for (const [source, ...values] of [
+  ['Montar o plano', 'Build the plan', 'Armar el plan', 'Composer le plan', 'Plan erstellen', 'Crea il piano', 'プランを作成', '制定计划'],
+  ['Escolha o que criar', 'Choose what to create', 'Elige qué crear', 'Choisissez quoi créer', 'Wählen Sie, was erstellt wird', 'Scegli cosa creare', '作成するものを選択', '选择要创建的内容'],
+  ['Conferir', 'Review', 'Revisar', 'Vérifier', 'Prüfen', 'Verifica', '確認', '检查'],
+  ['Recursos, tags e pendências', 'Resources, tags and open items', 'Recursos, etiquetas y pendientes', 'Ressources, tags et points en attente', 'Ressourcen, Tags und offene Punkte', 'Risorse, tag ed elementi in sospeso', 'リソース、タグ、未対応項目', '资源、标记和待办事项'],
+  ['Exportar', 'Export', 'Exportar', 'Exporter', 'Exportieren', 'Esporta', 'エクスポート', '导出'],
+  ['Terraform ou OCI CLI', 'Terraform or OCI CLI', 'Terraform u OCI CLI', 'Terraform ou OCI CLI', 'Terraform oder OCI CLI', 'Terraform o OCI CLI', 'Terraform または OCI CLI', 'Terraform 或 OCI CLI'],
+  ['Mais', 'More', 'Más', 'Plus', 'Mehr', 'Altro', 'その他', '更多'],
+  ['Mais opções', 'More options', 'Más opciones', 'Plus d’options', 'Weitere Optionen', 'Altre opzioni', 'その他のオプション', '更多选项'],
+  ['Etapas do projeto', 'Project steps', 'Pasos del proyecto', 'Étapes du projet', 'Projektschritte', 'Passaggi del progetto', 'プロジェクトの手順', '项目步骤'],
+  ['O que você quer criar na OCI?', 'What do you want to create on OCI?', '¿Qué quieres crear en OCI?', 'Que voulez-vous créer sur OCI ?', 'Was möchten Sie in OCI erstellen?', 'Cosa vuoi creare su OCI?', 'OCIで何を作成しますか？', '您想在 OCI 上创建什么？'],
+  ['Escolha um item. A gente pergunta só o necessário e monta o código para você.', 'Pick an item. We ask only what is needed and build the code for you.', 'Elige un elemento. Preguntamos solo lo necesario y armamos el código por ti.', 'Choisissez un élément. Nous demandons seulement le nécessaire et préparons le code pour vous.', 'Wählen Sie ein Element. Wir fragen nur das Nötige ab und erstellen den Code für Sie.', 'Scegli un elemento. Chiediamo solo il necessario e prepariamo il codice per te.', '項目を選択してください。必要なことだけを確認し、コードを作成します。', '选择一项。我们只询问必要信息并为您生成代码。'],
+  ['Editar recurso', 'Edit resource', 'Editar recurso', 'Modifier la ressource', 'Ressource bearbeiten', 'Modifica risorsa', 'リソースを編集', '编辑资源'],
+  ['Serviços mais usados', 'Most used services', 'Servicios más usados', 'Services les plus utilisés', 'Meistgenutzte Dienste', 'Servizi più usati', 'よく使うサービス', '常用服务'],
+  ['Rede', 'Network', 'Red', 'Réseau', 'Netzwerk', 'Rete', 'ネットワーク', '网络'],
+  ['A rede privada onde seus recursos ficam.', 'The private network where your resources live.', 'La red privada donde viven tus recursos.', 'Le réseau privé où se trouvent vos ressources.', 'Das private Netzwerk für Ihre Ressourcen.', 'La rete privata in cui risiedono le tue risorse.', 'リソースを配置するプライベートネットワーク。', '承载您资源的专用网络。'],
+  ['Servidor', 'Server', 'Servidor', 'Serveur', 'Server', 'Server', 'サーバー', '服务器'],
+  ['Uma máquina Linux ou Windows.', 'A Linux or Windows machine.', 'Una máquina Linux o Windows.', 'Une machine Linux ou Windows.', 'Eine Linux- oder Windows-Maschine.', 'Una macchina Linux o Windows.', 'Linux または Windows のマシン。', '一台 Linux 或 Windows 计算机。'],
+  ['Armazenamento', 'Storage', 'Almacenamiento', 'Stockage', 'Speicher', 'Archiviazione', 'ストレージ', '存储'],
+  ['Um bucket para guardar seus arquivos.', 'A bucket to keep your files.', 'Un bucket para guardar tus archivos.', 'Un bucket pour conserver vos fichiers.', 'Ein Bucket für Ihre Dateien.', 'Un bucket per conservare i tuoi file.', 'ファイルを保存するバケット。', '用于保存文件的存储桶。'],
+  ['Banco de dados', 'Database', 'Base de datos', 'Base de données', 'Datenbank', 'Database', 'データベース', '数据库'],
+  ['Autonomous Database gerenciado pela Oracle.', 'Autonomous Database managed by Oracle.', 'Autonomous Database gestionado por Oracle.', 'Autonomous Database géré par Oracle.', 'Von Oracle verwaltete Autonomous Database.', 'Autonomous Database gestito da Oracle.', 'Oracle が管理する Autonomous Database。', '由 Oracle 管理的 Autonomous Database。'],
+  ['Balanceador', 'Load balancer', 'Balanceador', 'Équilibreur de charge', 'Load Balancer', 'Bilanciatore', 'ロードバランサー', '负载均衡器'],
+  ['Distribui o acesso entre servidores.', 'Spreads traffic across servers.', 'Distribuye el acceso entre servidores.', 'Répartit le trafic entre les serveurs.', 'Verteilt Zugriffe auf mehrere Server.', 'Distribuisce il traffico tra i server.', 'サーバー間でアクセスを分散します。', '在服务器之间分配访问流量。'],
+  ['Um cluster OKE para contêineres.', 'An OKE cluster for containers.', 'Un clúster OKE para contenedores.', 'Un cluster OKE pour les conteneurs.', 'Ein OKE-Cluster für Container.', 'Un cluster OKE per i container.', 'コンテナ用の OKE クラスター。', '用于容器的 OKE 集群。'],
+  ['Não achou? Escolha entre todos os serviços na lista abaixo.', 'Not here? Choose from all services in the list below.', '¿No está aquí? Elige entre todos los servicios en la lista de abajo.', 'Introuvable ? Choisissez parmi tous les services dans la liste ci-dessous.', 'Nicht dabei? Wählen Sie unten aus allen Diensten.', 'Non lo trovi? Scegli tra tutti i servizi nell’elenco qui sotto.', '見つかりませんか？下のリストからすべてのサービスを選択できます。', '没找到？请从下方列表的全部服务中选择。'],
+  ['Seu plano', 'Your plan', 'Tu plan', 'Votre plan', 'Ihr Plan', 'Il tuo piano', 'あなたのプラン', '您的计划'],
+  ['Nenhum recurso ainda.', 'No resources yet.', 'Aún no hay recursos.', 'Aucune ressource pour l’instant.', 'Noch keine Ressourcen.', 'Ancora nessuna risorsa.', 'リソースはまだありません。', '尚无资源。'],
+  ['Conferir o plano', 'Review the plan', 'Revisar el plan', 'Vérifier le plan', 'Plan prüfen', 'Verifica il piano', 'プランを確認', '检查计划'],
+  ['Primeira vez?', 'First time?', '¿Primera vez?', 'Première fois ?', 'Zum ersten Mal hier?', 'Prima volta?', '初めてですか？', '第一次使用？'],
+  ['Comece por um modelo pronto e mude o que quiser depois.', 'Start from a ready-made template and change anything later.', 'Empieza con una plantilla lista y cambia lo que quieras después.', 'Commencez par un modèle prêt à l’emploi et modifiez-le ensuite.', 'Starten Sie mit einer fertigen Vorlage und passen Sie sie später an.', 'Parti da un modello pronto e modifica ciò che vuoi in seguito.', '既成のテンプレートから始めて、後で自由に変更できます。', '从现成模板开始，之后可随意修改。'],
+  ['Usar modelo de rede + servidor', 'Use the network + server template', 'Usar plantilla de red + servidor', 'Utiliser le modèle réseau + serveur', 'Vorlage Netzwerk + Server verwenden', 'Usa il modello rete + server', 'ネットワーク＋サーバーのテンプレートを使用', '使用网络 + 服务器模板'],
+  ['ETAPA 2 DE 3', 'STEP 2 OF 3', 'PASO 2 DE 3', 'ÉTAPE 2 SUR 3', 'SCHRITT 2 VON 3', 'PASSAGGIO 2 DI 3', 'ステップ 2/3', '第 2 步，共 3 步'],
+  ['Confira seu plano', 'Review your plan', 'Revisa tu plan', 'Vérifiez votre plan', 'Prüfen Sie Ihren Plan', 'Verifica il tuo piano', 'プランを確認しましょう', '检查您的计划'],
+  ['Veja o que será criado e resolva as pendências antes de exportar.', 'See what will be created and fix open items before exporting.', 'Mira lo que se creará y resuelve los pendientes antes de exportar.', 'Voyez ce qui sera créé et réglez les points en attente avant d’exporter.', 'Sehen Sie, was erstellt wird, und klären Sie offene Punkte vor dem Export.', 'Guarda cosa verrà creato e risolvi gli elementi in sospeso prima di esportare.', '作成される内容を確認し、エクスポート前に未対応項目を解決します。', '查看将要创建的内容，并在导出前解决待办事项。'],
+  ['Permissões (IAM)', 'Permissions (IAM)', 'Permisos (IAM)', 'Autorisations (IAM)', 'Berechtigungen (IAM)', 'Autorizzazioni (IAM)', '権限 (IAM)', '权限 (IAM)'],
+  ['Opcional. Consulte as policies de referência para os serviços do plano.', 'Optional. See the reference policies for the services in the plan.', 'Opcional. Consulta las políticas de referencia para los servicios del plan.', 'Facultatif. Consultez les policies de référence pour les services du plan.', 'Optional. Sehen Sie sich die Referenz-Policies für die Dienste im Plan an.', 'Facoltativo. Consulta le policy di riferimento per i servizi del piano.', '任意。プラン内のサービス向け参照ポリシーを確認できます。', '可选。查看计划中各服务的参考策略。'],
+  ['Abrir tags', 'Open tags', 'Abrir etiquetas', 'Ouvrir les tags', 'Tags öffnen', 'Apri i tag', 'タグを開く', '打开标记'],
+  ['Abrir políticas IAM', 'Open IAM policies', 'Abrir políticas IAM', 'Ouvrir les policies IAM', 'IAM-Policies öffnen', 'Apri le policy IAM', 'IAM ポリシーを開く', '打开 IAM 策略'],
+  ['Voltar ao plano', 'Back to the plan', 'Volver al plan', 'Retour au plan', 'Zurück zum Plan', 'Torna al piano', 'プランに戻る', '返回计划'],
+  ['Continuar para exportar', 'Continue to export', 'Continuar para exportar', 'Continuer vers l’export', 'Weiter zum Export', 'Continua verso l’esportazione', 'エクスポートへ進む', '继续导出'],
+  ['Pronto', 'Ready', 'Listo', 'Prêt', 'Bereit', 'Pronto', '準備完了', '就绪'],
+  ['Falta ajustar', 'Needs attention', 'Falta ajustar', 'À corriger', 'Anpassung nötig', 'Da sistemare', '要対応', '需要调整'],
+  ['Seu plano ainda está vazio.', 'Your plan is still empty.', 'Tu plan aún está vacío.', 'Votre plan est encore vide.', 'Ihr Plan ist noch leer.', 'Il tuo piano è ancora vuoto.', 'プランはまだ空です。', '您的计划还是空的。'],
+  ['Adicione um recurso para conferir aqui.', 'Add a resource to review it here.', 'Añade un recurso para revisarlo aquí.', 'Ajoutez une ressource pour la vérifier ici.', 'Fügen Sie eine Ressource hinzu, um sie hier zu prüfen.', 'Aggiungi una risorsa per verificarla qui.', 'リソースを追加すると、ここで確認できます。', '添加资源后即可在此检查。'],
+  ['As tags do projeto estão prontas para exportar.', 'The project tags are ready to export.', 'Las etiquetas del proyecto están listas para exportar.', 'Les tags du projet sont prêts à être exportés.', 'Die Projekt-Tags sind exportbereit.', 'I tag del progetto sono pronti per l’esportazione.', 'プロジェクトのタグはエクスポートできます。', '项目标记已可导出。'],
+]) if (!I18N_TEXT.has(source)) I18N_TEXT.set(source, values);
+localizeInterface();
+renderTrail();
+updateTrailBuilder();
+if (page === 'review') renderReview();
 </script>
 
 </body>

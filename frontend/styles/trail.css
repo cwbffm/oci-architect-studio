@@ -1,0 +1,98 @@
+/* Guided trail (A): no persistent sidebar; three project steps under the header. */
+body.studio-trail main { margin-left: 0; }
+body.studio-trail .topbar-brand { border-right: 0; width: auto; }
+body.studio-trail .breadcrumb > * { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* "Mais" button and its menu (the former sidebar). */
+body.studio-trail .trail-more { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--input); color: var(--text); font: inherit; font-size: 12px; cursor: pointer; }
+body.studio-trail .trail-more[aria-expanded="true"] { border-color: var(--accent); }
+body.studio-trail .sidebar { inset: calc(var(--studio-header-height) + 8px) 16px auto auto; width: 260px; height: auto; max-height: calc(100dvh - var(--studio-header-height) - 24px); padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); box-shadow: 0 12px 40px #00000030; transform: none; transition: none; display: none; z-index: 50; }
+body.studio-trail .sidebar.open { display: flex; box-shadow: 0 12px 40px #00000030; }
+body.studio-trail .sidebar-links a { font-size: 13px; min-height: 40px; }
+body.studio-trail .sidebar-group { margin-bottom: 8px; }
+
+/* The trail. */
+.trail { background: var(--panel); border-bottom: 1px solid var(--border); padding: 16px 24px; }
+.trail ol { list-style: none; margin: 0 auto; padding: 0; max-width: 900px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.trail a { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 12px; border: 1px solid transparent; border-radius: 10px; color: var(--muted); text-decoration: none; }
+.trail a:hover { border-color: var(--border); }
+.trail-number { flex: none; width: 32px; height: 32px; border: 2px solid var(--border); border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--muted); background: var(--panel); }
+.trail-text { min-width: 0; display: flex; flex-direction: column; line-height: 1.3; }
+.trail-text b { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.trail-text small { font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+.trail a.trail-current { color: var(--text); background: var(--raised); border-color: var(--border); }
+.trail a.trail-current .trail-number { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.trail a.trail-done .trail-number { border-color: var(--mint); color: var(--mint); }
+
+/* Step 1: common services as cards. */
+.trail-services[hidden], .trail-tip[hidden] { display: none; }
+.trail-service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.trail-service { display: flex; align-items: flex-start; gap: 12px; min-width: 0; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--input); color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.trail-service:hover { border-color: var(--muted); }
+.trail-service[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.trail-service-icon { flex: none; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: var(--raised); border: 1px solid var(--border); }
+.trail-service-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.trail-service > span:last-child { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.trail-service strong { font-size: 14px; overflow-wrap: anywhere; }
+.trail-service strong + span { font-size: 12px; line-height: 1.45; color: var(--muted); overflow-wrap: anywhere; }
+.trail-all-services { margin: 14px 0 10px; font-size: 12px; color: var(--muted); }
+
+/* Plan strip and first-time tip. */
+.trail-plan { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 16px; padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+.trail-plan > strong { font-size: 14px; }
+.trail-plan-chips { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.trail-chip { max-width: 100%; padding: 4px 12px; border: 1px solid color-mix(in srgb, var(--mint) 35%, var(--border)); border-radius: 999px; background: color-mix(in srgb, var(--mint) 8%, transparent); color: var(--text); font: inherit; font-size: 12px; cursor: pointer; overflow-wrap: anywhere; }
+.trail-plan-empty { font-size: 12px; color: var(--muted); }
+.trail-plan a.button { text-decoration: none; }
+.trail-tip { margin: 12px 0 0; padding: 12px 18px; border: 1px dashed var(--border); border-radius: 12px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.trail-tip strong { color: var(--text); }
+
+/* Step 2: review. */
+#view-review { max-width: 1100px; margin: 0 auto; }
+.trail-review { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.trail-review-side { display: grid; gap: 20px; }
+.trail-review h2 { font-size: 16px; margin: 0 0 8px; }
+.review-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-top: 1px solid var(--border); }
+.review-row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.review-row-name { align-self: flex-start; max-width: 100%; padding: 0; border: 0; background: none; color: var(--text); font: inherit; font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.review-row-name:hover { text-decoration: underline; }
+.review-row small { font-size: 12px; color: var(--muted); }
+.review-issues { margin: 8px 0 0; padding-left: 18px; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.review-empty { padding: 24px 0 8px; text-align: center; color: var(--muted); }
+.review-empty p { margin: 0 0 8px; }
+.review-empty .button { margin-top: 8px; text-decoration: none; }
+.trail-review .badge { font-size: 10px; padding: 4px 8px; }
+#review-tags { margin: 4px 0 12px; }
+.trail-review-actions { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.trail-review-actions a.button { text-decoration: none; }
+
+@media (max-width: 900px) {
+  .trail-review { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .trail { padding: 10px 12px; }
+  .trail ol { gap: 6px; }
+  .trail a { flex-direction: column; gap: 4px; padding: 6px 4px; text-align: center; min-height: 0; }
+  .trail-text small { display: none; }
+  .trail-text b { font-size: 12px; }
+  .trail-number { width: 26px; height: 26px; font-size: 12px; }
+  .trail-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .trail-service { flex-direction: column; gap: 8px; padding: 12px; }
+  body.studio-trail .sidebar { right: 8px; width: min(260px, calc(100vw - 16px)); }
+  body.studio-trail .trail-more { height: 34px; }
+}
+@media (max-width: 360px) {
+  .trail-service-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Overrides for rules inherited from the former sidebar layout. */
+.trail a::before { content: none !important; }
+body.studio-trail #sidebar { height: auto; }
+body.studio-trail #navigation { flex: 0 0 auto; }
+body.studio-trail #sidebar .sidebar-bottom { margin-top: 8px; }
+body.studio-trail .builder-heading { max-width: 900px; margin-inline: auto; }
+.review-row .plan-item-icon svg { width: 18px; height: 18px; }
+@media (max-width: 700px) {
+  .trail-plan-chips { flex-basis: 100%; order: 3; }
+  .trail-plan > strong { flex: 1; }
+}
