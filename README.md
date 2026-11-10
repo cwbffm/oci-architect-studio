@@ -1,6 +1,6 @@
 # OCI Architect Studio
 
-> **Interface atual:** layout clássico com Aparência 13 (lista dupla e painel fixo com três abas), tema claro padrão e melhorias de idiomas/regiões. [Detalhes da implementação](docs/APARENCIA_13_FINAL.md).
+> **Interface atual:** trilha guiada em três passos (Montar o plano, Conferir e Exportar), com as demais páginas no menu "Mais". Aparência 13, tema claro padrão e melhorias de idiomas/regiões continuam disponíveis. [Detalhes da Aparência](docs/APARENCIA_13_FINAL.md).
 
 <a href="https://cwbffm.github.io/oci-architect-studio/">
 <picture>
@@ -47,9 +47,9 @@ As capturas usam o estado inicial da aplicação e não representam uma tenancy 
 
 1. Abra a [demonstração](https://cwbffm.github.io/oci-architect-studio/) ou baixe o repositório e abra `index.html` no navegador.
 2. Selecione a região e configure o contexto do projeto.
-3. Escolha um serviço, preencha os campos e associe suas dependências.
-4. Revise as tags e as pendências indicadas pela ferramenta. Consulte as policies opcionais na aba IAM quando precisar.
-5. Escolha Terraform ou OCI CLI na exportação e salve um backup JSON do projeto.
+3. Em **Montar o plano**, escolha um serviço nos cartões ou na lista completa, preencha os campos e associe suas dependências.
+4. Em **Conferir**, revise os recursos, as tags e as pendências indicadas pela ferramenta. As policies IAM opcionais ficam no menu **Mais**.
+5. Em **Exportar**, escolha Terraform ou OCI CLI e salve um backup JSON do projeto.
 
 O projeto fica no armazenamento local do navegador. Exporte o backup para preservá-lo ao trocar de navegador, computador ou limpar os dados do site.
 
